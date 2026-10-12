@@ -30,19 +30,16 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 html{background:#000;-webkit-text-size-adjust:100%}
-body{font-family:I,system-ui,sans-serif;color:#fff;background:#000;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.55;overflow:hidden;display:grid;grid-template-columns:248px minmax(0,1fr) 420px;transition:--g1 1s,--g2 1s}
+body{font-family:I,system-ui,sans-serif;color:#fff;background:#000;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.55;overflow:hidden;display:grid;grid-template-columns:212px minmax(0,1fr) 400px;transition:--g1 1s,--g2 1s}
 a{color:inherit;text-decoration:none}
 button,input,textarea{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:0}
 [hidden]{display:none!important}
 ::selection{background:var(--p);color:#fff}
-.mono{font-family:M,ui-monospace,monospace}
-.scan{position:fixed;inset:0;pointer-events:none;z-index:90;background:repeating-linear-gradient(180deg,rgba(255,255,255,.026) 0 1px,transparent 1px 4px)}
-.grain{position:fixed;inset:-50%;pointer-events:none;z-index:89;opacity:.45;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");animation:grain 1s steps(4) infinite}
+.scan{position:fixed;inset:0;pointer-events:none;z-index:90;background:repeating-linear-gradient(180deg,rgba(255,255,255,.022) 0 1px,transparent 1px 4px)}
+.grain{position:fixed;inset:-50%;pointer-events:none;z-index:89;opacity:.4;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");animation:grain 1s steps(4) infinite}
 @keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}}
-#glow{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(38% 48% at 46% 28%,color-mix(in srgb,var(--g1) 16%,transparent),transparent 72%),radial-gradient(40% 50% at 58% 78%,color-mix(in srgb,var(--g2) 14%,transparent),transparent 72%)}
-
-/* sticker + glitch */
+#glow{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(38% 48% at 46% 28%,color-mix(in srgb,var(--g1) 18%,transparent),transparent 72%),radial-gradient(40% 50% at 58% 78%,color-mix(in srgb,var(--g2) 15%,transparent),transparent 72%)}
 .stk{position:relative;display:inline-block;font-weight:900;letter-spacing:-.02em;line-height:1.3;z-index:0}
 .stk>span{display:inline-block;padding:.02em .3em;border-radius:.2em;background:#fff;color:#000}
 .stk:before,.stk:after{content:"";position:absolute;inset:0;border-radius:.2em;z-index:-1}
@@ -61,7 +58,7 @@ button{cursor:pointer;background:none;border:0}
 .flick{animation:flick 5s steps(1) infinite}
 @keyframes flick{0%,100%{opacity:1}41%{opacity:.82}42%{opacity:1}43%{opacity:.7;transform:translateX(2px)}44%{opacity:1;transform:none}}
 .cap{display:inline;font-weight:800;color:#000;background:#fff;line-height:1.5;padding:.08em .38em;border-radius:.28em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 22px;border-radius:12px;font-weight:800;font-size:15px;transition:transform .15s var(--ease),box-shadow .25s,background .2s,border-color .2s;position:relative;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:46px;padding:0 20px;border-radius:12px;font-weight:800;font-size:15px;transition:transform .15s var(--ease),box-shadow .25s,background .2s,border-color .2s;position:relative;white-space:nowrap}
 .btn.w{background:#fff;color:#000;box-shadow:-4px -3px 0 var(--c),4px 3px 0 var(--p)}
 .btn.w:hover{transform:translateY(-2px);box-shadow:-6px -4px 0 var(--c),6px 4px 0 var(--p)}
 .btn.w:active{transform:translateY(1px);box-shadow:-2px -1px 0 var(--c),2px 1px 0 var(--p)}
@@ -70,64 +67,55 @@ button{cursor:pointer;background:none;border:0}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd67b;flex:none;animation:pulse 1.6s infinite}
 .dot.off{background:var(--mute);animation:none}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(43,214,123,.6)}80%,100%{box-shadow:0 0 0 8px rgba(43,214,123,0)}}
-
-/* left: the sidebar */
-#nav{position:relative;z-index:5;display:flex;flex-direction:column;gap:4px;padding:20px 14px 18px;border-right:1px solid var(--line);background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);overflow-y:auto;scrollbar-width:none}
+#nav{position:relative;z-index:5;display:flex;flex-direction:column;gap:4px;padding:20px 14px;border-right:1px solid var(--line);background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);overflow-y:auto;scrollbar-width:none}
 #nav::-webkit-scrollbar{display:none}
-#nav .logo{display:block;padding:8px 12px 20px;font-size:30px;align-self:flex-start}
-#nav .it{display:flex;align-items:center;gap:14px;min-height:44px;padding:0 12px;border-radius:12px;font-weight:700;font-size:15px;color:var(--dim);position:relative;transition:color .2s,background .2s;text-align:left}
-#nav .it svg{width:23px;height:23px;flex:none}
+#nav .logo{display:block;padding:8px 12px 22px;font-size:30px;align-self:flex-start}
+#nav .it{display:flex;align-items:center;gap:14px;min-height:46px;padding:0 14px;border-radius:12px;font-weight:700;font-size:16px;color:var(--dim);position:relative;transition:color .2s,background .2s;text-align:left}
+#nav .it svg{width:23px;height:23px;flex:none;transition:transform .25s var(--spring)}
 #nav .it:hover{background:rgba(255,255,255,.05);color:#fff}
+#nav .it:hover svg{transform:scale(1.12)}
 #nav .it.on{color:#fff;background:rgba(255,255,255,.08)}
-#nav .it.on:before{content:"";position:absolute;left:-14px;top:11px;bottom:11px;width:3px;border-radius:0 3px 3px 0;background:#fff;box-shadow:0 -3px 0 var(--c),0 3px 0 var(--p)}
-#nav .it .n{margin-left:auto;font-family:M;font-size:11px;color:var(--mute)}
-#nav .foot{margin-top:auto;padding:16px 12px 0;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.5}
-#nav .foot .t{font-family:M;font-size:11px;letter-spacing:.16em;margin-bottom:10px}
-.lks{display:flex;flex-wrap:wrap;gap:8px}
-.lks a{font-weight:800;color:#fff;font-size:13px;padding:7px 12px;border:1px solid var(--line2);border-radius:999px;transition:border-color .2s,background .2s}
-.lks a:hover{border-color:#fff;background:rgba(255,255,255,.05)}
-.cap2{display:flex;align-items:center;gap:8px;margin-top:12px;padding:8px 8px 8px 12px;border:1px solid var(--line2);border-radius:12px;font-family:M;font-size:12.5px;color:var(--dim)}
-.cap2 b{flex:1;min-width:0;color:#fff;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cap2 button{font-family:I;font-weight:800;font-size:12px;padding:6px 10px;border-radius:8px;background:#fff;color:#000}
+#nav .it.on:before{content:"";position:absolute;left:-14px;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:#fff;box-shadow:0 -3px 0 var(--c),0 3px 0 var(--p)}
 #nav .x{display:none}
-
-/* middle: the feed */
 #stage{position:relative;z-index:1;container-type:inline-size;min-width:0}
 #feed{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;outline:0}
 #feed::-webkit-scrollbar{display:none}
 .clip{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center}
 .fw{--fh:min(calc(100vh - 48px),880px,calc((100cqw - 230px) * 16 / 9));position:relative;height:var(--fh);width:calc(var(--fh) * 9 / 16);margin-right:76px;flex:none}
-.frame{position:absolute;inset:0;border-radius:18px;overflow:hidden;container-type:size;background:radial-gradient(120% 80% at 50% 0%,#1b1b25 0%,#0b0b10 58%,#050507 100%);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 30px 80px rgba(0,0,0,.6);cursor:pointer;-webkit-user-select:none;user-select:none;touch-action:pan-y;transition:box-shadow .5s var(--ease);-webkit-tap-highlight-color:transparent}
+.frame{position:absolute;inset:0;border-radius:18px;overflow:hidden;container-type:size;background:#0b0b10;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 30px 80px rgba(0,0,0,.6);cursor:pointer;-webkit-user-select:none;user-select:none;touch-action:pan-y;transition:box-shadow .5s var(--ease);-webkit-tap-highlight-color:transparent;isolation:isolate}
 .clip.on .frame{box-shadow:0 0 0 1px rgba(255,255,255,.1),-6px -4px 0 0 rgba(37,244,238,.5),6px 4px 0 0 rgba(254,44,85,.5),0 30px 80px rgba(0,0,0,.6)}
-.frame:before{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;opacity:0;background:repeating-linear-gradient(180deg,rgba(37,244,238,.2) 0 3px,transparent 3px 9px,rgba(254,44,85,.2) 9px 12px,transparent 12px 22px)}
+.frame:before{content:"";position:absolute;inset:0;z-index:8;pointer-events:none;opacity:0;background:repeating-linear-gradient(180deg,rgba(37,244,238,.22) 0 3px,transparent 3px 9px,rgba(254,44,85,.22) 9px 12px,transparent 12px 22px)}
 .clip.enter .frame:before{animation:bands .4s steps(4)}
 @keyframes bands{0%{opacity:1;transform:translateX(-3%)}50%{opacity:.8;transform:translateX(3%)}100%{opacity:0}}
-.clip.enter .vis{animation:ent .4s steps(3)}
-@keyframes ent{0%{transform:translateX(-1.4cqw) skewX(-5deg);filter:drop-shadow(-1.2cqw 0 0 rgba(37,244,238,.8)) drop-shadow(1.2cqw 0 0 rgba(254,44,85,.8))}40%{transform:translateX(1cqw)}70%{transform:none;filter:none}}
-.fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.fx i{position:absolute;width:95cqw;height:95cqw;border-radius:50%;opacity:.5}
-.fx i:nth-child(1){background:radial-gradient(circle,color-mix(in srgb,var(--a,#25F4EE) 55%,transparent) 0%,transparent 62%);left:-42cqw;top:4cqh}
-.fx i:nth-child(2){background:radial-gradient(circle,color-mix(in srgb,var(--b,#FE2C55) 50%,transparent) 0%,transparent 62%);right:-42cqw;bottom:10cqh}
-.clip.on .fx i:nth-child(1){animation:dr1 9s ease-in-out infinite alternate}
-.clip.on .fx i:nth-child(2){animation:dr2 11s ease-in-out infinite alternate}
-@keyframes dr1{to{transform:translate(26cqw,18cqh) scale(1.15)}}
-@keyframes dr2{to{transform:translate(-24cqw,-16cqh) scale(.9)}}
-.vis{position:absolute;inset:8cqh 7cqw 21cqh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4.5cqh;z-index:1}
-.ttl{font-size:5.3cqw;line-height:1.1}
-.meta{position:absolute;left:4.6cqw;right:6cqw;bottom:3.6cqh;z-index:3;font-size:max(13px,3cqw);line-height:1.45;text-shadow:0 1px 2px rgba(0,0,0,.6);text-align:left}
+.frame:after{content:"";position:absolute;left:0;right:0;bottom:0;height:36%;z-index:2;pointer-events:none;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.vis{position:absolute;inset:0;z-index:1;overflow:hidden}
+.top{position:absolute;left:6cqw;right:6cqw;top:8cqh;display:grid;justify-items:center;text-align:center;z-index:4}
+.top>*{grid-area:1/1}
+.tt{font-weight:800;font-size:6.2cqw;line-height:1.22;color:#fff;letter-spacing:-.01em;text-shadow:-.07em -.07em 0 #000,.07em -.07em 0 #000,-.07em .07em 0 #000,.07em .07em 0 #000,0 .09em 0 #000,0 -.09em 0 #000,.09em 0 0 #000,-.09em 0 0 #000,0 .16em .12em rgba(0,0,0,.35)}
+.meta{position:absolute;left:4.6cqw;right:6cqw;bottom:3.4cqh;z-index:5;font-size:max(13px,3cqw);line-height:1.42;text-shadow:0 1px 2px rgba(0,0,0,.6);text-align:left}
 .meta .who{display:flex;align-items:center;gap:8px;font-weight:800;font-size:max(14.5px,3.5cqw)}
-.meta .idx{font-family:M;font-weight:500;font-size:11px;padding:1px 7px;border-radius:5px;background:rgba(255,255,255,.16);text-shadow:none}
-.meta p{margin-top:3px;color:rgba(255,255,255,.93)}
+.meta .idx{font-family:M;font-weight:500;font-size:11px;padding:1px 7px;border-radius:5px;background:rgba(255,255,255,.18);text-shadow:none}
+.meta p{margin-top:3px;color:rgba(255,255,255,.94)}
 .meta .more{font-weight:800;color:#fff;margin-left:2px;padding:0 2px}
-.meta .tags{margin-top:2px;font-weight:700;color:rgba(255,255,255,.78)}
-.bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.16);z-index:4}
+.meta .tags{margin-top:1px;font-weight:700;color:rgba(255,255,255,.82)}
+.meta .snd{display:flex;gap:8px;align-items:center;margin-top:5px;white-space:nowrap;overflow:hidden;font-weight:600}
+.meta .snd i{flex:1;min-width:0;overflow:hidden;font-style:normal}
+.meta .snd span{display:inline-block;padding-left:100%;animation:marq 9s linear infinite}
+@keyframes marq{to{transform:translateX(-100%)}}
+.bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.16);z-index:6}
 .bar i{display:block;height:100%;width:100%;transform-origin:left;transform:scaleX(0);background:#fff}
 .clip.on .bar i{animation:prog var(--dur,9s) linear infinite}
 @keyframes prog{to{transform:scaleX(1)}}
-.pz{position:absolute;left:50%;top:50%;width:20cqw;height:20cqw;margin:-10cqw 0 0 -10cqw;border-radius:50%;background:rgba(0,0,0,.42);display:grid;place-items:center;opacity:0;transform:scale(1.35);transition:.25s var(--ease);pointer-events:none;z-index:5;color:#fff}
+.pz{position:absolute;left:50%;top:50%;width:20cqw;height:20cqw;margin:-10cqw 0 0 -10cqw;border-radius:50%;background:rgba(0,0,0,.42);display:grid;place-items:center;opacity:0;transform:scale(1.35);transition:.25s var(--ease);pointer-events:none;z-index:7;color:#fff}
 .pz svg{width:10cqw;height:10cqw;margin-left:1cqw}
 .clip.paused .pz{opacity:1;transform:none}
 .clip.paused *{animation-play-state:paused!important}
+.vol{position:absolute;left:3.6cqw;top:2.6cqh;z-index:7;display:flex;align-items:center;gap:6px;height:36px;padding:0 12px 0 9px;border-radius:999px;background:rgba(0,0,0,.42);color:#fff;font-weight:700;font-size:13px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .2s,transform .15s}
+.vol:hover{background:rgba(0,0,0,.6)}
+.vol:active{transform:scale(.94)}
+.vol svg{width:20px;height:20px}
+.vol.on{padding:0 9px}
+.vol.on span{display:none}
 .rail{position:absolute;left:100%;bottom:0;margin-left:18px;display:flex;flex-direction:column;align-items:center;gap:13px;z-index:7}
 .ra{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#fff;-webkit-tap-highlight-color:transparent}
 .ra .ic{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;transition:transform .2s var(--spring),background .2s}
@@ -153,214 +141,233 @@ button{cursor:pointer;background:none;border:0}
 .arrows button:active{transform:scale(.92)}
 .arrows button:disabled{opacity:.25;cursor:default}
 .arrows svg{width:24px;height:24px}
-#top{display:none}
-#scrim{display:none}
-
-/* sequencer: elements enter at data-at ms */
-.js .vis [data-at]{opacity:0;transform:translateY(2.4cqh);transition:opacity .45s var(--ease),transform .6s var(--spring)}
+#top,#scrim{display:none}
+.js .vis [data-at]{opacity:0;transform:translateY(2.4cqh) scale(.97);transition:opacity .4s var(--ease),transform .55s var(--spring)}
 .js .vis [data-at].in{opacity:1;transform:none}
-.vis.out [data-at]{opacity:0!important;transition:opacity .35s!important}
-
-/* 01 for you */
-.v-fyp{gap:6cqh}
-.v-fyp .glitch{font-size:22cqw}
-.v-fyp .tl{font-size:6cqw;min-height:3em;display:flex;align-items:flex-start;justify-content:center;line-height:1.5}
-.v-fyp .tl .cap:after{content:"";display:inline-block;width:.07em;height:.95em;background:#000;margin-left:.08em;vertical-align:-.1em;animation:blink 1s steps(1) infinite}
+.vis.out [data-at]{opacity:0!important;transition:opacity .3s!important}
+.s-fyp{background:radial-gradient(120% 80% at 50% 0%,#1b1b25 0%,#0b0b10 58%,#050507 100%)}
+.fx{position:absolute;inset:0;pointer-events:none}
+.fx i{position:absolute;width:95cqw;height:95cqw;border-radius:50%;opacity:.55}
+.fx i:nth-child(1){background:radial-gradient(circle,rgba(37,244,238,.5) 0%,transparent 62%);left:-42cqw;top:4cqh}
+.fx i:nth-child(2){background:radial-gradient(circle,rgba(254,44,85,.45) 0%,transparent 62%);right:-42cqw;bottom:10cqh}
+.clip.on .fx i:nth-child(1){animation:dr1 9s ease-in-out infinite alternate}
+.clip.on .fx i:nth-child(2){animation:dr2 11s ease-in-out infinite alternate}
+@keyframes dr1{to{transform:translate(26cqw,18cqh) scale(1.15)}}
+@keyframes dr2{to{transform:translate(-24cqw,-16cqh) scale(.9)}}
+.hook{position:absolute;inset:8cqh 7cqw 22cqh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6cqh;text-align:center}
+.hook .glitch{font-size:22cqw}
+.hook .tl{font-size:6cqw;min-height:3em;display:flex;align-items:flex-start;justify-content:center;line-height:1.5}
+.hook .tl .cap:after{content:"";display:inline-block;width:.07em;height:.95em;background:#000;margin-left:.08em;vertical-align:-.1em;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.hint{display:flex;flex-direction:column;align-items:center;gap:.6cqh;font-weight:700;font-size:max(12px,3cqw);color:rgba(255,255,255,.7)}
+.hint{display:flex;flex-direction:column;align-items:center;gap:.6cqh;font-weight:700;font-size:max(12px,3cqw);color:rgba(255,255,255,.75)}
 .hint svg{width:7cqw;height:7cqw}
 .clip.on .hint svg{animation:nudge 1.6s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateY(-1.4cqh)}}
 .hint .m{display:none}
-
-/* 02 how */
-.v-how{gap:4.6cqh}
-.flow{list-style:none;display:flex;flex-direction:column;gap:4cqh;align-items:flex-start;text-align:left}
-.js .flow li,.flow li{display:flex;align-items:center;gap:4cqw;position:relative;opacity:.14;transform:translateX(-3cqw);transition:opacity .5s var(--ease),transform .6s var(--spring)}
-.js .flow li.in{opacity:1;transform:none}
-.flow .fi{width:15cqw;height:15cqw;flex:none;border-radius:4cqw;background:#fff;display:grid;place-items:center;box-shadow:-.9cqw -.6cqw 0 var(--c),.9cqw .6cqw 0 var(--p)}
-.flow .fi svg{width:9.5cqw;height:9.5cqw;fill:none;stroke:#000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
-.flow .cap{font-size:5cqw}
-.flow li:not(:last-child):after{content:"";position:absolute;left:7.5cqw;top:100%;width:.8cqw;height:4cqh;margin-left:-.4cqw;border-radius:1cqw;background:linear-gradient(var(--c),var(--p));transform-origin:top;transform:scaleY(0);transition:transform .9s .3s var(--ease)}
-.flow li.in:not(:last-child):after{transform:scaleY(1)}
-.clip.on .k1 .cd{animation:cnd 1.3s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
-.clip.on .k1 .cd:nth-of-type(2){animation-delay:-.4s}
-.clip.on .k1 .cd:nth-of-type(3){animation-delay:-.8s}
-@keyframes cnd{to{transform:scaleY(.6)}}
-.clip.on .k2 .coin{animation:drop 1.8s var(--ease) infinite}
-@keyframes drop{0%{transform:translateY(-9px);opacity:0}30%{opacity:1}60%,100%{transform:none;opacity:1}}
-.clip.on .k3 .cur{animation:tap 1.6s ease-in-out infinite}
-@keyframes tap{0%,100%{transform:translate(3px,3px)}45%{transform:none}55%{transform:translate(-.6px,-.6px) scale(.92)}}
-.clip.on .k4 .ln{animation:lns 2s ease-in-out infinite;stroke-dasharray:6;stroke-dashoffset:6}
-.clip.on .k4 .ln:nth-of-type(2){animation-delay:.25s}
-.clip.on .k4 .ln:nth-of-type(3){animation-delay:.5s}
-@keyframes lns{40%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-6}}
-
-/* 03 wallet */
-.v-wallet{gap:5cqh;perspective:140cqw}
-.card{position:relative;width:76cqw;aspect-ratio:1.586;border-radius:4.5cqw;padding:5cqw;text-align:left;background:linear-gradient(135deg,#22222d 0%,#0e0e14 58%,#17171f 100%);border:1px solid rgba(255,255,255,.14);box-shadow:-1.4cqw -1cqw 0 rgba(37,244,238,.75),1.4cqw 1cqw 0 rgba(254,44,85,.75),0 5cqw 12cqw rgba(0,0,0,.6);overflow:hidden;display:flex;flex-direction:column}
-.clip.on .card{animation:tilt 7s ease-in-out infinite}
-@keyframes tilt{0%,100%{transform:rotateX(9deg) rotateY(-13deg)}50%{transform:rotateX(-7deg) rotateY(13deg)}}
-.card .r1{display:flex;justify-content:space-between;align-items:center;gap:2cqw;font-family:M;font-size:2.8cqw;letter-spacing:.14em;color:var(--dim)}
-.card .lv{display:flex;align-items:center;gap:1.6cqw;letter-spacing:.06em}
-.card .lv .dot{width:1.8cqw;height:1.8cqw}
-.card .pv{position:absolute;right:5cqw;top:30%;font-size:4.6cqw;opacity:.9}
-.card .bal{margin-top:auto;font-size:11cqw;font-weight:900;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-.card .bal small{font-size:.42em;font-weight:800;letter-spacing:0;margin-left:1cqw;color:var(--dim)}
-.card .usd{font-size:3.3cqw;color:var(--dim);margin-top:1.4cqw;font-weight:600}
-.card .adr{font-family:M;font-size:2.7cqw;color:var(--mute);margin-top:2.4cqw}
-.card .shine{position:absolute;inset:-40% -70%;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.13) 50%,transparent 58%);transform:translateX(-60%);pointer-events:none}
-.clip.on .card .shine{animation:shine 3.8s ease-in-out infinite}
-@keyframes shine{0%{transform:translateX(-60%)}55%,100%{transform:translateX(60%)}}
-.flowx{display:flex;align-items:center;gap:2.4cqw;font-weight:800;font-size:3.5cqw}
-.flowx span{padding:1.2cqw 2.6cqw;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--line2)}
-.flowx i{width:7cqw;height:.6cqw;border-radius:1cqw;background:linear-gradient(90deg,var(--c),var(--p));position:relative;overflow:hidden}
-.flowx i:after{content:"";position:absolute;top:0;bottom:0;width:40%;background:#fff;opacity:.9}
-.clip.on .flowx i:after{animation:runr 1.4s linear infinite}
-@keyframes runr{from{left:-40%}to{left:100%}}
-.vsub{font-size:3.4cqw;color:var(--dim);font-weight:600}
-
-/* 04 hour */
-.v-hour{gap:4cqh}
-.ring{position:relative;width:62cqw;aspect-ratio:1}
-.ring svg{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
-.ring .tr{fill:none;stroke:rgba(255,255,255,.1);stroke-width:6}
-.ring .pg{fill:none;stroke:url(#rg);stroke-width:6;stroke-linecap:round;stroke-dasharray:565.49;stroke-dashoffset:565.49;transition:stroke-dashoffset 1s linear}
-.ring .tk line{stroke:rgba(255,255,255,.22);stroke-width:1.2}
-.ring .tk line.b{stroke:rgba(255,255,255,.55);stroke-width:2}
-.ring .hand{position:absolute;inset:0;transition:transform 1s linear}
-.ring .hand i{position:absolute;left:50%;top:5%;width:3.6cqw;height:3.6cqw;margin:-1.8cqw 0 0 -1.8cqw;border-radius:50%;background:#fff;box-shadow:0 0 0 1.1cqw rgba(254,44,85,.35),0 0 5cqw var(--p)}
-.ring .clk{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.ring .clk b{font-size:10cqw;font-weight:900;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
-.ring .clk span{font-family:M;font-size:3cqw;color:var(--dim);letter-spacing:.24em;margin-top:2cqw}
-.v-hour .nx{font-weight:800;font-size:4.6cqw;font-variant-numeric:tabular-nums}
-.chipx{display:inline-flex;align-items:center;gap:2cqw;font-weight:700;font-size:3.3cqw;padding:1.6cqw 3.6cqw;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--line2)}
-.chipx .dot{width:1.8cqw;height:1.8cqw}
-
-/* 05 receipts */
-.v-rcpt{gap:3cqh;justify-content:flex-start}
-.printer{position:relative;width:72cqw}
-.printer .slot{position:relative;z-index:2;height:7.5cqw;border-radius:2.6cqw;background:linear-gradient(#2c2c37,#15151b);box-shadow:inset 0 -1.2cqw 0 #0a0a0d,0 1.6cqw 4cqw rgba(0,0,0,.5)}
-.printer .slot:after{content:"";position:absolute;left:6cqw;right:6cqw;bottom:2cqw;height:1.1cqw;border-radius:1cqw;background:#000}
-.printer .slot b{position:absolute;right:3cqw;top:1.8cqw;width:1.6cqw;height:1.6cqw;border-radius:50%;background:#2bd67b;box-shadow:0 0 2cqw #2bd67b}
-.printer .pw{position:relative;margin:-3.4cqw 4.5cqw 0;height:min(82cqw,50cqh);overflow:hidden}
-.js .vis .paper,.paper{background:#f4f4ef;color:#141414;font-family:M,ui-monospace,monospace;font-size:2.95cqw;line-height:1.55;padding:6cqw 4.6cqw 7cqw;text-align:left;opacity:1;transform:translateY(-101%);transition:transform 2.6s steps(26);-webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/3cqw 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/3cqw 100%}
-.js .vis .paper.in{transform:none}
-.paper .rh{text-align:center;letter-spacing:.14em;font-size:3.1cqw}
-.paper .rs{text-align:center;color:#666;font-size:2.6cqw;margin-bottom:2cqw}
-.paper hr{border:0;border-top:1.5px dashed #9a9a9a;margin:2cqw 0}
-.paper .rr{display:flex;justify-content:space-between;gap:3cqw}
-.paper .rr span:last-child{text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.paper .ft{margin-top:2.4cqw;text-align:center;color:#555}
-
-/* 06 write */
-.v-write{gap:4cqh}
-.fmtl{font-family:M;font-size:3.1cqw;letter-spacing:.22em;color:var(--dim)}
-.wpv{font-size:6.3cqw;max-width:100%;overflow-wrap:anywhere;line-height:1.5}
-.ex{font-family:M;font-size:2.7cqw;letter-spacing:.16em;color:var(--dim);border:1px solid var(--line2);padding:.7cqw 2.4cqw;border-radius:999px;text-transform:uppercase}
-.v-write .btn{height:auto;padding:3cqw 6cqw;font-size:max(14px,3.8cqw);border-radius:3cqw}
-
-/* 07 formats */
-.v-fmt{gap:3cqh}
-.stack{position:relative;width:100%;flex:1;min-height:0}
-.fl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5cqh;opacity:0}
-.clip.on .fl{animation:fl 11s infinite;animation-delay:calc(var(--i) * 2.2s)}
-@keyframes fl{0%{opacity:0;transform:translateY(5cqh) scale(.96)}3%{opacity:1;transform:none}17%{opacity:1;transform:none}20%{opacity:0;transform:translateY(-5cqh) scale(.98)}100%{opacity:0}}
-.fl .stk{font-size:var(--fs,12cqw);line-height:1.18}
-.fl .cap{font-size:5.1cqw}
-.dots{display:flex;gap:1.6cqw}
-.dots i{width:1.8cqw;height:1.8cqw;border-radius:1cqw;background:rgba(255,255,255,.25)}
-.clip.on .dots i{animation:dt 11s infinite;animation-delay:calc(var(--i) * 2.2s)}
-@keyframes dt{0%,19%{background:#fff;width:5cqw}20%,100%{background:rgba(255,255,255,.25);width:1.8cqw}}
-
-/* 08 rules */
-.v-rules{gap:4cqh}
-.nope{list-style:none;display:flex;flex-direction:column;align-items:center;gap:1.8cqh}
-.js .vis .nope li,.nope li{position:relative;font-size:8.4cqw;font-weight:900;letter-spacing:-.03em;line-height:1.12;color:#fff;transition:opacity .35s,transform .5s var(--spring),color .4s .55s}
-.js .vis .nope li.in{color:rgba(255,255,255,.42)}
-.nope li:after{content:"";position:absolute;left:-6%;right:-6%;top:50%;height:1.5cqw;margin-top:-.75cqw;border-radius:1cqw;background:var(--p);box-shadow:0 0 0 .35cqw #000;transform:scaleX(0) rotate(-5deg);transform-origin:left;transition:transform .35s .32s var(--ease)}
-.nope li.in:after{transform:scaleX(1) rotate(-5deg)}
-.js .vis .yes,.yes{font-size:6.2cqw;transform:scale(.7) rotate(-6deg);transition:opacity .4s,transform .55s var(--spring)}
-.js .vis .yes.in{transform:rotate(-2deg)}
-
-/* 09 who presses */
-.v-human{gap:6cqh}
-.pwrap{position:relative;padding:4cqw}
-.js .vis .pbtn,.pbtn{position:relative;display:inline-block;font-size:7cqw;font-weight:900;letter-spacing:-.02em;padding:3.4cqw 10cqw;border-radius:3.4cqw;background:var(--p);color:#fff;box-shadow:0 1.8cqw 0 #a10f2c,0 0 0 .5cqw rgba(255,255,255,.08);opacity:1;transform:none}
-.js .vis .pbtn.in{animation:press .36s ease}
-@keyframes press{45%{transform:translateY(1.5cqw);box-shadow:0 .3cqw 0 #a10f2c}}
-.pbtn .rip{position:absolute;inset:0;border-radius:inherit;border:.7cqw solid #fff;opacity:0;pointer-events:none}
-.pbtn.in .rip{animation:rip .8s var(--ease) .1s}
-@keyframes rip{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.45,2)}}
-.js .vis .hand,.hand{position:absolute;left:50%;top:50%;width:12cqw;height:12cqw;transform:translate(26cqw,22cqh);transition:transform 1s var(--ease),opacity .3s;filter:drop-shadow(0 1cqw 1.4cqw rgba(0,0,0,.5))}
-.js .vis .hand.in{transform:translate(1cqw,.6cqh)}
-.js .vis .stamp,.stamp{font-family:M;font-size:3.5cqw;letter-spacing:.12em;padding:1.8cqw 3.8cqw;border:.6cqw solid var(--c);color:var(--c);border-radius:2cqw;transform:rotate(-7deg) scale(1.7);transition:opacity .3s,transform .4s var(--spring)}
-.js .vis .stamp.in{transform:rotate(-7deg)}
-
-/* 10 faq */
-.v-faq{gap:2.6cqh;justify-content:flex-start;padding-top:1cqh}
-.qs{display:flex;flex-direction:column;gap:1.9cqh;width:100%;align-items:flex-start}
-.q{display:flex;gap:2.6cqw;align-items:flex-start;text-align:left}
-.q .qa{width:8.4cqw;height:8.4cqw;flex:none;border-radius:50%;background:#fff;color:#000;font-weight:900;font-size:4cqw;display:grid;place-items:center;box-shadow:-.5cqw -.35cqw 0 var(--c),.5cqw .35cqw 0 var(--p)}
-.q .qb{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.13);border-radius:1.2cqw 4cqw 4cqw 4cqw;padding:2.1cqw 3.4cqw;font-weight:700;font-size:3.75cqw;line-height:1.35}
-.hint2{font-weight:800;font-size:3.6cqw;display:flex;align-items:center;gap:2cqw;align-self:center;margin-top:1cqh}
-.hint2 svg{width:5cqw;height:5cqw}
-
-/* 11 chart */
-.cgrid{position:relative;width:78cqw;height:46cqw;border-radius:3cqw;border:1px solid var(--line2);background-color:rgba(255,255,255,.02);background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:100% 25%,12.5% 100%;overflow:hidden}
-.cgrid .scl{position:absolute;top:0;bottom:0;left:0;width:22%;background:linear-gradient(90deg,transparent,rgba(37,244,238,.2),transparent)}
-.clip.on .cgrid .scl{animation:scanx 2.6s linear infinite}
-@keyframes scanx{from{transform:translateX(-100%)}to{transform:translateX(460%)}}
-.cgrid .lbl{position:absolute;inset:0;display:grid;place-items:center;font-family:M;font-size:3cqw;letter-spacing:.16em;color:var(--dim)}
-.cbig{font-size:11cqw;font-weight:900;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-.csub{font-family:M;font-size:3cqw;letter-spacing:.12em;color:var(--dim);margin-top:1.4cqh}
-.bars{display:flex;gap:4cqw;width:78cqw;height:40cqw;justify-content:center}
-.bc{position:relative;flex:1;display:flex;flex-direction:column;align-items:center}
-.bc .ax{position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line2)}
-.bc .b{position:absolute;left:12%;right:12%;border-radius:1.4cqw;transform:scaleY(0);transition:transform .9s var(--spring)}
-.bc .b.up{bottom:50%;transform-origin:bottom;background:linear-gradient(0deg,#1d9e5f,#2bd67b)}
-.bc .b.dn{top:50%;transform-origin:top;background:linear-gradient(180deg,#c21d43,var(--p))}
-.bc.in .b{transform:scaleY(1)}
-.bc .bl{position:absolute;bottom:-1cqw;transform:translateY(100%);font-family:M;font-size:2.8cqw;color:var(--dim)}
-.bc .bv{position:absolute;top:-1cqw;transform:translateY(-100%);font-weight:800;font-size:3.2cqw;font-variant-numeric:tabular-nums}
-.js .vis .bc,.bc{opacity:1;transform:none}
-
-/* 12 end */
-.v-end{gap:4cqh}
+.s-m1{background:linear-gradient(180deg,#262a4a 0%,#161830 70%,#0c0d1a 100%)}
+.m1-win{position:absolute;left:8cqw;top:30cqh;width:46cqw;height:28cqh;border-radius:2.4cqw;overflow:hidden;border:2.2cqw solid #363a63;box-shadow:0 0 0 .6cqw #1b1d36,0 3cqw 8cqw rgba(0,0,0,.4)}
+.m1-sky{position:absolute;inset:0;background:#8fd8ff}
+.m1-win:before,.m1-win:after{content:"";position:absolute;background:#363a63;z-index:2}
+.m1-win:before{left:50%;top:0;bottom:0;width:1.6cqw;margin-left:-.8cqw}
+.m1-win:after{top:50%;left:0;right:0;height:1.6cqw;margin-top:-.8cqw}
+.m1-sun,.m1-moon{position:absolute;font-size:9cqw;line-height:1;left:14%;top:12%;z-index:1;opacity:0}
+.run .m1-sky{animation:m1sky 9s linear both}
+@keyframes m1sky{0%{background:#8fd8ff}22%{background:#ffa36b}32%{background:#2a2c66}45%,72%{background:#0b0c2a}86%{background:#ff8f70}100%{background:#a6e4ff}}
+.run .m1-sun{animation:m1sun 9s linear both}
+@keyframes m1sun{0%{opacity:1;transform:translate(0,0)}24%{opacity:1;transform:translate(14cqw,14cqh)}28%{opacity:0;transform:translate(16cqw,18cqh)}82%{opacity:0;transform:translate(-4cqw,18cqh)}90%{opacity:1;transform:translate(0,10cqh)}100%{opacity:1;transform:translate(4cqw,2cqh)}}
+.run .m1-moon{animation:m1moon 9s linear both}
+@keyframes m1moon{0%,30%{opacity:0;transform:translate(-6cqw,18cqh)}38%{opacity:1}55%{transform:translate(10cqw,0);opacity:1}74%{opacity:1;transform:translate(22cqw,14cqh)}78%,100%{opacity:0;transform:translate(24cqw,18cqh)}}
+.m1-clock{position:absolute;left:59cqw;top:31cqh;width:26cqw;height:26cqw;filter:drop-shadow(0 2cqw 4cqw rgba(0,0,0,.45))}
+.m1-clock .f{fill:#f6f1e7;stroke:#363a63;stroke-width:5}
+.m1-clock .tk{stroke:#363a63;stroke-width:3;stroke-linecap:round}
+.m1-clock .hh,.m1-clock .mh{stroke:#111;stroke-linecap:round;transform-box:view-box;transform-origin:50% 50%}
+.m1-clock .hh{stroke-width:5.5}.m1-clock .mh{stroke-width:3.5}
+.m1-clock .c{fill:var(--p)}
+.run .m1-clock .mh{animation:m1m 9s cubic-bezier(.55,0,.35,1) both}
+.run .m1-clock .hh{animation:m1h 9s cubic-bezier(.55,0,.35,1) both}
+@keyframes m1m{0%,26%{transform:rotate(0)}80%,100%{transform:rotate(2520deg)}}
+@keyframes m1h{0%,26%{transform:rotate(-30deg)}80%,100%{transform:rotate(180deg)}}
+.m1-time{position:absolute;left:59cqw;top:calc(31cqh + 29cqw);width:26cqw;display:grid;justify-items:center}
+.m1-time>*{grid-area:1/1;font-family:M;font-size:3.5cqw;padding:.8cqw 2.4cqw;border-radius:999px;background:rgba(0,0,0,.5);color:#fff;white-space:nowrap}
+.m1-glow{position:absolute;left:50%;bottom:-24cqw;width:130cqw;height:64cqw;margin-left:-65cqw;background:radial-gradient(closest-side,rgba(140,190,255,.32),transparent)}
+.run .m1-glow{animation:m1g 2.4s ease-in-out infinite alternate}
+@keyframes m1g{to{opacity:.55}}
+.s-m2{background:radial-gradient(90% 55% at 50% 78%,#33459f 0%,#121741 60%,#080a1f 100%)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1.5px 1.5px at 72% 12%,#fff,transparent),radial-gradient(1px 1px at 40% 8%,#fff,transparent),radial-gradient(1px 1px at 88% 26%,#fff,transparent),radial-gradient(1.5px 1.5px at 22% 30%,#fff,transparent),radial-gradient(1px 1px at 60% 22%,#fff,transparent);opacity:.7}
+.run .stars{animation:tw 2.2s ease-in-out infinite alternate}
+@keyframes tw{to{opacity:.3}}
+.m2-card{position:absolute;left:11cqw;right:11cqw;top:23cqh;background:#fffef6;color:#1a1a1a;border-radius:4cqw;padding:4.4cqw 5cqw 2.6cqw;box-shadow:0 3cqw 10cqw rgba(0,0,0,.45);text-align:left}
+.m2-h{font-weight:900;font-size:5.4cqw;letter-spacing:-.02em;margin-bottom:1.6cqw;display:flex;justify-content:space-between;align-items:center}
+.m2-h small{font-family:M;font-weight:500;font-size:2.8cqw;color:#888}
+.m2-i{display:flex;align-items:center;gap:3cqw;font-weight:700;font-size:4.1cqw;padding:2cqw 0;border-top:1px solid #ececec}
+.m2-i i{width:5.4cqw;height:5.4cqw;flex:none;border-radius:1.4cqw;border:.6cqw solid #c9c9c9;position:relative;transition:background .2s .35s,border-color .2s .35s}
+.m2-i.in i{background:var(--p);border-color:var(--p)}
+.m2-i i:after{content:"";position:absolute;left:30%;top:8%;width:28%;height:56%;border:solid #fff;border-width:0 .7cqw .7cqw 0;transform:rotate(45deg) scale(0);transition:transform .3s .45s var(--spring)}
+.m2-i.in i:after{transform:rotate(45deg) scale(1)}
+.m2-stamp{position:absolute;left:0;right:0;top:calc(23cqh + 72cqw);text-align:center;font-size:8cqw}
+.js .vis .m2-stamp{transform:scale(1.9) rotate(-8deg)}
+.js .vis .m2-stamp.in{transform:rotate(-4deg)}
+.s-m3{background:linear-gradient(165deg,#ff6b8b 0%,#d11a4a 60%,#8e0b30 100%)}
+.m3-phone{position:absolute;left:50%;top:27cqh;width:54cqw;height:44cqh;margin-left:-27cqw;border-radius:6cqw;background:#0d0d0d;padding:2.2cqw;box-shadow:0 4cqw 12cqw rgba(0,0,0,.45)}
+.m3-post{position:relative;width:100%;height:100%;border-radius:4cqw;overflow:hidden;background:linear-gradient(180deg,#7fd8ff 0%,#bdf0ff 48%,#ffe2a8 49%,#ffd27a 100%);display:grid;place-items:center}
+.m3-em{font-size:20cqw;line-height:1}
+.m3-yr{position:absolute;left:3cqw;top:3cqw;font-family:M;font-size:3cqw;background:rgba(0,0,0,.55);color:#fff;padding:.6cqw 1.8cqw;border-radius:999px}
+.m3-cp{position:absolute;left:3cqw;bottom:3cqw;font-weight:800;font-size:3.6cqw;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.m3-tap{position:absolute;left:50%;top:56%;width:14cqw;height:14cqw;margin:-7cqw 0 0 -7cqw;border-radius:50%;border:.8cqw solid #fff;opacity:0}
+.js .vis .m3-tap,.js .vis .m3-tap.in{transform:none;transition:none}
+.js .vis .m3-tap{opacity:0}
+.js .vis .m3-tap.in{animation:m3tap .45s ease-out 2 both}
+@keyframes m3tap{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(1.5)}}
+.m3-heart{position:absolute;left:50%;top:50%;width:28cqw;height:28cqw;margin:-14cqw 0 0 -14cqw;color:var(--p)}
+.js .vis .m3-heart{transform:scale(.2) rotate(-20deg)}
+.js .vis .m3-heart.in{transform:none}
+.m3-heart svg{width:100%;height:100%;filter:drop-shadow(0 1cqw 3cqw rgba(0,0,0,.35))}
+.run .m3-heart svg{animation:m3fl 9s steps(1) both}
+@keyframes m3fl{0%,57%{color:var(--p)}59%,63%,67%,71%,75%{color:#fff}61%,65%,69%,73%,77%{color:var(--p)}79%,100%{color:#fff}}
+.run .m3-phone{animation:m3sh 9s linear both}
+@keyframes m3sh{0%,32%{transform:none}33%{transform:translate(-1.5cqw,.5cqw) rotate(-2deg)}34%{transform:translate(1.5cqw,-.5cqw) rotate(2deg)}35%{transform:translate(-1cqw,0) rotate(-1deg)}36%,57%{transform:none}58%,62%,66%,70%,74%,78%{transform:translate(-1cqw,0) rotate(-1.5deg)}60%,64%,68%,72%,76%{transform:translate(1cqw,0) rotate(1.5deg)}80%,100%{transform:none}}
+.m3-big{position:absolute;left:0;right:0;top:73cqh;text-align:center;font-size:12cqw;line-height:1;display:grid;justify-items:center}
+.m3-big>*{grid-area:1/1}
+.s-m4{background:linear-gradient(160deg,#b8a1ff 0%,#f7b7d8 55%,#ffd8b0 100%)}
+.m4-stack{position:absolute;left:7cqw;right:7cqw;top:24cqh;display:flex;flex-direction:column-reverse;justify-content:flex-end}
+.js .vis .nf,.nf{display:flex;align-items:center;gap:3cqw;background:rgba(250,250,252,.9);color:#111;border-radius:4.4cqw;padding:0 3.4cqw;max-height:0;margin-top:0;overflow:hidden;opacity:0;transform:scale(.92) translateY(-3cqw);transition:max-height .45s var(--ease),margin .45s var(--ease),padding .45s var(--ease),opacity .35s,transform .5s var(--spring);box-shadow:0 1.6cqw 5cqw rgba(60,20,90,.18);text-align:left}
+.js .vis .nf.in{max-height:24cqw;margin-top:2cqw;padding:2.4cqw 3.4cqw;opacity:1;transform:none}
+.nf .ni{width:8.6cqw;height:8.6cqw;flex:none;border-radius:2.2cqw;background:#fff;display:grid;place-items:center;font-size:5cqw;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+.nf div{flex:1;min-width:0;line-height:1.28}
+.nf b{display:block;font-weight:800;font-size:3.5cqw}
+.nf div span{font-size:3.35cqw;color:#333}
+.nf em{font-style:normal;font-size:2.7cqw;color:#777;align-self:flex-start}
+.m4-me{position:absolute;left:0;right:0;top:calc(24cqh + 80cqw);text-align:center}
+.s-m5{background:linear-gradient(165deg,#5ef2d0 0%,#17a2b8 100%)}
+.m5-p{position:absolute;inset:0}
+.js .vis .m5-p{transform:none;transition:opacity .3s}
+.m5-p .pa,.m5-p .pb{position:absolute;top:34cqh;font-size:19cqw;line-height:1;transition:transform .7s var(--spring)}
+.m5-p .pa{left:50%;margin-left:-25cqw;transform:translateX(-70cqw) rotate(-25deg)}
+.m5-p .pb{left:50%;margin-left:5cqw;transform:translateX(70cqw) rotate(25deg)}
+.m5-p.in .pa,.m5-p.in .pb{transform:none}
+.m5-p .ok{position:absolute;left:50%;top:calc(34cqh + 5cqw);width:10cqw;height:10cqw;margin-left:-5cqw;border-radius:50%;background:#fff;color:#0a8f6a;font-weight:900;font-size:6cqw;display:grid;place-items:center;box-shadow:0 1cqw 3cqw rgba(0,0,0,.2);transform:scale(0);transition:transform .45s .55s var(--spring)}
+.m5-p.in .ok{transform:scale(1)}
+.m5-p .pl{position:absolute;left:8cqw;right:8cqw;top:calc(34cqh + 28cqw);text-align:center;font-size:5.6cqw;opacity:0;transform:translateY(2cqh);transition:opacity .4s .6s,transform .5s .6s var(--spring)}
+.m5-p.in .pl{opacity:1;transform:none}
+.s-m6{background:linear-gradient(180deg,#ffe08a 0%,#ffb347 100%)}
+.m6-floor{position:absolute;left:0;right:0;top:calc(48cqh + 17cqw);height:40cqh;background:rgba(150,80,0,.16);border-top:1cqw solid rgba(120,60,0,.28)}
+.m6-row{position:absolute;left:10cqw;right:12cqw;top:48cqh;height:17cqw;display:flex;justify-content:space-between;align-items:flex-end}
+.m6-row i{width:3.8cqw;height:16cqw;border-radius:.8cqw;background:#fff;border:.5cqw solid #1b1b1b;transform-origin:100% 100%}
+.run .m6-row i{animation:m6f .42s cubic-bezier(.5,0,.9,.6) both;animation-delay:calc(1.6s + var(--k) * .3s)}
+@keyframes m6f{to{transform:rotate(66deg)}}
+.m6-push{position:absolute;left:0;top:calc(48cqh + 5cqw);font-size:8cqw;line-height:1}
+.run .m6-push{animation:m6p 1.7s ease-in both}
+@keyframes m6p{0%{transform:translateX(-12cqw)}85%{transform:translateX(1.5cqw)}100%{transform:translateX(2.4cqw)}}
+.m6-pov{position:absolute;left:0;right:0;top:24cqh;text-align:center;font-size:17cqw}
+.js .vis .m6-pov{transform:translateY(-34cqh) rotate(-12deg)}
+.js .vis .m6-pov.in{transform:rotate(-3deg);transition:transform .75s cubic-bezier(.34,1.8,.64,1),opacity .15s}
+.s-m7{background:#fff4e6}
+.m7-one{position:absolute;left:50%;top:30cqh;width:44cqw;height:56cqw;margin-left:-22cqw;border-radius:4cqw;background:linear-gradient(160deg,#ffd9a0,#ffb36b);display:grid;place-items:center;font-size:22cqw;line-height:1;box-shadow:0 3cqw 8cqw rgba(0,0,0,.18)}
+.m7-one i{position:absolute;left:3cqw;bottom:3cqw;font-style:normal;font-family:M;font-size:3cqw;background:rgba(0,0,0,.55);color:#fff;padding:.5cqw 1.8cqw;border-radius:999px}
+.m7-grid{position:absolute;left:50%;top:24cqh;width:81cqw;margin-left:-40.5cqw;display:grid;grid-template-columns:repeat(5,1fr);gap:1.6cqw}
+.m7-grid i{aspect-ratio:1;border-radius:2.6cqw;display:grid;place-items:center;font-style:normal;font-size:8.6cqw;line-height:1;background:var(--bg);opacity:0;transform:scale(.4)}
+.run .m7-grid i{animation:m7in .35s var(--spring) both;animation-delay:calc(2.9s + var(--k) * 90ms)}
+@keyframes m7in{to{opacity:1;transform:none}}
+.run .m7-grid{animation:m7z 9s ease-in-out both}
+@keyframes m7z{0%,72%{transform:none}86%,100%{transform:scale(.88) rotate(-2deg)}}
+.s-m8{background:linear-gradient(165deg,#8a3ffc 0%,#3a0ca3 100%)}
+.m8-c{position:absolute;left:0;right:0;top:24cqh;display:flex;flex-direction:column;align-items:center;gap:3cqh}
+.m8-c .e{position:relative;display:block;width:60cqw;height:30cqw;font-size:26cqw;line-height:1;text-align:center}
+.m8-c b{font-weight:900;font-size:6cqw;background:#fff;color:#000;padding:.6cqw 3cqw;border-radius:2cqw}
+.m8-c .sc{font-weight:900;font-size:13cqw;line-height:1;color:#ffe066;text-shadow:-.05em -.05em 0 #000,.05em -.05em 0 #000,-.05em .05em 0 #000,.05em .05em 0 #000,0 .1em 0 #000;transform:scale(2.2) rotate(-14deg);opacity:0;transition:transform .45s .55s var(--spring),opacity .2s .55s}
+.m8-c.in .sc{transform:rotate(-6deg);opacity:1}
+.m8-c .sc.bad{color:#ff5c7a}
+.m8-c .fc,.m8-c .ph{position:absolute;left:0;right:0;font-style:normal}
+.m8-c .fc{bottom:0}
+.m8-c .ph{top:-42cqw;font-size:15cqw;opacity:0}
+.m8-c.in .ph{animation:m8d .5s cubic-bezier(.55,0,1,.45) .5s forwards}
+@keyframes m8d{0%{opacity:1;transform:translateY(0) rotate(-24deg)}100%{opacity:1;transform:translateY(44cqw) rotate(6deg)}}
+.m8-c.in .fc{animation:m8h .4s 1s}
+@keyframes m8h{30%{transform:scale(.82,1.12)}60%{transform:scale(1.1,.9)}}
+.m8-c .bonk{position:absolute;left:50%;top:-2cqw;font-weight:900;font-size:9cqw;color:#fff;text-shadow:-.05em -.05em 0 #000,.05em -.05em 0 #000,-.05em .05em 0 #000,.05em .05em 0 #000;transform:translateX(-50%) scale(0) rotate(-12deg);transition:transform .35s 1s var(--spring);white-space:nowrap}
+.m8-c.in .bonk{transform:translateX(-50%) scale(1) rotate(-12deg)}
+.s-m9{background:#000}
+.m9-sea{position:absolute;inset:0;background:linear-gradient(180deg,#5fd3ff 0%,#1b8fd1 12%,#0b5794 26%,#063366 42%,#03183a 60%,#010a1c 78%,#000 100%);background-size:100% 700%;background-position:50% 0%}
+.run .m9-sea{animation:m9sea 6.4s cubic-bezier(.45,0,.75,1) 2.6s both}
+@keyframes m9sea{to{background-position:50% 100%}}
+.m9-rays{position:absolute;inset:0;background:repeating-linear-gradient(100deg,rgba(255,255,255,.1) 0 3cqw,transparent 3cqw 9cqw);-webkit-mask:linear-gradient(#000,transparent 45%);mask:linear-gradient(#000,transparent 45%)}
+.run .m9-rays{animation:m9r 2.4s ease-out 2.8s both}
+@keyframes m9r{to{opacity:0}}
+.m9-depth{position:absolute;left:6cqw;top:28cqh;display:flex;flex-direction:column;gap:1cqh;text-align:left;z-index:3}
+.m9-depth b{font-weight:900;font-size:11cqw;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:#fff;text-shadow:0 .6cqw 2cqw rgba(0,0,0,.45)}
+.m9-depth span{font-family:M;font-size:3.1cqw;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.m9-f i{position:absolute;top:100%;left:var(--x);font-style:normal;font-size:var(--s,10cqw);line-height:1;opacity:0}
+.run .m9-f i{animation:m9up var(--d,2.6s) linear both;animation-delay:var(--t)}
+@keyframes m9up{0%{opacity:0;transform:translateY(0)}12%{opacity:var(--o,1)}85%{opacity:var(--o,1)}100%{opacity:0;transform:translateY(-112cqh)}}
+.m9-f .lure{width:2.6cqw;height:2.6cqw;border-radius:50%;background:#d6fffb;box-shadow:0 0 3cqw 1.4cqw rgba(140,255,240,.7)}
+.m9-end{position:absolute;left:0;right:0;top:62cqh;text-align:center;font-size:6.4cqw;z-index:3}
+.m10-seg{position:absolute;left:4cqw;right:4cqw;top:3cqh;display:flex;gap:1cqw;z-index:6}
+.m10-seg i{flex:1;height:.8cqw;border-radius:1cqw;background:rgba(255,255,255,.35);overflow:hidden;position:relative}
+.m10-seg i:after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.run .m10-seg i:after{animation:m10s .9s linear both;animation-delay:calc(var(--k) * .9s)}
+@keyframes m10s{to{transform:scaleX(1)}}
+.m10-c{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4cqh;padding:0 10cqw 10cqh}
+.js .vis .m10-c{transition:none;transform:none}
+.m10-c .e{font-size:30cqw;line-height:1}
+.m10-c.in .e{animation:m10z .9s ease-out both}
+@keyframes m10z{from{transform:scale(1.3) rotate(-7deg)}to{transform:none}}
+.m10-c .tt{font-size:7cqw;text-align:center}
+.s-end{background:radial-gradient(120% 80% at 50% 0%,#1b1b25 0%,#0b0b10 58%,#050507 100%)}
+.endv{position:absolute;inset:8cqh 7cqw 22cqh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4cqh;text-align:center}
 .endi{width:20cqw;height:20cqw;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:-1.2cqw -.8cqw 0 var(--c),1.2cqw .8cqw 0 var(--p)}
 .endi svg{width:10cqw;height:10cqw;fill:none;stroke:#000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.v-end .big{font-size:7cqw}
-.v-end .es{font-weight:700;font-size:4cqw;color:var(--dim)}
+.endv .big{font-size:7cqw}
+.endv .es{font-weight:700;font-size:4cqw;color:var(--dim)}
 .ebs{display:flex;flex-direction:column;gap:2.4cqh;align-items:center}
 .ebs .btn{height:auto;padding:3cqw 6cqw;font-size:max(14px,3.8cqw);border-radius:3cqw}
-
-/* right: details */
 #side{position:relative;z-index:5;display:flex;flex-direction:column;min-width:0;min-height:0;border-left:1px solid var(--line);background:rgba(8,8,11,.74);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 #side .hdl{display:none}
-#side .hd{display:flex;align-items:center;gap:12px;padding:20px 28px;border-bottom:1px solid var(--line);flex:none}
-#side .hd .k{font-family:M;font-size:12px;letter-spacing:.14em;color:var(--mute)}
+#side .hd{display:flex;align-items:center;gap:12px;padding:0 26px;height:64px;border-bottom:1px solid var(--line);flex:none}
+#side .hd .k{font-family:M;font-size:12px;letter-spacing:.14em;color:var(--mute);flex:none}
 #side .hd b{font-weight:800;font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#side .bk{display:flex;align-items:center;gap:6px;font-weight:800;font-size:13.5px;height:34px;padding:0 12px 0 8px;border-radius:999px;background:rgba(255,255,255,.08);flex:none;transition:background .2s}
+#side .bk:hover{background:rgba(255,255,255,.16)}
+#side .bk svg{width:18px;height:18px;transform:rotate(-90deg)}
 #side .x{display:none}
-#side .sc{flex:1;min-height:0;overflow-y:auto;padding:28px 28px 44px;scrollbar-width:thin;scrollbar-color:#2a2a33 transparent}
+#side .sc{flex:1;min-height:0;overflow-y:auto;padding:26px 26px 44px;scrollbar-width:thin;scrollbar-color:#2a2a33 transparent}
 #side.flash{animation:sflash .8s var(--ease)}
 @keyframes sflash{30%{box-shadow:inset 0 0 0 2px #fff,inset 6px 0 0 var(--c)}}
 .det.in{animation:detin .5s var(--ease)}
 @keyframes detin{from{opacity:0;transform:translateY(12px)}}
 .det .kk{font-family:M;font-size:12px;letter-spacing:.16em;color:var(--dim);display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .det .kk:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--p);box-shadow:-2px -1px 0 var(--c)}
-.det h1{font-size:36px;font-weight:900;letter-spacing:-.045em;line-height:1.04}
-.det h2{font-size:29px;font-weight:900;letter-spacing:-.04em;line-height:1.08}
+.det h1{font-size:35px;font-weight:900;letter-spacing:-.045em;line-height:1.04}
+.det h2{font-size:28px;font-weight:900;letter-spacing:-.04em;line-height:1.1}
 .det .ch{text-shadow:-.03em -.02em 0 var(--c),.03em .02em 0 var(--p)}
 .det .lead{font-size:16px;color:var(--dim);margin-top:14px;line-height:1.6}
 .det p{color:var(--dim);font-size:15px;margin-top:12px;line-height:1.6}
 .det p b,.det li b{color:#fff}
 .det h3{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-top:28px}
 .det .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.tg{color:#fff;font-weight:700}
+.vsnd{display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:700;font-size:14px}
+.eq{display:flex;align-items:flex-end;gap:2px;height:14px}
+.eq i{width:3px;height:30%;background:var(--c);border-radius:1px}
+.eq.on i{animation:eq .8s ease-in-out infinite alternate}
+.eq i:nth-child(2){background:#fff;animation-delay:-.3s}.eq i:nth-child(3){background:var(--p);animation-delay:-.6s}
+@keyframes eq{to{height:100%}}
+.about{margin-top:24px;padding:16px 18px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.about b{display:block;font-weight:800;font-size:15px}
+.about p{font-size:14.5px;margin-top:6px}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.jump button{font-weight:800;font-size:13.5px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line2);color:var(--dim);transition:all .2s}
+.jump button:hover{color:#fff;border-color:#fff}
 .kv{margin-top:22px;border-top:1px solid var(--line)}
 .kv>div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
 .kv span{color:var(--dim);flex:none}
 .kv b{font-weight:700;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
 .kv a{color:var(--c);font-weight:800}
+.cap2{display:flex;align-items:center;gap:8px;margin-top:18px;padding:8px 8px 8px 12px;border:1px solid var(--line2);border-radius:12px;font-family:M;font-size:12.5px;color:var(--dim)}
+.cap2 b{flex:1;min-width:0;color:#fff;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap2 button{font-family:I;font-weight:800;font-size:12px;padding:6px 10px;border-radius:8px;background:#fff;color:#000}
+.lks{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.lks a{font-weight:800;color:#fff;font-size:13px;padding:7px 12px;border:1px solid var(--line2);border-radius:999px;transition:border-color .2s,background .2s}
+.lks a:hover{border-color:#fff;background:rgba(255,255,255,.05)}
 .steps2{list-style:none;margin-top:22px;display:grid;gap:12px;counter-reset:s}
 .steps2 li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px 16px 60px;position:relative;counter-increment:s;transition:border-color .25s,transform .25s var(--ease)}
 .steps2 li:hover{border-color:var(--line2);transform:translateX(3px)}
@@ -400,36 +407,29 @@ button{cursor:pointer;background:none;border:0}
 .rc .row{display:flex;justify-content:space-between;color:var(--dim);padding:2px 0}
 .rc .row b{color:#fff}
 .rc a{display:inline-block;margin-top:8px;margin-right:14px;font-size:13px;font-weight:800;color:var(--c)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.pv{margin-top:20px;padding:26px 18px;border-radius:16px;background:radial-gradient(120% 90% at 50% 0%,#20202b,#0b0b10);border:1px solid var(--line);text-align:center;font-size:19px;line-height:1.5}
+.pv .ex{display:block;margin-top:10px;font-family:M;font-size:11px;letter-spacing:.16em;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .chips button{font-weight:800;font-size:13.5px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line2);color:var(--dim);transition:all .2s}
 .chips button:hover{color:#fff;border-color:#fff}
 .chips button.on{background:#fff;color:#000;border-color:#fff;box-shadow:-3px -2px 0 var(--c),3px 2px 0 var(--p)}
-.field{display:block;margin-top:18px;background:var(--card);border:1.5px solid var(--line2);border-radius:16px;padding:6px 16px;transition:border-color .2s,box-shadow .2s;cursor:text}
+.field{display:block;margin-top:16px;background:var(--card);border:1.5px solid var(--line2);border-radius:16px;padding:6px 16px;transition:border-color .2s,box-shadow .2s;cursor:text}
 .field:focus-within{border-color:#fff;box-shadow:-3px -2px 0 var(--c),3px 2px 0 var(--p)}
 .field .pre{font-weight:800;font-size:17px;padding-top:12px;display:block}
-.field textarea{width:100%;background:none;border:0;outline:0;resize:none;font-size:17px;font-weight:700;line-height:1.45;padding:4px 0 10px;min-height:92px}
+.field textarea{width:100%;background:none;border:0;outline:0;resize:none;font-size:17px;font-weight:700;line-height:1.45;padding:4px 0 10px;min-height:88px}
 .field textarea::placeholder{color:#55555f}
 .count{display:flex;justify-content:space-between;gap:12px;font-family:M;font-size:12px;color:var(--mute);margin-top:10px}
-.cbtns{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.cbtns{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
 .note{font-size:14px;color:var(--dim);min-height:1.5em;margin-top:12px}
 .note.bad{color:#ff8fa5}
-.fmtl2{display:grid;gap:10px;margin-top:20px}
-.fmtl2 button{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 18px;transition:border-color .2s,transform .25s var(--ease)}
-.fmtl2 button:hover{border-color:#fff;transform:translateY(-2px)}
-.fmtl2 b{display:flex;justify-content:space-between;gap:10px;font-weight:900;font-size:16.5px;letter-spacing:-.01em}
-.fmtl2 b:after{content:"Write →";font-weight:800;font-size:12.5px;color:var(--c);flex:none}
-.fmtl2 span{display:block;color:var(--dim);font-size:14px;margin-top:3px;line-height:1.5}
-.fmtl2 i{display:block;font-style:normal;font-size:13.5px;margin-top:8px;color:#fff;line-height:1.5}
-.fmtl2 i:before{content:"EXAMPLE  ";font-family:M;font-size:10.5px;letter-spacing:.12em;color:var(--mute)}
 .embed{margin-top:18px;border-radius:14px;overflow:hidden;border:1px solid var(--line);height:420px;background:#0a0a0d}
 .embed iframe{width:100%;height:100%;border:0}
-
 @media (max-width:1239px) and (min-width:1000px){
   body{grid-template-columns:76px minmax(0,1fr) 360px}
   #nav{padding:18px 10px}
   #nav .logo{font-size:15px;padding:8px 4px 18px}
   #nav .it{justify-content:center;padding:0}
-  #nav .it .lbl,#nav .it .n,#nav .foot{display:none}
+  #nav .it .lbl{display:none}
   #nav .it.on:before{left:-10px}
   #side .sc{padding:24px 22px 40px}
   .det h1{font-size:31px}
@@ -438,11 +438,12 @@ button{cursor:pointer;background:none;border:0}
   body{display:block}
   #glow{display:none}
   #stage{position:fixed;inset:0}
-  .clip{height:100%}
   .fw{height:100%;width:min(100vw,calc(100dvh * 9 / 16));margin:0}
-  .frame{border-radius:0;box-shadow:none!important;background:radial-gradient(120% 70% at 50% 0%,#191922 0%,#0a0a0e 60%,#040405 100%)}
-  .vis{inset:11cqh 17cqw 25cqh 5cqw}
+  .frame{border-radius:0;box-shadow:none!important}
+  .top{top:11.5cqh}
   .meta{right:21cqw;bottom:3cqh}
+  .vol{top:calc(10px + env(safe-area-inset-top));left:10px;padding:0 9px}
+  .vol span{display:none}
   .rail{left:auto;right:6px;bottom:max(13cqh,96px);margin:0;gap:14px}
   .ra .ic{background:none;width:44px;height:40px}
   .ra:hover .ic{background:none}
@@ -452,34 +453,33 @@ button{cursor:pointer;background:none;border:0}
   .disc{width:42px;height:42px}
   .arrows{display:none}
   .hint .m{display:inline}.hint .d{display:none}
-  #top{display:flex;position:fixed;top:0;left:0;right:0;z-index:20;height:58px;padding:0 10px;padding-top:env(safe-area-inset-top);align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(0,0,0,.6),transparent);pointer-events:none}
+  .m10-seg{top:10cqh}
+  #top{display:flex;position:fixed;top:0;left:0;right:0;z-index:20;height:58px;padding:0 10px;padding-top:env(safe-area-inset-top);align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);pointer-events:none}
   #top>*{pointer-events:auto}
-  #top .lg{width:40px;height:40px;display:grid;place-items:center}
-  #top .lg img{width:30px;height:30px;object-fit:contain}
   #top .tabs{display:flex;gap:20px;font-weight:700;font-size:16.5px}
   #top .tabs button{color:rgba(255,255,255,.62);position:relative;padding:6px 0;text-shadow:0 1px 2px rgba(0,0,0,.5);transition:color .2s}
   #top .tabs button.on{color:#fff;font-weight:800}
   #top .tabs button.on:after{content:"";position:absolute;left:50%;bottom:-2px;width:22px;height:3px;margin-left:-11px;border-radius:2px;background:#fff}
-  #top .mb{width:40px;height:40px;display:grid;place-items:center}
+  #top .mb{position:absolute;right:10px;top:calc(9px + env(safe-area-inset-top));width:40px;height:40px;display:grid;place-items:center}
   #top .mb svg{width:26px;height:26px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
   #nav{position:fixed;inset:0;z-index:70;border:0;background:rgba(0,0,0,.94);padding:calc(18px + env(safe-area-inset-top)) 22px 26px;opacity:0;pointer-events:none;transform:translateY(-10px);transition:opacity .25s,transform .3s var(--ease)}
   body.menu #nav{opacity:1;pointer-events:auto;transform:none}
   #nav .logo{font-size:24px;padding:6px 6px 16px}
   #nav .x{display:grid;position:absolute;right:16px;top:calc(16px + env(safe-area-inset-top));width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);place-items:center}
   #nav .x svg{width:22px;height:22px}
-  #nav .it{min-height:48px;font-size:16.5px}
+  #nav .it{min-height:50px;font-size:18px}
   #nav .it.on:before{left:-22px}
   #side{position:fixed;left:0;right:0;bottom:0;z-index:60;max-height:86dvh;border-left:0;border-radius:22px 22px 0 0;background:#0d0d12;transform:translateY(105%);transition:transform .4s var(--ease);box-shadow:0 -20px 60px rgba(0,0,0,.6)}
   body.sheet #side{transform:none}
   #side .hdl{display:block;width:42px;height:5px;border-radius:3px;background:rgba(255,255,255,.25);margin:10px auto 0;flex:none}
-  #side .hd{padding:10px 18px 14px;touch-action:none;cursor:grab}
+  #side .hd{padding:0 18px;height:54px;touch-action:none;cursor:grab}
   #side .x{display:grid;margin-left:auto;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);place-items:center;flex:none}
   #side .x svg{width:20px;height:20px}
-  #side .sc{padding:22px 20px calc(30px + env(safe-area-inset-bottom))}
+  #side .sc{padding:20px 20px calc(30px + env(safe-area-inset-bottom))}
   #scrim{display:block;position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .3s}
   body.sheet #scrim{opacity:1;pointer-events:auto}
   .det h1{font-size:30px}
-  .det h2{font-size:26px}
+  .det h2{font-size:25px}
   .embed{height:360px}
 }
 @media (max-width:420px){.two2{grid-template-columns:1fr}.stats{gap:8px}.stat .v{font-size:19px}}
@@ -499,264 +499,219 @@ button{cursor:pointer;background:none;border:0}
 <symbol id="xx" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
 <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
 <symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l10.5-6.5z"/></symbol>
+<symbol id="voff" viewBox="0 0 24 24"><path fill="currentColor" d="M4 9h3.5L12 5v14l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="von" viewBox="0 0 24 24"><path fill="currentColor" d="M4 9h3.5L12 5v14l-4.5-4H4z"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 11L12 4l8.5 7v8.5a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
 <symbol id="i-how" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="7" height="7" rx="2"/><rect x="13" y="13.5" width="7" height="7" rx="2"/><path d="M7.5 10.5v3a3 3 0 0 0 3 3H13"/></g></symbol>
 <symbol id="i-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="M3.5 7.5l2-3h10l2 3M16 13.5h1.5"/></g></symbol>
-<symbol id="i-hour" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
 <symbol id="i-rcpt" viewBox="0 0 24 24"><path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2zM9 8.5h6M9 12h6M9 15.5h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 <symbol id="i-write" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4zM14 6l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-<symbol id="i-fmt" viewBox="0 0 24 24"><path d="M12 3.5l8.5 4.5-8.5 4.5L3.5 8zM3.5 12.5l8.5 4.5 8.5-4.5M3.5 16.5l8.5 4.5 8.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 <symbol id="i-rules" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.8-3.4 7.9-8 9-4.6-1.1-8-4.2-8-9V6z"/><path d="M8.5 15.5l7-7"/></g></symbol>
-<symbol id="i-human" viewBox="0 0 24 24"><path d="M6 3.5l12.5 7.2-5.4 1.4-2.8 5.4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
 <symbol id="i-faq" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-5 0-9 3.4-9 7.7 0 2.3 1.2 4.4 3.2 5.8L5.6 20l3.6-1.7c.9.3 1.8.4 2.8.4 5 0 9-3.4 9-7.6s-4-7.6-9-7.6z"/><path d="M9.8 9.4a2.3 2.3 0 1 1 3.1 2.1c-.6.3-.9.7-.9 1.4M12 15.3v.1"/></g></symbol>
 <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19.5V4.5M4 19.5h16M8 15l3-4 3 2 5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>
 
-<aside id="nav" aria-label="Clips">
+<aside id="nav" aria-label="Menu">
   <button class="x" id="nx" aria-label="Close"><svg><use href="#xx"/></svg></button>
-  <a class="logo glitch flick" href="#fyp" data-go="fyp" aria-label="POV, back to the first clip"><span class="stk"><span>POV</span></span><span class="g g1"><span><i>POV</i></span></span><span class="g g2"><span><i>POV</i></span></span><span class="g g3"><span><i>POV</i></span></span></a>
-  <a class="it" href="#fyp" data-go="fyp"><svg><use href="#i-home"/></svg><span class="lbl">For You</span><span class="n">01</span></a>
-  <a class="it" href="#how" data-go="how"><svg><use href="#i-how"/></svg><span class="lbl">How it works</span><span class="n">02</span></a>
-  <a class="it" href="#wallet" data-go="wallet"><svg><use href="#i-wallet"/></svg><span class="lbl">The ad wallet</span><span class="n">03</span></a>
-  <a class="it" href="#hour" data-go="hour"><svg><use href="#i-hour"/></svg><span class="lbl">Every hour</span><span class="n">04</span></a>
-  <a class="it" href="#receipts" data-go="receipts"><svg><use href="#i-rcpt"/></svg><span class="lbl">Receipts</span><span class="n">05</span></a>
-  <a class="it" href="#write" data-go="write"><svg><use href="#i-write"/></svg><span class="lbl">Write the next one</span><span class="n">06</span></a>
-  <a class="it" href="#formats" data-go="formats"><svg><use href="#i-fmt"/></svg><span class="lbl">Formats</span><span class="n">07</span></a>
-  <a class="it" href="#rules" data-go="rules"><svg><use href="#i-rules"/></svg><span class="lbl">The rules</span><span class="n">08</span></a>
-  <a class="it" href="#human" data-go="human"><svg><use href="#i-human"/></svg><span class="lbl">Who presses Promote</span><span class="n">09</span></a>
-  <a class="it" href="#faq" data-go="faq"><svg><use href="#i-faq"/></svg><span class="lbl">FAQ</span><span class="n">10</span></a>
-  <a class="it" href="#chart" data-go="chart"><svg><use href="#i-chart"/></svg><span class="lbl">Chart</span><span class="n">11</span></a>
-  <div class="foot">
-    <div class="t">LINKS</div>
-    <div class="lks" data-links></div>
-    <div class="lkn" data-nolinks>X, TikTok and the CA go up here at launch.</div>
-    <div class="cap2" data-ca hidden><span>CA</span><b data-cav></b><button data-cacopy>Copy</button></div>
-  </div>
+  <a class="logo glitch flick" href="#" data-page="video" data-top aria-label="POV, back to the top"><span class="stk"><span>POV</span></span><span class="g g1"><span><i>POV</i></span></span><span class="g g2"><span><i>POV</i></span></span><span class="g g3"><span><i>POV</i></span></span></a>
+  <a class="it on" href="#" data-page="video" data-top><svg><use href="#i-home"/></svg><span class="lbl">Home</span></a>
+  <a class="it" href="#" data-page="how"><svg><use href="#i-how"/></svg><span class="lbl">How</span></a>
+  <a class="it" href="#" data-page="wallet"><svg><use href="#i-wallet"/></svg><span class="lbl">Wallet</span></a>
+  <a class="it" href="#" data-page="receipts"><svg><use href="#i-rcpt"/></svg><span class="lbl">Receipts</span></a>
+  <a class="it" href="#" data-page="write"><svg><use href="#i-write"/></svg><span class="lbl">Write</span></a>
+  <a class="it" href="#" data-page="rules"><svg><use href="#i-rules"/></svg><span class="lbl">Rules</span></a>
+  <a class="it" href="#" data-page="faq"><svg><use href="#i-faq"/></svg><span class="lbl">FAQ</span></a>
+  <a class="it" href="#" data-page="chart"><svg><use href="#i-chart"/></svg><span class="lbl">Chart</span></a>
 </aside>
 
 <div id="stage">
 <main id="feed" tabindex="-1" aria-label="For You">
 
-<section class="clip" id="fyp" style="--a:#25F4EE;--b:#FE2C55;--dur:9s" data-title="For You" data-share="POV: a memecoin is buying its own For You page">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-fyp">
-      <div class="glitch flick" aria-label="POV"><span class="stk"><span>POV</span></span><span class="g g1"><span><i>POV</i></span></span><span class="g g2"><span><i>POV</i></span></span><span class="g g3"><span><i>POV</i></span></span></div>
-      <div class="tl"><span><span class="cap" id="icap">POV: a memecoin paid for you to see this</span></span></div>
-      <div class="hint"><svg viewBox="0 0 24 24"><use href="#up"/></svg><span class="m">swipe up</span><span class="d">scroll, or press ↓</span></div>
-    </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>a memecoin is buying its own For You page. this is how. <button class="more" data-more>more</button></p><div class="tags">#pov #fyp</div></div>
-  </div></div>
-</section>
-
-<section class="clip" id="how" style="--a:#25F4EE;--b:#7a5cff;--dur:8.1s" data-title="How it works" data-share="POV: a coin's trading fees pay TikTok to promote its own memes, every hour">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-how" data-loop="7600">
-      <div class="ttl" data-at="0"><span class="cap">how a trade becomes a For You page</span></div>
-      <ol class="flow">
-        <li class="k1" data-at="500"><span class="fi"><svg viewBox="0 0 24 24"><path d="M7 4v16M12 3v14M17 6.5v13"/><rect class="cd" x="5" y="8" width="4" height="8" rx="1" fill="#000"/><rect class="cd" x="10" y="5.5" width="4" height="7.5" rx="1" fill="#fff"/><rect class="cd" x="15" y="10" width="4" height="6" rx="1" fill="#000"/></svg></span><span class="cap">trades pay a fee</span></li>
-        <li class="k2" data-at="1700"><span class="fi"><svg viewBox="0 0 24 24"><path d="M3.5 7.5h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2zM3.5 7.5l2-3h10l2 3"/><circle class="coin" cx="15.5" cy="13.5" r="1.8" fill="#000"/></svg></span><span class="cap">one ad wallet fills</span></li>
-        <li class="k3" data-at="2900"><span class="fi"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="15" height="9.5" rx="2.6"/><path d="M8.5 8.4v3.8l3.2-1.9z" fill="#000"/><path class="cur" d="M14 12.5l7.5 4.3-3.2.9-1.6 3z" fill="#fff"/></svg></span><span class="cap">every hour: Promote</span></li>
-        <li class="k4" data-at="4100"><span class="fi"><svg viewBox="0 0 24 24"><path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2z"/><path class="ln" d="M9 8.5h6"/><path class="ln" d="M9 12h6"/><path class="ln" d="M9 15.5h3"/></svg></span><span class="cap">the receipt lands here</span></li>
-      </ol>
-    </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>four steps. every one of them public. <button class="more" data-more>more</button></p><div class="tags">#howitworks #pov</div></div>
-  </div></div>
-</section>
-
-<section class="clip" id="wallet" style="--a:#2bd67b;--b:#25F4EE;--dur:8s" data-title="The ad wallet" data-share="POV: one public wallet pays for every promo">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-wallet">
-      <div class="ttl" data-at="0"><span class="cap">one wallet pays for all of it</span></div>
-      <div class="card" data-at="300">
-        <div class="r1"><span>AD WALLET</span><span class="lv"><i class="dot off" id="wdot"></i><span id="wlv">not live yet</span></span></div>
-        <span class="pv stk"><span>POV</span></span>
-        <div class="bal" id="wbal">—</div>
-        <div class="usd" id="wusd">balance shows at launch</div>
-        <div class="adr" id="wadr">address goes up here at launch</div>
-        <div class="shine"></div>
-      </div>
-      <div class="flowx" data-at="700"><span>creator fees</span><i></i><span>wallet</span><i></i><span>TikTok</span></div>
-      <div class="vsub" data-at="1000">a dash means no wallet yet. not zero.</div>
-    </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>every fee lands in one wallet, read live from Solana. <button class="more" data-more>more</button></p><div class="tags">#adwallet #solana</div></div>
-  </div></div>
-</section>
-
-<section class="clip" id="hour" style="--a:#ffb020;--b:#FE2C55;--dur:60s" data-title="Every hour" data-share="POV: a memecoin buys a TikTok promo every hour">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-hour">
-      <div class="ttl" data-at="0"><span class="cap">every hour, on the hour</span></div>
-      <div class="ring" data-at="250">
-        <svg viewBox="0 0 200 200"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#25F4EE"/><stop offset="1" stop-color="#FE2C55"/></linearGradient></defs><g class="tk" id="ticks"></g><circle class="tr" cx="100" cy="100" r="90"/><circle class="pg" id="hring" cx="100" cy="100" r="90"/></svg>
-        <div class="hand" id="hhand"><i></i></div>
-        <div class="clk"><b id="hclock">--:--:--</b><span>UTC</span></div>
-      </div>
-      <div class="nx" data-at="550" id="hnext">next hour mark in --:--</div>
-      <div class="chipx" data-at="800"><i class="dot off" id="hdot"></i><span id="heng">promos start after launch</span></div>
-    </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>this clock is real. once $POV launches, every hour mark is a promo. <button class="more" data-more>more</button></p><div class="tags">#everyhour</div></div>
-  </div></div>
-</section>
-
-<section class="clip" id="receipts" style="--a:#f4f4ef;--b:#25F4EE;--dur:9s" data-title="Receipts" data-share="POV: every promo a memecoin buys gets a public receipt">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-rcpt" data-loop="8500">
-      <div class="ttl" data-at="0"><span class="cap">no promo without a receipt</span></div>
-      <div class="printer" data-at="150">
-        <div class="slot"><b></b></div>
-        <div class="pw"><div class="paper" data-at="500" id="rpaper">
-          <div class="rh">POV · PROMO RECEIPT</div><div class="rs">every promo, in public</div>
-          <div class="rr"><span>#0000</span><span>not yet</span></div><hr>
-          <div class="rr"><span>video</span><span>—</span></div>
-          <div class="rr"><span>budget</span><span>—</span></div>
-          <div class="rr"><span>tiktok views</span><span>—</span></div>
-          <div class="rr"><span>tiktok likes</span><span>—</span></div>
-          <div class="rr"><span>status</span><span>waiting for launch</span></div><hr>
-          <div class="ft">the first one prints in the<br>first hour after launch.</div>
-        </div></div>
+<section class="clip" id="pov" style="--dur:9s" data-beat="pop" data-fmt="POV" data-wf="POV:" data-title="POV: a memecoin paid for you to see this" data-desc="a memecoin is buying its own For You page. swipe for its memes." data-tags="#pov #fyp" data-snd="POV theme">
+  <div class="fw"><div class="frame s-fyp">
+    <div class="vis">
+      <div class="fx"><i></i><i></i></div>
+      <div class="hook">
+        <div class="glitch flick" aria-label="POV"><span class="stk"><span>POV</span></span><span class="g g1"><span><i>POV</i></span></span><span class="g g2"><span><i>POV</i></span></span><span class="g g3"><span><i>POV</i></span></span></div>
+        <div class="tl"><span><span class="cap" id="icap">POV: a memecoin paid for you to see this</span></span></div>
+        <div class="hint"><svg viewBox="0 0 24 24"><use href="#up"/></svg><span class="m">swipe up</span><span class="d">scroll, or press ↓</span></div>
       </div>
     </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>what it cost and what TikTok reported. flops included. <button class="more" data-more>more</button></p><div class="tags">#receipts</div></div>
   </div></div>
 </section>
 
-<section class="clip" id="write" style="--a:#FE2C55;--b:#25F4EE;--dur:10s" data-title="Write the next one" data-share="POV: holders write the scripts for a memecoin's TikToks">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-write">
-      <div class="fmtl" data-at="0" id="wfmt">FORMAT · POV</div>
-      <div class="wpv" data-at="200"><span class="cap" id="pcap">POV: you found the coin before the algorithm did</span></div>
-      <span class="ex" data-at="400" id="pex">example</span>
-      <button class="btn w" data-at="600" id="wopen">Write yours</button>
+<section class="clip" id="minutes" style="--dur:9.4s" data-beat="lofi" data-fmt="POV" data-wf="POV:" data-title="POV: you said “5 more minutes”" data-desc="it was 5 minutes. technically." data-tags="#pov #3am #relatable" data-snd="5 more minutes">
+  <div class="fw"><div class="frame s-m1">
+    <div class="vis" data-loop="9000">
+      <div class="m1-glow"></div>
+      <div class="m1-win"><div class="m1-sky"></div><span class="m1-sun">☀️</span><span class="m1-moon">🌙</span></div>
+      <svg class="m1-clock" viewBox="0 0 100 100"><circle class="f" cx="50" cy="50" r="45"/><path class="tk" d="M50 9v6M91 50h-6M50 91v-6M9 50h6"/><line class="hh" x1="50" y1="50" x2="50" y2="29"/><line class="mh" x1="50" y1="50" x2="50" y2="15"/><circle class="c" cx="50" cy="50" r="3.6"/></svg>
+      <div class="m1-time"><span data-at="0" data-out="2400">11:58 PM</span><span data-at="2400" data-out="4800">2:16 AM</span><span data-at="4800" data-out="7000">5:41 AM</span><span data-at="7000">6:30 AM</span></div>
+      <div class="top"><span class="tt" data-at="0" data-out="2400">me: “5 more minutes”</span><span class="tt" data-at="2400" data-out="4800">the clock:</span><span class="tt" data-at="4800" data-out="7000">the sun:</span><span class="tt" data-at="7000">…one more video 🫠</span></div>
     </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>holders write the scripts. the most-liked one gets made. <button class="more" data-more>more</button></p><div class="tags">#scripts #pov</div></div>
   </div></div>
 </section>
 
-<section class="clip" id="formats" style="--a:#7a5cff;--b:#FE2C55;--dur:11s" data-title="Formats" data-share="POV: a memecoin that only speaks in TikTok formats">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-fmt">
-      <div class="ttl" data-at="0"><span class="cap">five formats TikTok already loves</span></div>
-      <div class="stack">
-        <div class="fl" style="--i:0;--fs:18cqw"><span class="stk"><span>POV</span></span><span><span class="cap">POV: you found the coin before the algorithm did</span></span></div>
-        <div class="fl" style="--i:1;--fs:15cqw"><span class="stk"><span>GRWM</span></span><span><span class="cap">GRWM to explain to my mom why a meme bought ads</span></span></div>
-        <div class="fl" style="--i:2;--fs:11.5cqw"><span class="stk"><span>Storytime</span></span><span><span class="cap">Storytime: my group chat became a marketing team</span></span></div>
-        <div class="fl" style="--i:3;--fs:8cqw"><span class="stk"><span>Tell me without<br>telling me</span></span><span><span class="cap">you check the ad wallet before your bank app</span></span></div>
-        <div class="fl" style="--i:4;--fs:8cqw"><span class="stk"><span>Things that just<br>make sense</span></span><span><span class="cap">a meme paying for its own views</span></span></div>
+<section class="clip" id="grwm" style="--dur:9.2s" data-beat="lofi" data-fmt="GRWM" data-wf="GRWM" data-title="GRWM for my 3am scroll" data-desc="the routine nobody asked for." data-tags="#grwm #nightroutine #3am" data-snd="3am checklist">
+  <div class="fw"><div class="frame s-m2">
+    <div class="vis" data-loop="8800">
+      <div class="stars"></div>
+      <div class="top"><span class="tt" data-at="0">GRWM for my 3am scroll</span></div>
+      <div class="m2-card" data-at="300">
+        <div class="m2-h">3am checklist <small>3:04 AM</small></div>
+        <div class="m2-i" data-at="900"><i></i><span>blanket burrito 🌯</span></div>
+        <div class="m2-i" data-at="1900"><i></i><span>brightness at 1% 🔅</span></div>
+        <div class="m2-i" data-at="2900"><i></i><span>battery at 4% 🪫</span></div>
+        <div class="m2-i" data-at="3900"><i></i><span>alarm in 4 hours ⏰</span></div>
+        <div class="m2-i" data-at="4900"><i></i><span>“one more video” ×3 🫠</span></div>
       </div>
-      <div class="dots" data-at="200"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i></div>
-      <span class="ex" data-at="300">examples</span>
+      <div class="m2-stamp" data-at="6100"><span class="cap">ready.</span></div>
     </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>pick one, write one. it could be the next promo. <button class="more" data-more>more</button></p><div class="tags">#grwm #storytime</div></div>
   </div></div>
 </section>
 
-<section class="clip" id="rules" style="--a:#FE2C55;--b:#ff7a00;--dur:8.1s" data-title="The rules" data-share="POV: the videos sell the meme, never the coin">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-rules" data-loop="7600">
-      <div class="ttl" data-at="0"><span class="cap">what a POV video never says</span></div>
-      <ul class="nope">
-        <li data-at="400">$TICKER</li><li data-at="1000">the CA</li><li data-at="1600">the price</li><li data-at="2200">"buy now"</li><li data-at="2800">"100x"</li>
-      </ul>
-      <div class="yes" data-at="3700"><span class="cap">it sells the meme.<br>never the coin.</span></div>
-    </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>TikTok doesn't allow crypto ads. so the videos are just memes. <button class="more" data-more>more</button></p><div class="tags">#rules</div></div>
-  </div></div>
-</section>
-
-<section class="clip" id="human" style="--a:#FE2C55;--b:#25F4EE;--dur:5.7s" data-title="Who presses Promote" data-share="POV: a person presses Promote every hour, on the record">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-human" data-loop="5200">
-      <div class="ttl" data-at="0"><span class="cap">a person presses Promote.<br>every hour. on the record.</span></div>
-      <div class="pwrap">
-        <span class="pbtn" data-at="1500">Promote<span class="rip"></span></span>
-        <svg class="hand" data-at="350" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.6-3 6.4z" fill="#fff" stroke="#000" stroke-width="1.5" stroke-linejoin="round"/></svg>
+<section class="clip" id="storytime" style="--dur:9.4s" data-beat="trap" data-fmt="Storytime" data-wf="Storytime:" data-title="Storytime: I double-tapped a 2019 post" data-desc="I'm moving to the woods." data-tags="#storytime #embarrassing" data-snd="panic mode">
+  <div class="fw"><div class="frame s-m3">
+    <div class="vis" data-loop="9000">
+      <div class="top"><span class="tt" data-at="0" data-out="3000">storytime: deep in someone's 2019 posts and…</span><span class="tt" data-at="3000" data-out="5200">I double-tapped.</span><span class="tt" data-at="5200" data-out="7200">UNLIKE. UNLIKE. UNLIKE.</span><span class="tt" data-at="7200">they saw it.</span></div>
+      <div class="m3-phone">
+        <div class="m3-post"><span class="m3-yr">2019</span><span class="m3-em">🏖️</span><span class="m3-cp">summer ’19 ☀️</span>
+          <i class="m3-tap" data-at="2200"></i>
+          <span class="m3-heart" data-at="2800"><svg viewBox="0 0 24 24"><use href="#heart"/></svg></span>
+        </div>
       </div>
-      <span class="stamp" data-at="2000">✓ RECEIPT POSTED</span>
+      <div class="m3-big"><span data-at="3000" data-out="7200">😰</span><span data-at="7200">💀</span></div>
     </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>Promote is a button in the TikTok app, so a person runs it. <button class="more" data-more>more</button></p><div class="tags">#promote</div></div>
   </div></div>
 </section>
 
-<section class="clip" id="faq" style="--a:#25F4EE;--b:#7a5cff;--dur:8.5s" data-title="FAQ" data-share="POV: the obvious questions about a memecoin that buys TikTok promos">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-faq" data-loop="8000">
-      <div class="ttl" data-at="0"><span class="cap">the obvious questions</span></div>
-      <div class="qs">
-        <div class="q" data-at="400"><span class="qa">?</span><span class="qb">is this an ad for a memecoin on TikTok?</span></div>
-        <div class="q" data-at="1100"><span class="qa">?</span><span class="qb">where does the money come from?</span></div>
-        <div class="q" data-at="1800"><span class="qa">?</span><span class="qb">who writes the videos?</span></div>
-        <div class="q" data-at="2500"><span class="qa">?</span><span class="qb">what do holders get?</span></div>
-        <div class="q" data-at="3200"><span class="qa">?</span><span class="qb">is POV part of TikTok?</span></div>
+<section class="clip" id="online" style="--dur:9.6s" data-beat="chill" data-fmt="Tell me without telling me" data-wf="Tell me without telling me:" data-title="Tell me you're chronically online without telling me" data-desc="my phone has opinions." data-tags="#chronicallyonline #relatable" data-snd="notification chill">
+  <div class="fw"><div class="frame s-m4">
+    <div class="vis" data-loop="9200">
+      <div class="top"><span class="tt" data-at="0">tell me you're chronically online without telling me</span></div>
+      <div class="m4-stack">
+        <div class="nf" data-at="900"><span class="ni">⏳</span><div><b>Screen time</b><span>your daily average was… yes.</span></div><em>now</em></div>
+        <div class="nf" data-at="2100"><span class="ni">🔋</span><div><b>Battery</b><span>1%. I'm begging you.</span></div><em>now</em></div>
+        <div class="nf" data-at="3300"><span class="ni">👀</span><div><b>For You</b><span>that's everything. go to sleep.</span></div><em>now</em></div>
+        <div class="nf" data-at="4500"><span class="ni">⏰</span><div><b>Alarm</b><span>3 hours of sleep left. maybe.</span></div><em>now</em></div>
+        <div class="nf" data-at="5700"><span class="ni">🧠</span><div><b>Brain</b><span>storage full.</span></div><em>now</em></div>
       </div>
-      <div class="hint2" data-at="4000"><svg viewBox="0 0 24 24" style="color:#fff"><use href="#cmt"/></svg><span>answers in More</span></div>
+      <div class="m4-me" data-at="7000"><span class="tt">me: one more video 🫶</span></div>
     </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>the questions everyone asks first, answered. <button class="more" data-more>more</button></p><div class="tags">#faq</div></div>
   </div></div>
 </section>
 
-<section class="clip" id="chart" style="--a:#2bd67b;--b:#FE2C55;--dur:10s" data-title="Chart" data-share="POV: a memecoin that buys its own For You page">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-chart" id="cvis">
-      <div class="ttl" data-at="0"><span class="cap" id="cttl">$POV, live</span></div>
-      <div id="cpre" data-at="250">
-        <div class="cgrid"><div class="scl"></div><div class="lbl">NO CHART BEFORE LAUNCH</div></div>
-      </div>
-      <div id="clive" hidden>
-        <div class="cbig" id="cprice">—</div>
-        <div class="csub" id="cmc">—</div>
-      </div>
-      <div class="bars" id="cbars" hidden></div>
-      <div class="vsub" data-at="500" id="cnote">the chart and the CA go up here at launch.</div>
+<section class="clip" id="sense" style="--dur:8.8s" data-beat="pop" data-fmt="Things that just make sense" data-wf="Things that just make sense:" data-title="Things that just make sense" data-desc="some things just click." data-tags="#satisfying #justmakessense" data-snd="makes sense">
+  <div class="fw"><div class="frame s-m5">
+    <div class="vis" data-loop="8400">
+      <div class="top"><span class="tt" data-at="0">things that just make sense</span></div>
+      <div class="m5-p" data-at="400" data-out="2400"><span class="pa">🔇</span><span class="pb">💬</span><span class="ok">✓</span><span class="pl"><span class="cap">sound off, captions on</span></span></div>
+      <div class="m5-p" data-at="2400" data-out="4300"><span class="pa">🛏️</span><span class="pb">📱</span><span class="ok">✓</span><span class="pl"><span class="cap">a bed and a scroll</span></span></div>
+      <div class="m5-p" data-at="4300" data-out="6200"><span class="pa">⏳</span><span class="pb">👀</span><span class="ok">✓</span><span class="pl"><span class="cap">“wait for it” and waiting</span></span></div>
+      <div class="m5-p" data-at="6200"><span class="pa">😂</span><span class="pb">💸</span><span class="ok">✓</span><span class="pl"><span class="cap">a meme that pays for its own views</span></span></div>
     </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p id="cmeta">nothing to chart yet. no CA here means no coin yet. <button class="more" data-more>more</button></p><div class="tags">#pov</div></div>
   </div></div>
 </section>
 
-<section class="clip" id="end" style="--a:#25F4EE;--b:#FE2C55;--dur:6s" data-title="You're all caught up" data-share="POV: a memecoin is buying its own For You page">
-  <div class="fw"><div class="frame">
-    <div class="fx"><i></i><i></i></div>
-    <div class="vis v-end">
-      <div class="endi" data-at="100"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-      <div data-at="350"><span class="cap big">you're all caught up.</span></div>
-      <div class="es" data-at="600">fees in. promos out. receipts here.</div>
-      <div class="ebs" data-at="850"><button class="btn w" data-go="write">Write the next one</button><button class="btn g" data-go="fyp">Watch again</button></div>
+<section class="clip" id="waitforit" style="--dur:9.4s" data-beat="tense" data-fmt="Wait for it" data-wf="POV:" data-title="Wait for it…" data-desc="you watched the whole thing. we saw." data-tags="#waitforit #satisfying #dominoes" data-snd="wait for it">
+  <div class="fw"><div class="frame s-m6">
+    <div class="vis" data-loop="9000">
+      <div class="m6-floor"></div>
+      <div class="m6-row" id="m6row"></div>
+      <span class="m6-push">👉</span>
+      <div class="m6-pov" data-at="5600"><span class="stk"><span>POV</span></span></div>
+      <div class="top"><span class="tt" data-at="0" data-out="6000">wait for it…</span><span class="tt" data-at="6000">POV: you actually waited</span></div>
     </div>
-    <div class="meta"><div class="who">POV <span class="idx"></span></div><p>that's the whole machine. <button class="more" data-more>more</button></p><div class="tags">#fyp</div></div>
+  </div></div>
+</section>
+
+<section class="clip" id="cats" style="--dur:9.4s" data-beat="pop" data-fmt="POV" data-wf="POV:" data-title="The algorithm after one cat video" data-desc="this is my life now." data-tags="#cats #fyp #algorithm" data-snd="cat era">
+  <div class="fw"><div class="frame s-m7">
+    <div class="vis" data-loop="9000">
+      <div class="m7-one" data-at="300" data-out="2700"><span>🐈</span><i>▶ 0:12</i></div>
+      <div class="m7-grid" id="m7g"></div>
+      <div class="top"><span class="tt" data-at="0" data-out="2700">me: watches one (1) cat video</span><span class="tt" data-at="2700" data-out="6800">the algorithm:</span><span class="tt" data-at="6800">I live here now 🐈</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="clip" id="rating" style="--dur:10.8s" data-beat="trap" data-fmt="Ranking" data-wf="POV:" data-title="Rating my scroll positions" data-desc="the last one is personal." data-tags="#ranking #relatable" data-snd="rate it">
+  <div class="fw"><div class="frame s-m8">
+    <div class="vis" data-loop="10400">
+      <div class="top"><span class="tt" data-at="0">rating my scroll positions</span></div>
+      <div class="m8-c" data-at="500" data-out="2700"><span class="e">🌯</span><b>the burrito</b><span class="sc">9/10</span></div>
+      <div class="m8-c" data-at="2700" data-out="4900"><span class="e">🛋️</span><b>the couch melt</b><span class="sc">7/10</span></div>
+      <div class="m8-c" data-at="4900" data-out="7100"><span class="e">🙃</span><b>upside down off the bed</b><span class="sc">11/10</span></div>
+      <div class="m8-c" data-at="7100"><span class="e"><i class="fc">😴</i><i class="ph">📱</i><span class="bonk">BONK</span></span><b>phone over the face</b><span class="sc bad">-2/10</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="clip" id="ocean" style="--dur:10.4s" data-beat="deep" data-fmt="Nobody / me" data-wf="POV:" data-title="Nobody: / Me at 2am: how deep is the ocean" data-desc="the ocean is not real. it's 4am." data-tags="#oceanfacts #2am #deepsea" data-snd="the deep end">
+  <div class="fw"><div class="frame s-m9">
+    <div class="vis" data-loop="10000">
+      <div class="m9-sea"></div><div class="m9-rays"></div>
+      <div class="m9-f">
+        <i style="--x:64cqw;--t:2.8s">🐠</i><i style="--x:16cqw;--t:3.3s;--s:8cqw">🐟</i><i style="--x:54cqw;--t:3.9s;--s:13cqw">🐬</i><i style="--x:22cqw;--t:4.6s">🐢</i><i style="--x:58cqw;--t:5.3s;--s:14cqw">🦈</i><i style="--x:18cqw;--t:6.1s;--o:.85">🐙</i><i style="--x:60cqw;--t:6.8s;--o:.75">🦑</i><i style="--x:26cqw;--t:7.5s;--o:.6">🐡</i><i class="lure" style="--x:56cqw;--t:8.1s;--d:2s"></i>
+      </div>
+      <div class="m9-depth" data-at="2600"><b id="m9d">0 m</b><span id="m9z">sunlight zone</span></div>
+      <div class="top"><span class="tt" data-at="0" data-out="1300">nobody:</span><span class="tt" data-at="1300" data-out="2600">me at 2am:</span><span class="tt" data-at="2600">how deep does the ocean go</span></div>
+      <div class="m9-end" data-at="9000"><span class="cap">…it's 4am.</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="clip" id="average" style="--dur:9.6s" data-beat="fast" data-fmt="Compilation" data-wf="POV:" data-title="The average For You page in 10 seconds" data-desc="be honest. which one are you on." data-tags="#fyp #foryou #relatable" data-snd="speedrun">
+  <div class="fw"><div class="frame">
+    <div class="vis" data-loop="9300">
+      <div class="m10-c" data-at="0" data-out="900" style="--bg:#ff7a59"><span class="e">🍝</span><span class="tt">a recipe I'll never make</span></div>
+      <div class="m10-c" data-at="900" data-out="1800" style="--bg:#7b61ff"><span class="e">💃</span><span class="tt">a dance I'll learn tomorrow</span></div>
+      <div class="m10-c" data-at="1800" data-out="2700" style="--bg:#ffc43d"><span class="e">🐈</span><span class="tt">cat</span></div>
+      <div class="m10-c" data-at="2700" data-out="3600" style="--bg:#06c493"><span class="e">💡</span><span class="tt">life hack (it doesn't work)</span></div>
+      <div class="m10-c" data-at="3600" data-out="4500" style="--bg:#ef476f"><span class="e">🗣️</span><span class="tt">storytime, part 1 of 7</span></div>
+      <div class="m10-c" data-at="4500" data-out="5400" style="--bg:#118ab2"><span class="e">⏳</span><span class="tt">wait for it…</span></div>
+      <div class="m10-c" data-at="5400" data-out="6300" style="--bg:#f78c6b"><span class="e">💄</span><span class="tt">get ready with me</span></div>
+      <div class="m10-c" data-at="6300" data-out="7200" style="--bg:#26547c"><span class="e">🌊</span><span class="tt">ocean facts at 2am</span></div>
+      <div class="m10-c" data-at="7200" data-out="8100" style="--bg:#ff5d8f"><span class="e">🐈</span><span class="tt">cat again</span></div>
+      <div class="m10-c" data-at="8100" style="--bg:#141418"><span class="e">👀</span><span class="tt">POV: you're still here</span></div>
+      <div class="m10-seg" id="m10seg"></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="clip" id="end" style="--dur:6s" data-beat="chill" data-fmt="POV" data-wf="POV:" data-title="You're all caught up" data-desc="that's the feed. for now." data-tags="#fyp" data-snd="all caught up">
+  <div class="fw"><div class="frame s-end">
+    <div class="vis">
+      <div class="endv">
+        <div class="endi" data-at="100"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <div data-at="350"><span class="cap big">you're all caught up.</span></div>
+        <div class="es" data-at="600">new memes land here as POV makes them.</div>
+        <div class="ebs" data-at="850"><button class="btn w" data-page="write">Write the next one</button><button class="btn g" data-go="pov">Watch again</button></div>
+      </div>
+    </div>
   </div></div>
 </section>
 
 </main>
-<div class="arrows"><button id="aup" aria-label="Previous clip"><svg><use href="#up"/></svg></button><button id="adn" aria-label="Next clip"><svg><use href="#dn"/></svg></button></div>
+<div class="arrows"><button id="aup" aria-label="Previous video"><svg><use href="#up"/></svg></button><button id="adn" aria-label="Next video"><svg><use href="#dn"/></svg></button></div>
 </div>
 
 <header id="top">
-  <button class="lg" data-go="fyp" aria-label="Back to the first clip"><img src="/assets/icon-64.png?v=1" alt=""></button>
-  <nav class="tabs"><button id="tabR" data-go="receipts">Receipts</button><button id="tabF" class="on" data-go="fyp">For You</button></nav>
-  <button class="mb" id="mb" aria-label="All clips"><svg><use href="#menu"/></svg></button>
+  <nav class="tabs"><button id="tabR" data-page="receipts">Receipts</button><button id="tabF" class="on" data-page="video" data-top>For You</button></nav>
+  <button class="mb" id="mb" aria-label="Menu"><svg><use href="#menu"/></svg></button>
 </header>
 
 <div id="scrim"></div>
-<aside id="side" aria-label="About this clip">
+<aside id="side" aria-label="Details">
   <div class="hdl"></div>
-  <div class="hd"><span class="k" id="sidx">01 / 12</span><b id="sttl">For You</b><button class="x" id="sx" aria-label="Close"><svg><use href="#xx"/></svg></button></div>
+  <div class="hd"><button class="bk" id="bk" hidden><svg><use href="#up"/></svg>Video</button><span class="k" id="sidx">01 / 12</span><b id="sttl">For You</b><button class="x" id="sx" aria-label="Close"><svg><use href="#xx"/></svg></button></div>
   <div class="sc">
 
-  <article class="det" data-for="fyp">
+  <article class="det" data-page="video" data-v="pov">
     <div class="kk">POV · THE COIN</div>
     <h1>The coin that buys its own <span class="ch">For You page.</span></h1>
-    <p class="lead">Every $POV trade pays a creator fee into one public ad wallet. Every hour, that wallet pays TikTok to promote one of POV's own meme videos, and every promo lands here with what it cost and what TikTok reported back.</p>
-    <div class="ctas"><button class="btn w" data-go="write">Write the next one</button><button class="btn g" data-go="how">How it works</button></div>
+    <p class="lead">Every $POV trade pays a creator fee into one public ad wallet. Every hour, that wallet pays TikTok to promote one of POV's meme videos, like the ones in this feed. Every promo lands here with what it cost and what TikTok reported back.</p>
+    <div class="ctas"><button class="btn w" data-page="write">Write the next one</button><button class="btn g" data-page="how">How it works</button></div>
     <div class="cap2" data-ca hidden><span>CA</span><b data-cav></b><button data-cacopy>Copy</button></div>
     <div class="kv">
       <div><span>Coin</span><b id="s-coin">not launched yet</b></div>
@@ -764,23 +719,45 @@ button{cursor:pointer;background:none;border:0}
       <div><span>Promos bought</span><b id="s-promos">—</b></div>
       <div><span>Promo engine</span><b id="s-engine">starts after launch</b></div>
     </div>
-    <p class="note2">This page is the feed. Scroll or swipe through it. Double-tap a clip to like it, tap to pause.</p>
+    <p class="note2">Scroll or swipe the feed. Double-tap to like, tap to pause, and turn the sound on at the top left.</p>
   </article>
 
-  <article class="det" data-for="how" hidden>
-    <div class="kk">02 · HOW IT WORKS</div>
+  <article class="det" data-page="video" data-v="meme" hidden>
+    <div class="kk" id="v-kk">VIDEO</div>
+    <h2 id="v-title"></h2>
+    <p class="lead"><span id="v-desc"></span> <span class="tg" id="v-tags"></span></p>
+    <div class="vsnd"><span class="eq" id="v-eq"><i></i><i></i><i></i></span><span id="v-snd"></span></div>
+    <div class="ctas"><button class="btn w" id="v-write">Write one like it</button><button class="btn g" data-page="how">How POV works</button></div>
+    <div class="about"><b>What you're watching</b><p>One of POV's memes, made for TikTok. Once $POV launches, its fees pay TikTok to promote videos like this one, every hour. No ticker, no CA, no price in any of them.</p></div>
+    <div class="jump"><button data-page="wallet">Wallet</button><button data-page="receipts">Receipts</button><button data-page="rules">Rules</button><button data-page="faq">FAQ</button></div>
+  </article>
+
+  <article class="det" data-page="video" data-v="end" hidden>
+    <div class="kk">THAT'S THE FEED</div>
+    <h2>You're all <span class="ch">caught up.</span></h2>
+    <p>New memes land in this feed as POV makes them. Holders write the scripts; the most-liked one gets made.</p>
+    <div class="ctas"><button class="btn w" data-page="write">Write the next one</button><button class="btn g" id="sharepov">Share POV</button></div>
+    <h3>Links</h3>
+    <div class="lks" data-links></div>
+    <p data-nolinks>X, TikTok and the CA go up here at launch.</p>
+  </article>
+
+  <article class="det" data-page="how" hidden>
+    <div class="kk">HOW IT WORKS</div>
     <h2>TikTok sells the For You page. <span class="ch">POV buys it with its own fees.</span></h2>
     <ol class="steps2">
       <li><h4>Trades pay a fee</h4><p>Every $POV buy and sell on pump.fun pays a creator fee, and it goes to one address: the ad wallet.</p><span class="chk">CHECK IT: every trade is public on Solana</span></li>
       <li><h4>One wallet fills</h4><p>The ad wallet holds those fees and nothing else. Its balance is read live on this site.</p><span class="chk">CHECK IT: the address, here and on Solscan</span></li>
-      <li><h4>Every hour: Promote</h4><p>Once an hour, a person moves that hour's budget to TikTok and presses Promote on one of POV's videos.</p><span class="chk">CHECK IT: the transfer out of the wallet</span></li>
+      <li><h4>Every hour: Promote</h4><p>On the hour, a person moves that hour's budget to TikTok and presses Promote on one of POV's memes. Too little for a promo? It rolls into the next hour.</p><span class="chk">CHECK IT: the transfer out of the wallet</span></li>
       <li><h4>The receipt lands here</h4><p>The video, the budget, and what TikTok reported back: views, likes, follows.</p><span class="chk">CHECK IT: the receipt, linked to both</span></li>
     </ol>
-    <p>TikTok's ad rules don't allow crypto ads, so the videos never mention the coin. The coin only pays for them.</p>
+    <div class="kv"><div><span>UTC now</span><b id="d-utc">--:--:--</b></div><div><span>Next hour mark</span><b class="d-next">--:--</b></div><div><span>Engine</span><b id="d-eng">starts after launch</b></div></div>
+    <h3>Who presses Promote</h3>
+    <p>Promote is a button in the TikTok app, paid for in the app, so a person runs it. Every step leaves a trace you can check: the transfer out of the wallet on Solana, and the receipt on this page.</p>
   </article>
 
-  <article class="det" data-for="wallet" hidden>
-    <div class="kk">03 · THE AD WALLET</div>
+  <article class="det" data-page="wallet" hidden>
+    <div class="kk">THE AD WALLET</div>
     <h2>One wallet. <span class="ch">Read live from Solana.</span></h2>
     <div class="kv">
       <div><span>Address</span><b id="d-addr">goes up the moment $POV launches</b></div>
@@ -795,21 +772,8 @@ button{cursor:pointer;background:none;border:0}
     <p id="d-link">A dash means no wallet yet, not zero.</p>
   </article>
 
-  <article class="det" data-for="hour" hidden>
-    <div class="kk">04 · EVERY HOUR</div>
-    <h2>Every hour, <span class="ch">on the hour.</span></h2>
-    <ol class="steps2">
-      <li><h4>:00, the wallet is read</h4><p>Whatever came in since the last promo is this hour's budget.</p></li>
-      <li><h4>Too little? It rolls over</h4><p>If the budget is too small for a promo, it carries into the next hour, so quiet hours still add up.</p></li>
-      <li><h4>The video is picked</h4><p>The most-liked script from the day, made into a video.</p></li>
-      <li><h4>Promote is pressed</h4><p>By a person, in the TikTok app, with that hour's budget.</p></li>
-      <li><h4>The receipt goes up</h4><p>Right away, then updated with TikTok's numbers when the promo ends.</p></li>
-    </ol>
-    <div class="kv"><div><span>Next hour mark</span><b class="d-next">--:--</b></div><div><span>Engine</span><b id="d-eng">starts after launch</b></div></div>
-  </article>
-
-  <article class="det" data-for="receipts" hidden>
-    <div class="kk">05 · RECEIPTS</div>
+  <article class="det" data-page="receipts" hidden>
+    <div class="kk">RECEIPTS</div>
     <h2>Every promo it bought, <span class="ch">and what TikTok said back.</span></h2>
     <div class="stats" id="rstats" hidden></div>
     <div id="rlist"><div class="zero"><b>Loading receipts…</b></div></div>
@@ -822,10 +786,11 @@ button{cursor:pointer;background:none;border:0}
     </ul>
   </article>
 
-  <article class="det" data-for="write" hidden>
-    <div class="kk">06 · WRITE THE NEXT ONE</div>
+  <article class="det" data-page="write" hidden>
+    <div class="kk">WRITE THE NEXT ONE</div>
     <h2>Your script. <span class="ch">Its fees.</span> Their For You page.</h2>
-    <p>Pick a format, write the caption, post it on X. The most-liked script each day becomes the next video POV makes and pays to promote.</p>
+    <p>Pick a format, write the caption, post it on X. The most-liked script each day becomes the next meme POV makes and pays to promote.</p>
+    <div class="pv"><span class="cap" id="pcap">POV: you found the coin before the algorithm did</span><span class="ex" id="pex">EXAMPLE</span></div>
     <div class="chips" id="fmts">
       <button class="on" data-f="POV:">POV</button><button data-f="GRWM">GRWM</button><button data-f="Storytime:">Storytime</button><button data-f="Tell me without telling me:">Tell me without telling me</button><button data-f="Things that just make sense:">Just makes sense</button>
     </div>
@@ -835,21 +800,8 @@ button{cursor:pointer;background:none;border:0}
     <div class="note" id="cnote"></div>
   </article>
 
-  <article class="det" data-for="formats" hidden>
-    <div class="kk">07 · FORMATS</div>
-    <h2>Five formats <span class="ch">TikTok already loves.</span></h2>
-    <p>Each one is a shape people already scroll for. Tap one to write in it.</p>
-    <div class="fmtl2">
-      <button data-setf="POV:"><b>POV</b><span>The viewer is in the scene. One line, first person.</span><i>POV: you found the coin before the algorithm did</i></button>
-      <button data-setf="GRWM"><b>GRWM</b><span>Get ready with me: a routine with a story told over it.</span><i>GRWM to explain to my mom why a meme bought ads</i></button>
-      <button data-setf="Storytime:"><b>Storytime</b><span>One thing that happened, told straight to camera.</span><i>Storytime: my group chat became a marketing team</i></button>
-      <button data-setf="Tell me without telling me:"><b>Tell me without telling me</b><span>A clue the viewer has to get.</span><i>you check the ad wallet before your bank app</i></button>
-      <button data-setf="Things that just make sense:"><b>Things that just make sense</b><span>Two things that fit a little too well.</span><i>a meme paying for its own views</i></button>
-    </div>
-  </article>
-
-  <article class="det" data-for="rules" hidden>
-    <div class="kk">08 · THE RULES</div>
+  <article class="det" data-page="rules" hidden>
+    <div class="kk">THE RULES</div>
     <h2>What it does, <span class="ch">and what it can't.</span></h2>
     <table class="cannot">
       <thead><tr><th>IT CANNOT</th><th>SO IT</th></tr></thead>
@@ -862,13 +814,6 @@ button{cursor:pointer;background:none;border:0}
         <tr><td>Pick the script in secret</td><td>makes the most-liked one, and the likes are public on X.</td></tr>
       </tbody>
     </table>
-  </article>
-
-  <article class="det" data-for="human" hidden>
-    <div class="kk">09 · WHO PRESSES PROMOTE</div>
-    <h2>A person. <span class="ch">On the record.</span></h2>
-    <p>TikTok Promote is a button in the TikTok app, paid for in the app, so a person runs it. They move the hour's budget from the ad wallet to TikTok and press Promote on the chosen video.</p>
-    <p>Everything they do leaves a trace you can check: the transfer out of the wallet on Solana, and the receipt on this page.</p>
     <h3>Where you'd see it go wrong</h3>
     <ul class="ul">
       <li>A promo is missing: the wallet's balance drops with no receipt here.</li>
@@ -877,36 +822,26 @@ button{cursor:pointer;background:none;border:0}
     </ul>
   </article>
 
-  <article class="det" data-for="faq" hidden>
-    <div class="kk">10 · FAQ</div>
+  <article class="det" data-page="faq" hidden>
+    <div class="kk">FAQ</div>
     <h2>The obvious questions.</h2>
     <div class="faq">
       <details><summary>Is this an ad for a memecoin on TikTok?</summary><p>No. TikTok doesn't allow crypto ads, so POV's videos are just memes: no ticker, no address, no price. The coin pays for the promotion; the videos never mention it.</p></details>
       <details><summary>Where does the money come from?</summary><p>Only from $POV's creator fees, which every buy and sell pays on pump.fun. They land in the ad wallet, and that wallet is the whole budget.</p></details>
       <details><summary>How often does it promote?</summary><p>Every hour there's budget to spend. A quiet hour rolls its budget into the next one.</p></details>
-      <details><summary>Who writes the videos?</summary><p>Holders do. Pick a format, write the caption and post it on X. The most-liked script each day becomes the next video.</p></details>
+      <details><summary>Who writes the videos?</summary><p>Holders do. Pick a format, write the caption and post it on X. The most-liked script each day becomes the next meme.</p></details>
+      <details><summary>Are the videos in this feed promoted?</summary><p>Not yet. They're POV's memes, made for TikTok. Promos start after $POV launches, and every one gets a receipt here.</p></details>
       <details><summary>What do holders get?</summary><p>Reach. Every promo puts POV's memes in front of people who have never heard of it. There are no payouts, and nothing here is a promise of returns.</p></details>
-      <details><summary>Why does a person press Promote?</summary><p>Promote lives in the TikTok app and is paid for there, so a person runs it. Every step leaves a trace: the wallet transfer on Solana and the receipt here.</p></details>
       <details><summary>What if TikTok rejects a video?</summary><p>The receipt says rejected, and that hour's budget rolls into the next one.</p></details>
       <details><summary>Is POV part of TikTok?</summary><p>No. POV pays for TikTok Promote like any account can. It has no deal with TikTok.</p></details>
     </div>
   </article>
 
-  <article class="det" data-for="chart" hidden>
-    <div class="kk">11 · CHART</div>
+  <article class="det" data-page="chart" hidden>
+    <div class="kk">CHART</div>
     <h2>$POV, <span class="ch">live.</span></h2>
     <div id="d-chart"><p>Not launched yet. The chart and the CA go up here at launch, read live from Dexscreener.</p></div>
     <div class="embed" id="d-embed" hidden></div>
-  </article>
-
-  <article class="det" data-for="end" hidden>
-    <div class="kk">12 · THAT'S ALL</div>
-    <h2>You're all <span class="ch">caught up.</span></h2>
-    <p>Fees in, promos out, receipts here. That's the whole machine.</p>
-    <div class="ctas"><button class="btn w" data-go="write">Write the next one</button><button class="btn g" id="sharepov">Share POV</button></div>
-    <h3>Links</h3>
-    <div class="lks" data-links style="margin-top:12px"></div>
-    <p data-nolinks>X, TikTok and the CA go up here at launch.</p>
   </article>
 
   </div>
@@ -927,26 +862,28 @@ const num=(v,d=0)=>Number(v||0).toLocaleString('en-US',{maximumFractionDigits:d,
 const short=a=>a.length>12?a.slice(0,4)+'…'+a.slice(-4):a;
 const usd=v=>{v=+v;if(!isFinite(v)||v<=0)return '—';if(v>=1e9)return '$'+(v/1e9).toFixed(2)+'B';if(v>=1e6)return '$'+(v/1e6).toFixed(2)+'M';if(v>=1e3)return '$'+(v/1e3).toFixed(1)+'K';return '$'+v.toFixed(2)};
 const fp=v=>{v=+v;if(!isFinite(v)||v<=0)return '—';if(v>=1)return '$'+v.toFixed(3);return '$'+v.toFixed(Math.min(12,3-Math.floor(Math.log10(v))))};
+const p2=n=>String(n).padStart(2,'0');
 const ORIGIN=/^https?:/.test(location.origin)?location.origin:'https://pov-fun.vercel.app';
 const feed=$('#feed'),side=$('#side'),clips=$$('.clip'),N=clips.length;
 const idx=id=>clips.findIndex(c=>c.id===id);
-let cur=-1;
+let cur=-1,page='video';
 
-/* each clip gets TikTok's rail, a progress bar and a pause state */
+$('#m6row').innerHTML=Array.from({length:12},(_,k)=>`<i style="--k:${k}"></i>`).join('');
+(function(){const C=['🐈','🐱','😺','😸','😼','😻','🙀','😹'],B=['#ffd6a5','#fdffb6','#caffbf','#9bf6ff','#a0c4ff','#bdb2ff','#ffc6ff','#ffadad'];
+  $('#m7g').innerHTML=Array.from({length:25},(_,k)=>`<i style="--k:${k};--bg:${B[(k*3)%8]}">${C[(k*5+3)%8]}</i>`).join('')})();
+$('#m10seg').innerHTML=Array.from({length:10},(_,k)=>`<i style="--k:${k}"></i>`).join('');
+
 const RAIL='<div class="rail">'+
- '<button class="ra av" data-act="top" aria-label="Back to the first clip"><img src="/assets/icon-64.png?v=1" alt=""></button>'+
+ '<button class="ra av" data-act="top" aria-label="Back to the first video"><img src="/assets/icon-64.png?v=1" alt=""></button>'+
  '<button class="ra" data-act="like" aria-pressed="false"><span class="ic"><svg viewBox="0 0 24 24"><use href="#heart"/></svg></span><b>Like</b></button>'+
- '<button class="ra" data-act="more" aria-label="More about this clip"><span class="ic"><svg viewBox="0 0 24 24"><use href="#cmt"/></svg></span><b>More</b></button>'+
- '<button class="ra" data-act="link" aria-label="Copy a link to this clip"><span class="ic"><svg viewBox="0 0 24 24"><use href="#lnk"/></svg></span><b>Link</b></button>'+
+ '<button class="ra" data-act="more" aria-label="More about this video"><span class="ic"><svg viewBox="0 0 24 24"><use href="#cmt"/></svg></span><b>More</b></button>'+
+ '<button class="ra" data-act="link" aria-label="Copy a link to this video"><span class="ic"><svg viewBox="0 0 24 24"><use href="#lnk"/></svg></span><b>Link</b></button>'+
  '<button class="ra" data-act="share" aria-label="Share on X"><span class="ic"><svg viewBox="0 0 24 24"><use href="#shr"/></svg></span><b>Share</b></button>'+
  '<span class="disc" aria-hidden="true"><img src="/assets/icon-64.png?v=1" alt=""></span></div>';
-clips.forEach((c,i)=>{
-  $('.frame',c).insertAdjacentHTML('beforeend','<div class="bar"><i></i></div><div class="pz" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#play"/></svg></div>');
-  $('.fw',c).insertAdjacentHTML('beforeend',RAIL);
-  const ix=$('.idx',c);if(ix)ix.textContent=(i+1)+'/'+N;
-});
+clips.forEach((c,i)=>{const d=c.dataset,f=$('.frame',c);
+  f.insertAdjacentHTML('beforeend',`<div class="meta"><div class="who">POV <span class="idx">${i+1}/${N}</span></div><p>${esc(d.desc)} <button class="more" data-act="more">more</button></p><div class="tags">${esc(d.tags)}</div><div class="snd"><b>♫</b><i><span>${esc(d.snd)} · original sound by POV</span></i></div></div><div class="bar"><i></i></div><div class="pz" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#play"/></svg></div><button class="vol" data-act="sound" aria-label="Sound on"><svg viewBox="0 0 24 24"><use href="#voff"/></svg><span>Tap for sound</span></button>`);
+  $('.fw',c).insertAdjacentHTML('beforeend',RAIL)});
 
-/* likes are yours: kept in this browser, never counted or shown as anyone else's */
 const LK='pov-likes';let likes=[];
 try{likes=JSON.parse(localStorage.getItem(LK)||'[]');if(!Array.isArray(likes))likes=[]}catch(e){likes=[]}
 const saveLikes=()=>{try{localStorage.setItem(LK,JSON.stringify(likes))}catch(e){}};
@@ -958,44 +895,69 @@ clips.forEach(paintLike);
 function burst(x,y){if(RM)return;const h=document.createElement('i');h.className='burst';h.style.left=x+'px';h.style.top=y+'px';h.style.setProperty('--r',(Math.random()*40-20).toFixed(1)+'deg');
   h.innerHTML='<svg viewBox="0 0 24 24"><use href="#heart"/></svg>';document.body.appendChild(h);setTimeout(()=>h.remove(),900)}
 
-/* sequencer: [data-at] children enter on cue; [data-loop] replays */
 function stopSeq(c){(c._T||[]).forEach(clearTimeout);c._T=[]}
-function resetSeq(c){stopSeq(c);const v=$('.vis',c);if(!v)return;v.classList.remove('out');$$('[data-at]',v).forEach(e=>e.classList.remove('in'))}
+function resetSeq(c){stopSeq(c);const v=$('.vis',c);if(!v)return;v.classList.remove('out','run');$$('[data-at]',v).forEach(e=>e.classList.remove('in'))}
 function play(c){stopSeq(c);const v=$('.vis',c);if(!v)return;const items=$$('[data-at]',v),loop=+v.dataset.loop||0;
-  v.classList.remove('out');items.forEach(e=>e.classList.remove('in'));void v.offsetWidth;const T=c._T=[];
-  items.forEach(e=>T.push(setTimeout(()=>e.classList.add('in'),RM?0:+e.dataset.at)));
-  if(loop&&!RM)T.push(setTimeout(()=>{v.classList.add('out');T.push(setTimeout(()=>{if(c.classList.contains('on')&&!c.classList.contains('paused'))play(c)},450))},loop))}
+  v.classList.remove('out','run');items.forEach(e=>e.classList.remove('in'));void v.offsetWidth;v.classList.add('run');c._t0=performance.now();const T=c._T=[];
+  items.forEach(e=>{if(RM){if(!e.dataset.out)e.classList.add('in');return}T.push(setTimeout(()=>e.classList.add('in'),+e.dataset.at));if(e.dataset.out)T.push(setTimeout(()=>e.classList.remove('in'),+e.dataset.out))});
+  if(loop&&!RM)T.push(setTimeout(()=>{v.classList.add('out');T.push(setTimeout(()=>{if(c.classList.contains('on')&&!c.classList.contains('paused'))play(c)},400))},loop))}
 
-/* 01: the typed caption */
 const LINES=['POV: a memecoin paid for you to see this','POV: the algorithm got paid in fees','POV: the coin bought your attention','POV: you scrolled past it twice'];
 let typing=0;
 async function typeLoop(tok){const cap=$('#icap'),c=clips[0];let k=0;
   while(typing===tok){const t=LINES[k++%LINES.length];
     for(let i=1;i<=t.length;i++){if(typing!==tok)return;while(c.classList.contains('paused')){await sleep(200);if(typing!==tok)return}cap.textContent=t.slice(0,i);await sleep(RM?0:34)}
     await sleep(2600)}}
-const START={fyp(){typing++;typeLoop(typing)},chart(){chartBars()}};
-const STOP={fyp(){typing++}};
+function depth(c){cancelAnimationFrame(c._raf);const D=$('#m9d'),Z=$('#m9z');
+  const f=()=>{if(!c.classList.contains('on'))return;if(!c.classList.contains('paused')){const t=(performance.now()-c._t0)/1000,k=Math.min(1,Math.max(0,(t-2.6)/6.2)),d=Math.round(k*k*10900/10)*10;
+    D.textContent=(k>=1?'~':'')+d.toLocaleString('en-US')+' m';Z.textContent=d<200?'sunlight zone':d<1000?'twilight zone':d<4000?'midnight zone':d<6000?'the abyss':k>=1?'the deepest point we know':'the trenches'}
+    c._raf=requestAnimationFrame(f)};f()}
+const START={pov(){typing++;typeLoop(typing)},ocean:depth};
+const STOP={pov(){typing++},ocean(c){cancelAnimationFrame(c._raf)}};
 
-/* which clip is playing */
 function activate(i){if(i===cur||i<0)return;const prev=clips[cur];
   if(prev){prev.classList.remove('on','paused','enter');resetSeq(prev);STOP[prev.id]&&STOP[prev.id](prev)}
   cur=i;const c=clips[i];c.classList.add('on');
   if(!RM){c.classList.remove('enter');void c.offsetWidth;c.classList.add('enter');clearTimeout(c._e);c._e=setTimeout(()=>c.classList.remove('enter'),450)}
-  play(c);START[c.id]&&START[c.id](c);sync()}
-function sync(){const c=clips[cur],id=c.id,cs=getComputedStyle(c);
-  $$('#nav .it').forEach(a=>a.classList.toggle('on',a.dataset.go===id));
-  $$('.det').forEach(d=>{const on=d.dataset.for===id;if(on&&d.hidden){d.hidden=false;d.classList.remove('in');void d.offsetWidth;d.classList.add('in')}else if(!on)d.hidden=true});
-  $('#side .sc').scrollTop=0;$('#sidx').textContent=String(cur+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');$('#sttl').textContent=c.dataset.title||'';
+  play(c);START[c.id]&&START[c.id](c);sndStyle(c.dataset.beat);sync()}
+const GLOW={pov:['#25F4EE','#FE2C55'],minutes:['#5b6cff','#ff9f68'],grwm:['#3d55ff','#8a3ffc'],storytime:['#FE2C55','#ff9a3c'],online:['#b8a1ff','#ff9ccf'],sense:['#25F4EE','#17a2b8'],waitforit:['#ffc43d','#ff7a00'],cats:['#ffb36b','#ffd6a5'],rating:['#8a3ffc','#ff5c7a'],ocean:['#1b8fd1','#25F4EE'],average:['#ff7a59','#7b61ff'],end:['#25F4EE','#FE2C55']};
+function sync(){const c=clips[cur],id=c.id,g=GLOW[id]||GLOW.pov;
+  document.body.style.setProperty('--g1',g[0]);document.body.style.setProperty('--g2',g[1]);
   $('#aup').disabled=cur===0;$('#adn').disabled=cur===N-1;
-  $('#tabR').classList.toggle('on',id==='receipts');$('#tabF').classList.toggle('on',id!=='receipts');
-  document.body.style.setProperty('--g1',cs.getPropertyValue('--a').trim()||'#25F4EE');document.body.style.setProperty('--g2',cs.getPropertyValue('--b').trim()||'#FE2C55');
   try{history.replaceState(null,'',cur?'#'+id:location.pathname+location.search)}catch(e){}
-  if(id==='chart')embed()}
+  if(page==='video')showPage('video',true)}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>=.6)activate(clips.indexOf(e.target))}),{root:feed,threshold:[.6]});
 clips.forEach(c=>io.observe(c));
 function go(i,instant){i=Math.max(0,Math.min(N-1,i));feed.scrollTo({top:clips[i].offsetTop,behavior:(instant||RM)?'auto':'smooth'})}
 
-/* wheel: one clip per flick, like the app */
+const NAMES={how:'How it works',wallet:'The ad wallet',receipts:'Receipts',write:'Write the next one',rules:'The rules',faq:'FAQ',chart:'Chart'};
+function showPage(p,quiet){page=p;const c=clips[cur]||clips[0];let target;
+  if(p==='video'){const v=c.id==='pov'?'pov':c.id==='end'?'end':'meme';target=$(`.det[data-v="${v}"]`);
+    if(v==='meme'){const d=c.dataset;$('#v-kk').textContent='VIDEO '+p2(cur+1)+' / '+p2(N)+' · '+d.fmt.toUpperCase();$('#v-title').textContent=d.title;$('#v-desc').textContent=d.desc;$('#v-tags').textContent=d.tags;$('#v-snd').textContent=d.snd+' · original sound by POV';$('#v-write').dataset.wf=d.wf}
+    $('#sidx').hidden=false;$('#sidx').textContent=p2(Math.max(cur,0)+1)+' / '+p2(N);$('#sttl').textContent=c.dataset.title;$('#bk').hidden=true}
+  else{target=$(`.det[data-page="${p}"]`);$('#sidx').hidden=true;$('#sttl').textContent=NAMES[p]||'';$('#bk').hidden=false;if(p==='chart')embed()}
+  $$('.det').forEach(d=>{if(d===target){if(d.hidden||!quiet){d.hidden=false;d.classList.remove('in');void d.offsetWidth;d.classList.add('in')}}else d.hidden=true});
+  if(!quiet)$('#side .sc').scrollTop=0;
+  $$('#nav .it').forEach(a=>a.classList.toggle('on',a.dataset.page===p));
+  const rOn=p==='receipts'&&document.body.classList.contains('sheet');$('#tabR').classList.toggle('on',rOn);$('#tabF').classList.toggle('on',!rOn)}
+function openSheet(){if(!MQ.matches){side.classList.remove('flash');void side.offsetWidth;side.classList.add('flash');return}
+  document.body.classList.add('sheet');side.style.transform='';showPage(page,true)}
+function closeSheet(){document.body.classList.remove('sheet');side.style.transform='';$('#tabR').classList.remove('on');$('#tabF').classList.add('on')}
+function closeMenu(){document.body.classList.remove('menu')}
+$('#scrim').onclick=closeSheet;$('#sx').onclick=closeSheet;$('#bk').onclick=()=>showPage('video');
+$('#mb').onclick=()=>document.body.classList.toggle('menu');$('#nx').onclick=closeMenu;
+(function drag(){const h=$('#side .hd');let y0=null,dy=0;
+  h.addEventListener('pointerdown',e=>{if(!MQ.matches||e.target.closest('button'))return;y0=e.clientY;dy=0;h.setPointerCapture(e.pointerId);side.style.transition='none'});
+  h.addEventListener('pointermove',e=>{if(y0==null)return;dy=Math.max(0,e.clientY-y0);side.style.transform='translateY('+dy+'px)'});
+  const end=()=>{if(y0==null)return;y0=null;side.style.transition='';if(dy>80)closeSheet();else side.style.transform=''};
+  h.addEventListener('pointerup',end);h.addEventListener('pointercancel',end)})();
+document.addEventListener('click',e=>{const t=e.target;
+  const pg=t.closest('[data-page]');if(pg){e.preventDefault();const p=pg.dataset.page;closeMenu();
+    if(pg.hasAttribute('data-top')){showPage('video');closeSheet();go(0);return}
+    showPage(p);if(MQ.matches)openSheet();return}
+  const g=t.closest('[data-go]');if(g){e.preventDefault();const i=idx(g.dataset.go);if(i>=0){closeMenu();closeSheet();go(i)}return}
+  const w=t.closest('#v-write');if(w){setFmt(w.dataset.wf||'POV:');showPage('write');if(MQ.matches)openSheet()}});
+
 let wl=false,wt=0,acc=0;
 feed.addEventListener('wheel',e=>{if(MQ.matches||e.ctrlKey)return;e.preventDefault();clearTimeout(wt);wt=setTimeout(()=>{wl=false;acc=0},200);
   if(wl)return;acc+=e.deltaY;if(Math.abs(acc)>=30){wl=true;go(cur+(acc>0?1:-1));acc=0}},{passive:false});
@@ -1006,11 +968,11 @@ addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;const t=
   else if(['ArrowUp','PageUp','k'].includes(e.key)){e.preventDefault();go(cur-1)}
   else if(e.key==='Home'){e.preventDefault();go(0)}else if(e.key==='End'){e.preventDefault();go(N-1)}
   else if(e.key===' '&&!(t.closest&&t.closest('button,a,summary'))){e.preventDefault();pause(clips[cur])}
-  else if(e.key==='l'||e.key==='L'){like(clips[cur])}});
+  else if(e.key==='l'||e.key==='L')like(clips[cur]);
+  else if(e.key==='m'||e.key==='M')sndSet(!SND.on)});
 $('#aup').onclick=()=>go(cur-1);$('#adn').onclick=()=>go(cur+1);
 
-/* tap pauses, double-tap likes */
-function pause(c){const p=c.classList.toggle('paused');if(p)stopSeq(c);else play(c)}
+function pause(c){const p=c.classList.toggle('paused');if(p){stopSeq(c);sndPause(true)}else{play(c);sndPause(false)}}
 let lastTap=0,tapClip=null,tapT=0;
 feed.addEventListener('pointerup',e=>{const f=e.target.closest('.frame');if(!f||e.target.closest('a,button,input,textarea,label,summary,iframe'))return;
   if(e.pointerType==='mouse'&&e.button!==0)return;const sel=getSelection&&getSelection();if(sel&&String(sel).length)return;
@@ -1018,87 +980,83 @@ feed.addEventListener('pointerup',e=>{const f=e.target.closest('.frame');if(!f||
   if(now-lastTap<300&&tapClip===c){clearTimeout(tapT);lastTap=0;like(c,true);burst(e.clientX,e.clientY);return}
   lastTap=now;tapClip=c;clearTimeout(tapT);tapT=setTimeout(()=>{if(c.classList.contains('on'))pause(c)},300)});
 
-/* the rail */
 async function copyText(t){try{await navigator.clipboard.writeText(t);return true}catch(e){try{const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();return ok}catch(_){return false}}}
-const urlOf=c=>ORIGIN+'/'+(c.id==='fyp'?'':'#'+c.id);
+const urlOf=c=>ORIGIN+'/'+(c.id==='pov'?'':'#'+c.id);
 feed.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const c=b.closest('.clip'),a=b.dataset.act;
   if(a==='top')go(0);
   else if(a==='like')like(c);
-  else if(a==='more')openSheet();
+  else if(a==='more'){showPage('video');openSheet()}
+  else if(a==='sound')sndSet(!SND.on);
   else if(a==='link')copyText(urlOf(c)).then(ok=>{const l=$('b',b);l.textContent=ok?'Copied':'Failed';setTimeout(()=>l.textContent='Link',1500)});
-  else if(a==='share')window.open('https://x.com/intent/post?text='+encodeURIComponent((c.dataset.share||'POV')+'\n'+urlOf(c)),'_blank','noopener')});
-feed.addEventListener('click',e=>{if(e.target.closest('[data-more]'))openSheet()});
-
-/* details: a panel on desktop, a sheet on phones */
-function openSheet(){if(!MQ.matches){side.classList.remove('flash');void side.offsetWidth;side.classList.add('flash');return}
-  document.body.classList.add('sheet');side.style.transform=''}
-function closeSheet(){document.body.classList.remove('sheet');side.style.transform=''}
-$('#scrim').onclick=closeSheet;$('#sx').onclick=closeSheet;
-(function drag(){const h=$('#side .hd');let y0=null,dy=0;
-  h.addEventListener('pointerdown',e=>{if(!MQ.matches||e.target.closest('button'))return;y0=e.clientY;dy=0;h.setPointerCapture(e.pointerId);side.style.transition='none'});
-  h.addEventListener('pointermove',e=>{if(y0==null)return;dy=Math.max(0,e.clientY-y0);side.style.transform='translateY('+dy+'px)'});
-  const end=()=>{if(y0==null)return;y0=null;side.style.transition='';if(dy>80)closeSheet();else side.style.transform=''};
-  h.addEventListener('pointerup',end);h.addEventListener('pointercancel',end)})();
-function closeMenu(){document.body.classList.remove('menu')}
-$('#mb').onclick=()=>document.body.classList.toggle('menu');$('#nx').onclick=closeMenu;
-document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(!g)return;e.preventDefault();const i=idx(g.dataset.go);if(i<0)return;
-  closeMenu();if(g.closest('#side'))closeSheet();go(i)});
+  else if(a==='share')window.open('https://x.com/intent/post?text='+encodeURIComponent(c.dataset.title+'\n'+urlOf(c)),'_blank','noopener')});
 let rz=0;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(!MQ.matches){closeSheet();closeMenu()}if(cur>=0)go(cur,true)},150)});
 
-/* the composer */
+/* sound: original beats synthesized in the browser, off until you turn it on */
+const SND={on:false,paused:false,ctx:null,m:null,lp:null,nb:null,timer:0,step:0,next:0,bar:0,style:'pop'};
+const STY={
+  pop:{bpm:112,k:'x...x...x...x...',s:'....x.......x...',h:'..x...x...x...x.',b:[40,0,0,40,0,0,40,0,43,0,0,43,0,0,38,0],ch:[[64,67,71],[62,65,69]],cw:'triangle',bc:900},
+  lofi:{bpm:80,sw:.14,k:'x.......x.x.....',s:'....x.......x...',h:'x.x.x.x.x.x.x.x.',b:[38,0,0,0,0,0,38,0,41,0,0,0,36,0,0,0],ch:[[62,65,69,72],[60,64,67,71]],cw:'sine',bc:600,lp:2600},
+  trap:{bpm:140,k:'x.........x.....',s:'........x.......',h:'xxxxxxxxx.x.xxxx',b:[36,0,0,0,0,0,0,0,36,0,0,0,39,0,0,0],ch:[[60,63,67],[58,62,65]],cw:'triangle',bc:400},
+  chill:{bpm:96,sw:.08,k:'x.....x...x.....',s:'....x.......x...',h:'..x...x...x...xx',b:[41,0,0,0,41,0,0,0,45,0,0,0,43,0,0,0],ch:[[65,69,72,76],[64,67,71,74]],cw:'sine',bc:700,lp:3500},
+  tense:{bpm:100,k:'x.......x.......',s:'................',h:'x...x...x...x...',b:[36,0,36,0,36,0,36,0,37,0,37,0,37,0,37,0],ch:[[60,63,66]],cw:'sawtooth',bc:500,lp:1800},
+  deep:{bpm:70,k:'x...............',s:'................',h:'........x.......',b:[33,0,0,0,0,0,0,0,31,0,0,0,0,0,0,0],ch:[[57,60,64,69],[55,59,62,67]],cw:'sine',bc:300,lp:1400},
+  fast:{bpm:128,k:'x...x...x...x...',s:'....x.......x...',h:'x.xxx.xxx.xxx.xx',b:[40,40,0,40,0,40,0,40,43,43,0,43,0,43,0,43],ch:[[64,68,71],[66,69,73]],cw:'square',bc:1100,lp:5000}};
+const NOTE=n=>440*Math.pow(2,(n-69)/12);
+function sndInit(){if(SND.ctx)return true;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return false;const c=SND.ctx=new AC();
+  const comp=c.createDynamicsCompressor();comp.threshold.value=-14;comp.ratio.value=4;comp.connect(c.destination);
+  SND.lp=c.createBiquadFilter();SND.lp.type='lowpass';SND.lp.frequency.value=12000;SND.lp.connect(comp);
+  SND.m=c.createGain();SND.m.gain.value=.0001;SND.m.connect(SND.lp);
+  SND.nb=c.createBuffer(1,(c.sampleRate*.5)|0,c.sampleRate);const d=SND.nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;return true}
+function env(g,t,a,v,dec){g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+a);g.gain.exponentialRampToValueAtTime(.0001,t+dec)}
+function kick(t){const c=SND.ctx,o=c.createOscillator(),g=c.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(45,t+.14);env(g,t,.004,.9,.34);o.connect(g);g.connect(SND.m);o.start(t);o.stop(t+.36)}
+function noise(t,type,freq,v,dec){const c=SND.ctx,n=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();n.buffer=SND.nb;f.type=type;f.frequency.value=freq;env(g,t,.002,v,dec);n.connect(f);f.connect(g);g.connect(SND.m);n.start(t);n.stop(t+dec+.02)}
+function tone(t,midi,dur,type,v,cut){const c=SND.ctx,o=c.createOscillator(),f=c.createBiquadFilter(),g=c.createGain();o.type=type;o.frequency.value=NOTE(midi);f.type='lowpass';f.frequency.value=cut;env(g,t,.012,v,dur);o.connect(f);f.connect(g);g.connect(SND.m);o.start(t);o.stop(t+dur+.05)}
+function stepAt(st,i,t){if(st.k[i]==='x')kick(t);if(st.s[i]==='x'){noise(t,'bandpass',1900,.42,.16);tone(t,52,.08,'triangle',.12,2000)}
+  if(st.h[i]==='x')noise(t,'highpass',8000,i%4===2?.12:.06,.045);
+  const b=st.b[i];if(b)tone(t,b,.28,'sawtooth',.2,st.bc);
+  if(i===0||i===8){const ch=st.ch[(SND.bar*2+(i?1:0))%st.ch.length];ch.forEach(n=>tone(t,n,1.5,st.cw,.045,2400))}}
+function sched(){const c=SND.ctx,st=STY[SND.style]||STY.pop;if(!SND.on||SND.paused)return;const s16=60/st.bpm/4;
+  if(SND.next<c.currentTime)SND.next=c.currentTime+.05;
+  while(SND.next<c.currentTime+.12){stepAt(st,SND.step,SND.next);const sw=st.sw||0;SND.next+=s16*(SND.step%2?1-sw:1+sw);SND.step=(SND.step+1)%16;if(!SND.step)SND.bar++}}
+function sndStyle(name){name=STY[name]?name:'pop';if(SND.style===name)return;SND.style=name;if(SND.ctx){SND.step=0;SND.bar=0;SND.next=SND.ctx.currentTime+.08;SND.lp.frequency.setTargetAtTime(STY[name].lp||12000,SND.ctx.currentTime,.1)}}
+function sndPause(p){SND.paused=p;if(SND.ctx&&SND.on){SND.m.gain.setTargetAtTime(p?.0001:.55,SND.ctx.currentTime,.05);if(!p){SND.next=SND.ctx.currentTime+.05;SND.step=0}}}
+function sndSet(on){if(on&&!sndInit())return;SND.on=on;const c=SND.ctx;
+  if(on){c.resume&&c.resume();SND.lp.frequency.value=STY[SND.style].lp||12000;SND.next=c.currentTime+.06;SND.step=0;SND.m.gain.setTargetAtTime(SND.paused?.0001:.55,c.currentTime,.05);clearInterval(SND.timer);SND.timer=setInterval(sched,25)}
+  else if(c){SND.m.gain.setTargetAtTime(.0001,c.currentTime,.05);clearInterval(SND.timer)}
+  $$('.vol').forEach(b=>{b.classList.toggle('on',on);b.setAttribute('aria-label',on?'Sound off':'Sound on');$('use',b).setAttribute('href',on?'#von':'#voff')});
+  $('#v-eq').classList.toggle('on',on)}
+document.addEventListener('visibilitychange',()=>{if(!SND.ctx)return;if(document.hidden)SND.ctx.suspend&&SND.ctx.suspend();else if(SND.on)SND.ctx.resume&&SND.ctx.resume()});
+
 const EX={'POV:':'you found the coin before the algorithm did','GRWM':'to explain to my mom why a meme bought ads','Storytime:':'my group chat became a marketing team','Tell me without telling me:':'you check the ad wallet before your bank app','Things that just make sense:':'a meme paying for its own views'};
-const NAMES={'POV:':'POV','GRWM':'GRWM','Storytime:':'STORYTIME','Tell me without telling me:':'TELL ME WITHOUT TELLING ME','Things that just make sense:':'JUST MAKES SENSE'};
 let fmt='POV:';
 const BAD=/\$[a-z]|[1-9A-HJ-NP-Za-km-z]{32,44}|pump\.fun|https?:|www\./i;
 function paint(){const ta=$('#script'),t=ta.value.replace(/\s+/g,' ').trim();$('#cnt').textContent=ta.value.length+' / 90';
-  $('#pcap').textContent=fmt+' '+(t||EX[fmt]);$('#pex').style.visibility=t?'hidden':'visible';$('#wfmt').textContent='FORMAT · '+NAMES[fmt];ta.placeholder=EX[fmt];
-  $('#postx').href='https://x.com/intent/post?text='+encodeURIComponent(fmt+' '+t+'\n\nscript for the next $POV video\n'+ORIGIN+'/#write')}
-function setFmt(f){if(!EX[f])return;fmt=f;$$('#fmts button').forEach(x=>x.classList.toggle('on',x.dataset.f===f));$('#pre').textContent=f;paint()}
+  $('#pcap').textContent=fmt+' '+(t||EX[fmt]);$('#pex').style.visibility=t?'hidden':'visible';ta.placeholder=EX[fmt];
+  $('#postx').href='https://x.com/intent/post?text='+encodeURIComponent(fmt+' '+t+'\n\nscript for the next $POV video\n'+ORIGIN)}
+function setFmt(f){if(!EX[f])f='POV:';fmt=f;$$('#fmts button').forEach(x=>x.classList.toggle('on',x.dataset.f===f));$('#pre').textContent=f;paint()}
 $('#fmts').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setFmt(b.dataset.f)});
 $('#script').addEventListener('input',()=>{const bad=BAD.test($('#script').value),n=$('#cnote');n.textContent=bad?'Keep tickers, addresses and links out: TikTok would reject the promo.':'';n.classList.toggle('bad',bad);paint()});
 $('#postx').addEventListener('click',e=>{const n=$('#cnote');if(!$('#script').value.trim()){e.preventDefault();n.textContent='Write a caption first.';$('#script').focus()}else if(BAD.test($('#script').value)){e.preventDefault();n.textContent='Take out the ticker, address or link first.';n.classList.add('bad')}});
 $('#copy').addEventListener('click',()=>{const t=$('#script').value.trim(),n=$('#cnote');if(!t){n.textContent='Write a caption first.';return}copyText(fmt+' '+t).then(ok=>{n.classList.remove('bad');n.textContent=ok?'Copied.':'Copy failed. Select the text instead.'})});
-$$('[data-setf]').forEach(b=>b.addEventListener('click',()=>{setFmt(b.dataset.setf);closeSheet();go(idx('write'))}));
-$('#wopen').addEventListener('click',()=>{if(MQ.matches)openSheet();else{const ta=$('#script');ta.focus({preventScroll:true});openSheet()}});
 paint();
 
-/* the clock is real: UTC, and the time to the next hour mark */
-(function ticks(){const g=$('#ticks');let s='';for(let k=0;k<60;k++){const a=k/60*Math.PI*2,b=k%5===0,r1=b?74:78,r2=82;
-  s+=`<line class="${b?'b':''}" x1="${(100+r1*Math.cos(a)).toFixed(2)}" y1="${(100+r1*Math.sin(a)).toFixed(2)}" x2="${(100+r2*Math.cos(a)).toFixed(2)}" y2="${(100+r2*Math.sin(a)).toFixed(2)}"/>`}g.innerHTML=s})();
-let lastFrac=-1;const p2=n=>String(n).padStart(2,'0');
-function tick(){const d=new Date(),m=d.getUTCMinutes(),s=d.getUTCSeconds(),sec=m*60+s,left=3600-sec,frac=sec/3600;
-  $('#hclock').textContent=p2(d.getUTCHours())+':'+p2(m)+':'+p2(s);
-  const mm=p2(Math.floor(left/60))+':'+p2(left%60);$('#hnext').textContent='next hour mark in '+mm;$$('.d-next').forEach(e=>e.textContent=mm);
-  const ring=$('#hring'),hand=$('#hhand'),wrap=frac<lastFrac;if(wrap){ring.style.transition='none';hand.style.transition='none'}
-  ring.style.strokeDashoffset=(565.49*(1-frac)).toFixed(2);hand.style.transform='rotate('+(frac*360).toFixed(2)+'deg)';
-  if(wrap){void ring.offsetWidth;ring.style.transition='';hand.style.transition=''}lastFrac=frac;
-  const hb=$('#hour .bar i');hb.style.animation='none';hb.style.transform='scaleX('+frac.toFixed(4)+')'}
+function tick(){const d=new Date(),m=d.getUTCMinutes(),s=d.getUTCSeconds(),left=3600-(m*60+s);
+  $('#d-utc').textContent=p2(d.getUTCHours())+':'+p2(m)+':'+p2(s);$$('.d-next').forEach(e=>e.textContent=p2(Math.floor(left/60))+':'+p2(left%60))}
 tick();setInterval(tick,1000);
 
-/* launch config: CA, links, engine */
 function links(){const L=[CFG.x&&['X',CFG.x],CFG.tiktok&&['TikTok',CFG.tiktok],CFG.ca&&['pump.fun','https://pump.fun/coin/'+CFG.ca],CFG.ca&&['Dexscreener','https://dexscreener.com/solana/'+CFG.ca]].filter(Boolean);
   $$('[data-links]').forEach(el=>{el.innerHTML=L.map(([n,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join('');el.hidden=!L.length});
   $$('[data-nolinks]').forEach(el=>el.hidden=!!L.length);
   $$('[data-ca]').forEach(el=>{el.hidden=!CFG.ca;if(!CFG.ca)return;$('[data-cav]',el).textContent=CFG.ca;const b=$('[data-cacopy]',el);b.onclick=()=>copyText(CFG.ca).then(ok=>{b.textContent=ok?'Copied':'Copy';setTimeout(()=>b.textContent='Copy',1400)})});
   if(CFG.ca)$('#s-coin').textContent='live on pump.fun';
-  if(CFG.engine){$('#s-engine').textContent='on, every hour';$('#d-eng').textContent='on, every hour';$('#heng').textContent='promo engine on';$('#hdot').classList.remove('off')}}
+  if(CFG.engine){$('#s-engine').textContent='on, every hour';$('#d-eng').textContent='on, every hour'}}
 links();
 
-/* receipts, from /promos.json (empty until the first promo) */
 const stCls=s=>/reject/i.test(s||'')?'rejected':/done|ended|complete/i.test(s||'')?'done':'running';
 async function promos(){let P=[];try{const r=await fetch('/promos.json?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(Array.isArray(j))P=j}}catch(e){}
-  $('#s-promos').textContent=String(P.length);
-  const list=$('#rlist'),st=$('#rstats');
+  $('#s-promos').textContent=String(P.length);const list=$('#rlist'),st=$('#rstats');
   if(!P.length){st.hidden=true;list.innerHTML='<div class="zero"><b>No receipts yet.</b>The first one prints in the first hour after $POV launches.</div>';return}
-  const L=P[P.length-1],spent=P.reduce((a,p)=>a+(+p.usd||0),0),views=P.reduce((a,p)=>a+(+p.views||0),0);
-  $('#rpaper').innerHTML=`<div class="rh">POV · PROMO RECEIPT</div><div class="rs">${esc(L.when||'')}</div>
-   <div class="rr"><span>#${String(P.length).padStart(4,'0')}</span><span>${esc(L.format||'')}</span></div><hr>
-   <div class="rr"><span>caption</span><span>${esc(L.caption||'—')}</span></div>
-   <div class="rr"><span>budget</span><span>${L.usd!=null?'$'+num(L.usd,2):'—'}</span></div>
-   <div class="rr"><span>tiktok views</span><span>${L.views!=null?num(L.views):'—'}</span></div>
-   <div class="rr"><span>tiktok likes</span><span>${L.likes!=null?num(L.likes):'—'}</span></div>
-   <div class="rr"><span>status</span><span>${esc(stCls(L.status))}</span></div><hr>
-   <div class="ft">receipt ${P.length} of ${P.length}.<br>every one is in More.</div>`;
+  const spent=P.reduce((a,p)=>a+(+p.usd||0),0),views=P.reduce((a,p)=>a+(+p.views||0),0);
   st.hidden=false;st.innerHTML=`<div class="stat"><div class="v">${P.length}</div><div class="l">PROMOS</div></div><div class="stat"><div class="v">$${num(spent,0)}</div><div class="l">SPENT</div></div><div class="stat"><div class="v">${num(views)}</div><div class="l">VIEWS (TIKTOK)</div></div>`;
   list.innerHTML='<div class="rlist">'+P.slice().reverse().map((p,i)=>`<div class="rc"><div class="t"><span>#${String(P.length-i).padStart(4,'0')} · ${esc(p.when||'')}</span><span>${esc(stCls(p.status))}</span></div>
    <div class="cp">${esc((p.format?p.format+' · ':'')+(p.caption||''))}</div>
@@ -1106,42 +1064,28 @@ async function promos(){let P=[];try{const r=await fetch('/promos.json?t='+Date.
    ${p.video?`<a href="${esc(p.video)}" target="_blank" rel="noopener">Watch on TikTok →</a>`:''}${p.tx?`<a href="https://solscan.io/tx/${esc(p.tx)}" target="_blank" rel="noopener">Wallet transfer →</a>`:''}</div>`).join('')+'</div>'}
 promos();
 
-/* the ad wallet, read live from Solana */
-let solUsd=0,shown=0;
+let solUsd=0;
 async function price(){try{const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd');const j=await r.json();solUsd=+(j&&j.solana&&j.solana.usd)||0}catch(e){}}
-function countTo(el,to){if(RM||shown){el.innerHTML=to.toFixed(3)+'<small>SOL</small>';return}const t0=performance.now(),D=900;
-  (function f(t){const k=Math.min(1,(t-t0)/D),v=to*(1-Math.pow(1-k,3));el.innerHTML=v.toFixed(3)+'<small>SOL</small>';if(k<1)requestAnimationFrame(f)})(t0)}
-async function wallet(){if(!CFG.wallet)return;$('#wadr').textContent=short(CFG.wallet);$('#d-addr').textContent=CFG.wallet;$('#s-wallet').textContent=short(CFG.wallet);
+async function wallet(){if(!CFG.wallet)return;$('#d-addr').textContent=CFG.wallet;$('#s-wallet').textContent=short(CFG.wallet);
   $('#d-link').innerHTML=`<a href="https://solscan.io/account/${esc(CFG.wallet)}" target="_blank" rel="noopener" style="color:var(--c);font-weight:800">Every transfer, on Solscan →</a>`;
   for(const u of ['https://solana-rpc.publicnode.com','https://api.mainnet-beta.solana.com']){try{
     const r=await fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'getBalance',params:[CFG.wallet,{commitment:'confirmed'}]})});
     const j=await r.json();if(j&&j.result&&typeof j.result.value==='number'){const sol=j.result.value/1e9;if(!solUsd)await price();
-      countTo($('#wbal'),sol);shown=1;$('#wdot').classList.remove('off');$('#wlv').textContent='live';
-      $('#wusd').textContent=solUsd?'≈ '+usd(sol*solUsd)+' for promos':'read from Solana';$('#d-bal').textContent=sol.toFixed(4)+' SOL';$('#d-usd').textContent=solUsd?usd(sol*solUsd):'—';
-      $('#d-read').textContent='just now · every 30s';return}}catch(e){}}
-  $('#wusd').textContent='Solana didn’t answer. Trying again.';$('#d-read').textContent='no answer yet'}
+      $('#d-bal').textContent=sol.toFixed(4)+' SOL';$('#d-usd').textContent=solUsd?usd(sol*solUsd):'—';$('#d-read').textContent='just now · every 30s';return}}catch(e){}}
+  $('#d-read').textContent='Solana didn’t answer. Trying again.'}
 wallet();setInterval(()=>{if(!document.hidden)wallet()},30000);
 
-/* $POV live from Dexscreener (only once there's a CA) */
 let PAIR=null;
 async function chart(){if(!CFG.ca)return;try{const r=await fetch('https://api.dexscreener.com/latest/dex/tokens/'+CFG.ca);const j=await r.json();
-  const ps=(j.pairs||[]).filter(p=>p.chainId==='solana').sort((a,b)=>((b.liquidity&&b.liquidity.usd)||0)-((a.liquidity&&a.liquidity.usd)||0));if(!ps.length){$('#cnote').textContent='no trading pair found yet. checking again soon.';return}
+  const ps=(j.pairs||[]).filter(p=>p.chainId==='solana').sort((a,b)=>((b.liquidity&&b.liquidity.usd)||0)-((a.liquidity&&a.liquidity.usd)||0));if(!ps.length)return;
   PAIR=ps[0];const p=PAIR,ch=p.priceChange||{};
-  $('#cpre').hidden=true;$('#clive').hidden=false;$('#cbars').hidden=false;$('#cprice').textContent=fp(p.priceUsd);$('#cmc').textContent='MCAP '+usd(p.marketCap||p.fdv)+' · VOL 24H '+usd(p.volume&&p.volume.h24);
-  $('#cnote').textContent='live from Dexscreener';$('#cmeta').innerHTML='live from Dexscreener. refreshes every 20s. <button class="more" data-more>more</button>';
-  const K=[['5M',ch.m5],['1H',ch.h1],['6H',ch.h6],['24H',ch.h24]],mx=Math.max(1,...K.map(k=>Math.abs(+k[1]||0)));
-  $('#cbars').innerHTML=K.map(([l,v])=>{v=+v||0;const h=Math.max(3,Math.abs(v)/mx*48);return `<div class="bc"><span class="ax"></span><span class="b ${v>=0?'up':'dn'}" style="height:${h}%"></span><span class="bv" style="${v>=0?`top:${50-h}%`:`top:50%;transform:none;margin-top:${h}%`}">${v>0?'+':''}${v.toFixed(1)}%</span><span class="bl">${l}</span></div>`}).join('');
-  if(clips[cur]&&clips[cur].id==='chart')chartBars();
   $('#d-chart').innerHTML=`<div class="kv"><div><span>Price</span><b>${fp(p.priceUsd)}</b></div><div><span>Market cap</span><b>${usd(p.marketCap||p.fdv)}</b></div><div><span>Volume 24h</span><b>${usd(p.volume&&p.volume.h24)}</b></div><div><span>Liquidity</span><b>${usd(p.liquidity&&p.liquidity.usd)}</b></div><div><span>Change 1h · 24h</span><b>${(+ch.h1||0).toFixed(1)}% · ${(+ch.h24||0).toFixed(1)}%</b></div><div><span>Pair</span><b><a href="${esc(p.url||'https://dexscreener.com/solana/'+CFG.ca)}" target="_blank" rel="noopener">Dexscreener →</a></b></div></div>`;
-  if(clips[cur]&&clips[cur].id==='chart')embed()}catch(e){$('#cnote').textContent='Dexscreener didn’t answer. Trying again.'}}
-function chartBars(){$$('#cbars .bc').forEach((b,i)=>{b.classList.remove('in');setTimeout(()=>b.classList.add('in'),300+i*150)})}
+  if(page==='chart')embed()}catch(e){}}
 function embed(){if(!PAIR||$('#d-embed iframe'))return;const e=$('#d-embed');e.hidden=false;e.innerHTML=`<iframe title="$POV chart" loading="lazy" src="https://dexscreener.com/solana/${encodeURIComponent(PAIR.pairAddress)}?embed=1&theme=dark&info=0&trades=0"></iframe>`}
-if(CFG.ca){$('#cttl').textContent='$POV, live';chart();setInterval(()=>{if(!document.hidden)chart()},20000)}
-else{$('#cttl').textContent='$POV, at launch'}
+if(CFG.ca){chart();setInterval(()=>{if(!document.hidden)chart()},20000)}
 
 $('#sharepov').onclick=()=>window.open('https://x.com/intent/post?text='+encodeURIComponent('POV: a memecoin is buying its own For You page\n'+ORIGIN),'_blank','noopener');
 
-/* start where the link points */
 const h=location.hash.slice(1),hi=h?idx(h):-1;
 if(hi>0)requestAnimationFrame(()=>go(hi,true));
 })();
