@@ -97,8 +97,6 @@ button{cursor:pointer;background:none;border:0}
 /* middle: two feeds of real TikToks, side by side */
 #stage{position:relative;z-index:1;container-type:inline-size;min-width:0;display:flex;align-items:stretch;justify-content:center;gap:30px;padding:0 20px;height:100vh}
 .col{position:relative;flex:none;width:calc(var(--pw) + 84px);--pw:calc(min(calc(100vh - 56px),860px,calc(((100cqw - 70px) / 2 - 84px) * 16 / 9)) * 9 / 16)}
-.col:before{content:attr(data-name);position:absolute;top:10px;left:0;width:var(--pw);text-align:center;font-family:M;font-size:11px;letter-spacing:.2em;color:var(--mute);z-index:2;transition:color .3s}
-.col.focus:before{color:#fff}
 .feed{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;outline:0}
 .feed::-webkit-scrollbar{display:none}
 .clip{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:flex-start}
@@ -248,6 +246,53 @@ body.sheet #scrim{opacity:1;pointer-events:auto}
 .embed{margin-top:18px;border-radius:14px;overflow:hidden;border:1px solid var(--line);height:420px;background:#0a0a0d}
 .embed iframe{width:100%;height:100%;border:0}
 
+.wbtn{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 12px;border-radius:12px;background:#fff;color:#000;font-weight:800;font-size:14.5px;box-shadow:-3px -2px 0 var(--c),3px 2px 0 var(--p);transition:transform .15s var(--ease),box-shadow .2s}
+.wbtn:hover{transform:translateY(-1px);box-shadow:-5px -3px 0 var(--c),5px 3px 0 var(--p)}
+.wbtn.on{background:rgba(255,255,255,.08);color:#fff;box-shadow:none;border:1px solid var(--line2);font-family:M;font-weight:500;font-size:13px}
+.wbtn svg{width:19px;height:19px;flex:none}
+#nav .it.hot{color:#fff}
+#nav .it.hot .lbl:after{content:"NEW";margin-left:8px;font-family:M;font-size:10px;letter-spacing:.1em;padding:2px 6px;border-radius:5px;background:var(--p);color:#fff;vertical-align:2px}
+.lf{display:grid;gap:12px;margin-top:18px}
+.lf label{display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--dim)}
+.lf input,.lf textarea{width:100%;background:var(--card);border:1.5px solid var(--line2);border-radius:12px;padding:11px 13px;font-size:15px;font-weight:600;color:#fff;outline:0;transition:border-color .2s,box-shadow .2s}
+.lf input:focus,.lf textarea:focus{border-color:#fff;box-shadow:-3px -2px 0 var(--c),3px 2px 0 var(--p)}
+.lf textarea{resize:vertical;min-height:72px;font-family:inherit}
+.lf .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lf .btn{width:100%;margin-top:4px}
+.lf .btn[disabled]{opacity:.5;pointer-events:none}
+.lf .up{display:flex;align-items:center;gap:14px;padding:12px;border:1.5px dashed var(--line2);border-radius:14px;cursor:pointer;transition:border-color .2s,background .2s;color:var(--dim)}
+.up:hover{border-color:#fff;background:rgba(255,255,255,.03)}
+.up .im{width:64px;height:64px;border-radius:12px;background:var(--card) center/cover no-repeat;border:1px solid var(--line);display:grid;place-items:center;font-size:26px;flex:none}
+.up b{display:block;color:#fff;font-size:14.5px}
+.up span{font-size:13px}
+.up input{display:none}
+.wcard{margin-top:18px;padding:14px 16px;border-radius:14px;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.wcard .wd{width:10px;height:10px;border-radius:50%;background:var(--mute);flex:none}
+.wcard.on .wd{background:#2bd67b;box-shadow:0 0 0 4px rgba(43,214,123,.18)}
+.wcard .wt{flex:1;min-width:0;font-size:14px;color:var(--dim);line-height:1.4}
+.wcard .wt b{display:block;color:#fff;font-family:M;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wpick{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.steps3{list-style:none;display:grid;gap:8px}
+.steps3:empty{display:none}
+.steps3 li{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--dim)}
+.steps3 li i{width:16px;height:16px;border-radius:50%;border:2px solid var(--line2);flex:none}
+.steps3 li.run{color:#fff}
+.steps3 li.run i{border-color:var(--c);border-top-color:transparent;animation:spin .8s linear infinite}
+.steps3 li.ok{color:#fff}
+.steps3 li.ok i{background:#2bd67b;border-color:#2bd67b}
+.steps3 li.bad{color:#ff8fa5}
+.steps3 li.bad i{background:var(--p);border-color:var(--p)}
+.done{margin-top:16px;padding:16px;border-radius:14px;border:1px solid rgba(43,214,123,.45);background:rgba(43,214,123,.07)}
+.done b{display:block;font-size:17px;font-weight:900}
+.done .ca{display:flex;gap:8px;align-items:center;margin-top:10px;font-family:M;font-size:12.5px;color:#fff;word-break:break-all}
+.done .lks a{border-color:rgba(43,214,123,.5)}
+.mine{display:grid;gap:8px;margin-top:12px}
+.mine a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:14px;transition:border-color .2s}
+.mine a:hover{border-color:var(--line2)}
+.mine a b{font-weight:800}
+.mine a span{font-family:M;font-size:12px;color:var(--mute)}
+@media (max-width:1239px) and (min-width:760px){.wbtn span{display:none}.wbtn{padding:0}#nav .it.hot .lbl:after{display:none}}
+
 @media (max-width:1239px){
   body{grid-template-columns:76px minmax(0,1fr)}
   #nav{padding:18px 10px}
@@ -262,8 +307,7 @@ body.sheet #scrim{opacity:1;pointer-events:auto}
   #stage{position:fixed;inset:0;padding:0;gap:0;height:auto}
   .col{position:absolute;inset:0;width:auto;--pw:min(100vw,calc(100dvh * 9 / 16))}
   .col.b{display:none}
-  .col:before{display:none}
-  .clip{justify-content:center}
+    .clip{justify-content:center}
   .fw{height:100%;width:var(--pw)}
   .frame{border-radius:0;box-shadow:none!important;transform:none!important}
   .meta{right:22cqw;bottom:3.6cqh}
@@ -328,12 +372,13 @@ body.sheet #scrim{opacity:1;pointer-events:auto}
 <symbol id="i-rules" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.8-3.4 7.9-8 9-4.6-1.1-8-4.2-8-9V6z"/><path d="M8.5 15.5l7-7"/></g></symbol>
 <symbol id="i-faq" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-5 0-9 3.4-9 7.7 0 2.3 1.2 4.4 3.2 5.8L5.6 20l3.6-1.7c.9.3 1.8.4 2.8.4 5 0 9-3.4 9-7.6s-4-7.6-9-7.6z"/><path d="M9.8 9.4a2.3 2.3 0 1 1 3.1 2.1c-.6.3-.9.7-.9 1.4M12 15.3v.1"/></g></symbol>
 <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19.5V4.5M4 19.5h16M8 15l3-4 3 2 5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-</defs></svg>
+<symbol id="i-launch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8c3.2 2.2 5 5.8 5 9.4l-2.2 3.3H9.2L7 12.2c0-3.6 1.8-7.2 5-9.4z"/><path d="M9.2 15.5L7 20l3.2-1.4M14.8 15.5L17 20l-3.2-1.4"/><circle cx="12" cy="9.5" r="1.6"/></g></symbol></defs></svg>
 
 <aside id="nav" aria-label="Menu">
   <button class="x" id="nx" aria-label="Close"><svg><use href="#xx"/></svg></button>
   <a class="logo glitch flick" href="#" data-page="video" data-top aria-label="POV, back to the top"><span class="stk"><span>POV</span></span><span class="g g1"><span><i>POV</i></span></span><span class="g g2"><span><i>POV</i></span></span><span class="g g3"><span><i>POV</i></span></span></a>
   <a class="it on" href="#" data-page="video" data-top><svg><use href="#i-home"/></svg><span class="lbl">Home</span></a>
+  <a class="it hot" href="#" data-page="launch"><svg><use href="#i-launch"/></svg><span class="lbl">Launch</span></a>
   <a class="it" href="#" data-page="how"><svg><use href="#i-how"/></svg><span class="lbl">How</span></a>
   <a class="it" href="#" data-page="wallet"><svg><use href="#i-wallet"/></svg><span class="lbl">Wallet</span></a>
   <a class="it" href="#" data-page="receipts"><svg><use href="#i-rcpt"/></svg><span class="lbl">Receipts</span></a>
@@ -341,11 +386,12 @@ body.sheet #scrim{opacity:1;pointer-events:auto}
   <a class="it" href="#" data-page="rules"><svg><use href="#i-rules"/></svg><span class="lbl">Rules</span></a>
   <a class="it" href="#" data-page="faq"><svg><use href="#i-faq"/></svg><span class="lbl">FAQ</span></a>
   <a class="it" href="#" data-page="chart"><svg><use href="#i-chart"/></svg><span class="lbl">Chart</span></a>
+  <button class="wbtn" id="wbtn" data-wallet><svg><use href="#i-wallet"/></svg><span>Connect wallet</span></button>
 </aside>
 
 <div id="stage">
-  <div class="col a" id="colA" data-name="FOR YOU · 1"><main class="feed" tabindex="-1" aria-label="For You, feed 1"></main></div>
-  <div class="col b" id="colB" data-name="FOR YOU · 2"><main class="feed" tabindex="-1" aria-label="For You, feed 2"></main></div>
+  <div class="col a" id="colA"><main class="feed" tabindex="-1" aria-label="For You, feed 1"></main></div>
+  <div class="col b" id="colB"><main class="feed" tabindex="-1" aria-label="For You, feed 2"></main></div>
 </div>
 
 <header id="top">
@@ -379,6 +425,36 @@ body.sheet #scrim{opacity:1;pointer-events:auto}
       <div><span>Promo engine</span><b id="s-engine">starts after launch</b></div>
     </div>
     <div class="lks" data-links></div>
+  </article>
+
+  <article class="det" data-page="launch" hidden>
+    <div class="kk">LAUNCH</div>
+    <h2>Launch your coin. <span class="ch">Its fees buy its For You page.</span></h2>
+    <p>Launch a memecoin on pump.fun from your own wallet. Then send ad budget to POV's ad wallet, tagged with your coin, and POV promotes your coin's memes on TikTok, with a receipt for every promo.</p>
+    <div class="wcard" id="wcard"><span class="wd"></span><div class="wt" id="wtext">No wallet connected.</div><button class="btn sm w" data-wallet id="wcta">Connect</button></div>
+    <div class="wpick" id="wpick" hidden></div>
+    <form class="lf" id="lf" novalidate>
+      <label class="up" id="lup"><span class="im" id="limg">＋</span><div><b>Coin image</b><span>PNG, JPG, GIF or WEBP, up to 2.5 MB</span></div><input type="file" id="lfile" accept="image/png,image/jpeg,image/gif,image/webp"></label>
+      <div class="row2"><label>Name<input id="lname" maxlength="32" placeholder="Name" autocomplete="off"></label><label>Ticker<input id="lsym" maxlength="10" placeholder="TICKER" autocomplete="off"></label></div>
+      <label>Description<textarea id="ldesc" maxlength="500" placeholder="What's the meme?"></textarea></label>
+      <div class="row2"><label>X link (optional)<input id="lx" maxlength="200" placeholder="https://x.com/…" autocomplete="off"></label><label>Website (optional)<input id="lweb" maxlength="200" placeholder="https://…" autocomplete="off"></label></div>
+      <label>Dev buy in SOL<input id="lbuy" type="number" min="0.001" max="5" step="0.001" value="0.01"></label>
+      <button class="btn w" id="lgo" type="submit">Launch on pump.fun</button>
+      <ol class="steps3" id="lsteps"></ol>
+      <div class="note" id="lnote"></div>
+    </form>
+    <div class="done" id="ldone" hidden></div>
+    <h3>Pay for TikTok ads</h3>
+    <p>Send SOL from your wallet to POV's ad wallet with your coin's address in the memo. That money buys TikTok promos for your coin's memes, run by a person in TikTok's app, each one with a receipt. The videos never show a ticker or CA: TikTok doesn't allow crypto ads.</p>
+    <form class="lf" id="ff" novalidate>
+      <label>Your coin's CA<input id="fmint" maxlength="44" placeholder="Mint address" autocomplete="off"></label>
+      <label>Ad budget in SOL<input id="famt" type="number" min="0.01" max="100" step="0.01" value="0.1"></label>
+      <button class="btn w" id="fgo" type="submit">Send to POV's ad wallet</button>
+      <div class="note" id="fnote"></div>
+    </form>
+    <h3>Your launches</h3>
+    <div class="mine" id="mine"><p class="note2">Coins you launch from this browser show up here.</p></div>
+    <div class="real"><svg><use href="#info"/></svg><span>Your wallet signs every transaction; POV never holds keys or funds. pump.fun's normal fees apply. Nothing here is financial advice.</span></div>
   </article>
 
   <article class="det" data-page="how" hidden>
@@ -583,7 +659,7 @@ let rz=0;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{FEED
 document.addEventListener('visibilitychange',()=>FEEDS.forEach(f=>{const s=f.slides[f.cur];if(!s||!s.ready)return;if(document.hidden)post(s,'pause');else if(!s.el.classList.contains('paused'))post(s,'play')}));
 
 /* the side panel: this video, or a page */
-const NAMES={how:'How it works',wallet:'The ad wallet',receipts:'Receipts',write:'Write the next one',rules:'The rules',faq:'FAQ',chart:'Chart'};
+const NAMES={launch:'Launch your coin',how:'How it works',wallet:'The ad wallet',receipts:'Receipts',write:'Write the next one',rules:'The rules',faq:'FAQ',chart:'Chart'};
 function showPage(p,quiet){page=p;let target;
   if(p==='video'){target=$('.det[data-page="video"]');const F=FOCUS||FEEDS[0],cur=F?F.cur:0,s=F?F.slides[cur]:null;
     if(s){const v=s.v;$('#v-kk').textContent='NOW PLAYING · '+p2(cur+1);$('#v-av').textContent=(v.name||v.handle).trim().charAt(0);$('#v-name').textContent=v.name||v.handle;$('#v-h').textContent='@'+v.handle;$('#v-open').href=vurl(v);$('#v-cap').textContent=v.caption||''}
@@ -668,6 +744,102 @@ async function chart(){if(!CFG.ca)return;try{const r=await fetch('https://api.de
   if(page==='chart')embed()}catch(e){}}
 function embed(){if(!PAIR||$('#d-embed iframe'))return;const e=$('#d-embed');e.hidden=false;e.innerHTML=`<iframe title="$POV chart" loading="lazy" src="https://dexscreener.com/solana/${encodeURIComponent(PAIR.pairAddress)}?embed=1&theme=dark&info=0&trades=0"></iframe>`}
 if(CFG.ca){chart();setInterval(()=>{if(!document.hidden)chart()},20000)}
+
+/* wallet + launch: the user's wallet signs everything; keys never leave the browser */
+const RPCS=['https://solana-rpc.publicnode.com','https://api.mainnet-beta.solana.com'];
+const MEMO='MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr';
+const B58=/^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+let WAL={pk:null,prov:null,name:'',sol:null};
+let W3=null;
+function web3(){if(W3)return W3;W3=new Promise((ok,no)=>{if(window.solanaWeb3)return ok(window.solanaWeb3);const sc=document.createElement('script');sc.src='https://unpkg.com/@solana/web3.js@1.95.3/lib/index.iife.min.js';sc.async=true;
+  sc.onload=()=>window.solanaWeb3?ok(window.solanaWeb3):no(new Error('Solana library failed to load.'));sc.onerror=()=>{W3=null;no(new Error('Could not load the Solana library. Check your connection.'))};document.head.appendChild(sc)});return W3}
+function walletList(){const L=[],ph=window.phantom&&window.phantom.solana;
+  if(ph&&ph.isPhantom)L.push(['Phantom',ph]);if(window.solflare&&window.solflare.isSolflare)L.push(['Solflare',window.solflare]);if(window.backpack&&window.backpack.isBackpack)L.push(['Backpack',window.backpack]);
+  if(!L.length&&window.solana&&window.solana.connect)L.push(['Wallet',window.solana]);return L}
+async function rpc(method,params){let last;for(const u of RPCS){try{const r=await fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params})});const j=await r.json();if(j&&'result' in j)return j.result;last=j&&j.error}catch(e){last=e}}throw new Error((last&&last.message)||'Solana RPC did not answer.')}
+async function refreshBal(){if(!WAL.pk)return;try{const r=await rpc('getBalance',[WAL.pk,{commitment:'confirmed'}]);WAL.sol=r.value/1e9}catch(e){WAL.sol=null}paintWallet()}
+function paintWallet(){const on=!!WAL.pk;
+  $$('.wbtn').forEach(b=>{b.classList.toggle('on',on);$('span',b).textContent=on?short(WAL.pk):'Connect wallet'});
+  const c=$('#wcard');if(!c)return;c.classList.toggle('on',on);
+  $('#wtext').innerHTML=on?`<b>${esc(WAL.pk)}</b>${esc(WAL.name)} · ${WAL.sol==null?'balance —':WAL.sol.toFixed(4)+' SOL'}`:'No wallet connected.';
+  $('#wcta').textContent=on?'Disconnect':'Connect';$('#wcta').classList.toggle('w',!on);$('#wcta').classList.toggle('g',on)}
+async function connectWith(name,p){try{const r=await p.connect();const pk=(r&&r.publicKey)||p.publicKey;if(!pk)throw new Error('The wallet did not share an address.');
+    WAL={pk:pk.toString(),prov:p,name,sol:null};$('#wpick').hidden=true;paintWallet();refreshBal();
+    try{p.on&&p.on('accountChanged',k=>{if(k){WAL.pk=k.toString();refreshBal()}else disconnect()})}catch(e){}
+  }catch(e){lnote(e&&e.code===4001?'Connection cancelled in the wallet.':(e.message||'Could not connect.'),true)}}
+async function connect(){const L=walletList();
+  if(!L.length){openLaunch();$('#wpick').hidden=false;$('#wpick').innerHTML='<span class="note">No Solana wallet found in this browser.</span><a class="btn g sm" href="https://phantom.com/download" target="_blank" rel="noopener">Get Phantom</a><a class="btn g sm" href="https://solflare.com/download" target="_blank" rel="noopener">Get Solflare</a>';return}
+  if(L.length===1)return connectWith(L[0][0],L[0][1]);
+  openLaunch();const w=$('#wpick');w.hidden=false;w.innerHTML=L.map((x,i)=>`<button class="btn g sm" data-wi="${i}">${esc(x[0])}</button>`).join('');
+  w.onclick=e=>{const b=e.target.closest('[data-wi]');if(b){const x=L[+b.dataset.wi];connectWith(x[0],x[1])}}}
+async function disconnect(){try{WAL.prov&&WAL.prov.disconnect&&await WAL.prov.disconnect()}catch(e){}WAL={pk:null,prov:null,name:'',sol:null};paintWallet()}
+function openLaunch(){showPage('launch');openSheet()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-wallet]');if(!b)return;e.preventDefault();
+  if(b.id==='wbtn'&&WAL.pk){openLaunch();return}if(WAL.pk&&b.id==='wcta'){disconnect();return}connect()});
+
+/* the launch form */
+let IMG=null;
+const lnote=(t,bad)=>{const n=$('#lnote');n.textContent=t||'';n.classList.toggle('bad',!!bad)};
+$('#lfile').addEventListener('change',()=>{const f=$('#lfile').files[0];if(!f)return;
+  if(!/^image\/(png|jpe?g|gif|webp)$/.test(f.type)){lnote('That file isn’t a PNG, JPG, GIF or WEBP.',true);return}
+  if(f.size>2500000){lnote('That image is over 2.5 MB.',true);return}
+  const r=new FileReader();r.onload=()=>{IMG=r.result;$('#limg').style.backgroundImage=`url("${IMG}")`;$('#limg').textContent='';lnote('')};r.readAsDataURL(f)});
+$('#lsym').addEventListener('input',e=>{e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10)});
+function steps(list,at,bad){$('#lsteps').innerHTML=list.map((t,i)=>`<li class="${i<at?'ok':i===at?(bad?'bad':'run'):''}"><i></i>${esc(t)}</li>`).join('')}
+const STEPS=['Upload the image and metadata to IPFS','Build the launch transaction','Sign in your wallet','Send it to Solana','Confirmed on-chain'];
+async function api(op,body){const r=await fetch('/api/launch?op='+op,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});let j={};try{j=await r.json()}catch(e){}if(!r.ok)throw new Error(j.error||('Launch service error '+r.status));return j}
+async function confirmSig(sig,ms=75000){const t0=Date.now();while(Date.now()-t0<ms){try{const r=await rpc('getSignatureStatuses',[[sig],{searchTransactionHistory:false}]);const st=r&&r.value&&r.value[0];
+  if(st&&st.err)throw new Error('The transaction failed on-chain.');if(st&&(st.confirmationStatus==='confirmed'||st.confirmationStatus==='finalized'))return true}catch(e){if(/failed on-chain/.test(e.message))throw e}await new Promise(r=>setTimeout(r,1500))}throw new Error('Not confirmed yet. Check Solscan before trying again.')}
+async function sendRaw(bytes){const b64=btoa(String.fromCharCode.apply(null,Array.from(bytes)));return rpc('sendTransaction',[b64,{encoding:'base64',skipPreflight:false,preflightCommitment:'confirmed',maxRetries:3}])}
+const b64bytes=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));
+let busy=false;
+$('#lf').addEventListener('submit',async e=>{e.preventDefault();if(busy)return;
+  const name=$('#lname').value.trim(),symbol=$('#lsym').value.trim(),desc=$('#ldesc').value.trim(),buy=+$('#lbuy').value;
+  if(!WAL.pk){lnote('Connect a wallet first.',true);connect();return}
+  if(!IMG){lnote('Add a coin image.',true);return}
+  if(!name||!symbol){lnote('Add a name and a ticker.',true);return}
+  if(!(buy>=0.001&&buy<=5)){lnote('Dev buy has to be between 0.001 and 5 SOL.',true);return}
+  if(WAL.sol!=null&&WAL.sol<buy+0.03){lnote(`You need about ${(buy+0.03).toFixed(3)} SOL: the dev buy plus roughly 0.03 for fees and rent.`,true);return}
+  busy=true;$('#lgo').disabled=true;lnote('');$('#ldone').hidden=true;let at=0;
+  try{steps(STEPS,at);const meta=await api('ipfs',{image:IMG,name,symbol,description:desc,twitter:$('#lx').value.trim(),website:$('#lweb').value.trim()});
+    steps(STEPS,++at);const sw=await web3();const mint=sw.Keypair.generate();
+    const {tx}=await api('tx',{publicKey:WAL.pk,mint:mint.publicKey.toBase58(),name:meta.name,symbol:meta.symbol,uri:meta.uri,amount:buy});
+    const vtx=sw.VersionedTransaction.deserialize(b64bytes(tx));
+    steps(STEPS,++at);const signed=await WAL.prov.signTransaction(vtx);signed.sign([mint]);
+    steps(STEPS,++at);const sig=await sendRaw(signed.serialize());
+    steps(STEPS,++at);await confirmSig(sig);steps(STEPS,STEPS.length);
+    const ca=mint.publicKey.toBase58();saveMine({ca,name:meta.name,symbol:meta.symbol,sig,t:Date.now()});$('#fmint').value=ca;
+    const d=$('#ldone');d.hidden=false;d.innerHTML=`<b>$${esc(meta.symbol)} is live on pump.fun.</b><div class="ca"><span>${esc(ca)}</span><button class="btn g sm" type="button" data-copy="${esc(ca)}">Copy CA</button></div><div class="lks"><a href="https://pump.fun/coin/${esc(ca)}" target="_blank" rel="noopener">pump.fun</a><a href="https://solscan.io/tx/${esc(sig)}" target="_blank" rel="noopener">Transaction</a><a href="https://dexscreener.com/solana/${esc(ca)}" target="_blank" rel="noopener">Dexscreener</a></div>`;
+    lnote('');refreshBal();
+  }catch(err){steps(STEPS,at,true);lnote(err&&err.code===4001?'You cancelled in the wallet. Nothing was sent.':(err.message||'Something went wrong.'),true)}
+  finally{busy=false;$('#lgo').disabled=false}});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(!b)return;copyText(b.dataset.copy).then(ok=>{b.textContent=ok?'Copied':'Copy failed';setTimeout(()=>b.textContent='Copy CA',1400)})});
+
+/* pay for ads: SOL to POV's ad wallet, memo = your coin */
+const fnote=(t,bad)=>{const n=$('#fnote');n.textContent=t||'';n.classList.toggle('bad',!!bad)};
+if(!CFG.wallet){$('#fgo').textContent='Opens when POV’s ad wallet is live';$('#fgo').disabled=true;fnote('POV’s ad wallet goes up at launch. Until then nothing can be sent.')}
+$('#ff').addEventListener('submit',async e=>{e.preventDefault();if(!CFG.wallet||busy)return;
+  const mint=$('#fmint').value.trim(),amt=+$('#famt').value;
+  if(!WAL.pk){fnote('Connect a wallet first.',true);connect();return}
+  if(!B58.test(mint)){fnote('Paste your coin’s CA (its mint address).',true);return}
+  if(!(amt>=0.01&&amt<=100)){fnote('Ad budget has to be between 0.01 and 100 SOL.',true);return}
+  busy=true;$('#fgo').disabled=true;fnote('Building the transfer…');
+  try{const sw=await web3();const bh=await rpc('getLatestBlockhash',[{commitment:'confirmed'}]);const from=new sw.PublicKey(WAL.pk);
+    const tx=new sw.Transaction({feePayer:from,blockhash:bh.value.blockhash,lastValidBlockHeight:bh.value.lastValidBlockHeight});
+    tx.add(sw.SystemProgram.transfer({fromPubkey:from,toPubkey:new sw.PublicKey(CFG.wallet),lamports:Math.round(amt*1e9)}));
+    tx.add(new sw.TransactionInstruction({keys:[],programId:new sw.PublicKey(MEMO),data:new TextEncoder().encode('pov:promo:'+mint)}));
+    fnote('Sign in your wallet…');const signed=await WAL.prov.signTransaction(tx);fnote('Sending…');const sig=await sendRaw(signed.serialize());
+    fnote('Confirming…');await confirmSig(sig);fnote('');
+    $('#fnote').innerHTML=`Sent ${amt} SOL for your coin's promos. <a href="https://solscan.io/tx/${esc(sig)}" target="_blank" rel="noopener" style="color:var(--c);font-weight:800">See the transfer →</a> Its promos get receipts in Receipts.`;refreshBal()
+  }catch(err){fnote(err&&err.code===4001?'You cancelled in the wallet. Nothing was sent.':(err.message||'Something went wrong.'),true)}
+  finally{busy=false;$('#fgo').disabled=!CFG.wallet}});
+
+/* your launches, remembered in this browser only */
+const MK='pov-launches';
+function getMine(){try{const a=JSON.parse(localStorage.getItem(MK)||'[]');return Array.isArray(a)?a:[]}catch(e){return []}}
+function saveMine(x){const a=getMine().filter(y=>y.ca!==x.ca);a.unshift(x);try{localStorage.setItem(MK,JSON.stringify(a.slice(0,20)))}catch(e){}paintMine()}
+function paintMine(){const a=getMine();if(!a.length)return;$('#mine').innerHTML=a.map(x=>`<a href="https://pump.fun/coin/${esc(x.ca)}" target="_blank" rel="noopener"><b>$${esc(x.symbol)}</b><span>${esc(short(x.ca))}</span></a>`).join('')}
+paintMine();paintWallet();
 
 /* go */
 (async function boot(){try{const r=await fetch('/feed.json?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(Array.isArray(j))LIST=j.filter(v=>v&&/^\d{8,25}$/.test(String(v.id))&&v.handle)}}catch(e){}
