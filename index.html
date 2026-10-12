@@ -18,6 +18,7 @@
 <link rel="preload" href="/assets/inter-900.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/inter-800.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+
 @font-face{font-family:I;font-weight:500;font-display:swap;src:url(/assets/inter-500.woff2) format('woff2')}
 @font-face{font-family:I;font-weight:600;font-display:swap;src:url(/assets/inter-600.woff2) format('woff2')}
 @font-face{font-family:I;font-weight:700;font-display:swap;src:url(/assets/inter-700.woff2) format('woff2')}
@@ -28,13 +29,12 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 html{background:#000;-webkit-text-size-adjust:100%}
-body{font-family:I,system-ui,sans-serif;color:#fff;background:#000;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.55;overflow:hidden;display:grid;grid-template-columns:212px minmax(0,1fr) 400px}
+body{font-family:I,system-ui,sans-serif;color:#fff;background:#000;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.55;overflow:hidden;display:grid;grid-template-columns:212px minmax(0,1fr)}
 a{color:inherit;text-decoration:none}
 button,input,textarea{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:0}
 [hidden]{display:none!important}
 ::selection{background:var(--p);color:#fff}
-#glow{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(38% 48% at 46% 28%,rgba(37,244,238,.12),transparent 72%),radial-gradient(40% 50% at 58% 78%,rgba(254,44,85,.1),transparent 72%)}
 .stk{position:relative;display:inline-block;font-weight:900;letter-spacing:-.02em;line-height:1.3;z-index:0}
 .stk>span{display:inline-block;padding:.02em .3em;border-radius:.2em;background:#fff;color:#000}
 .stk:before,.stk:after{content:"";position:absolute;inset:0;border-radius:.2em;z-index:-1}
@@ -72,73 +72,88 @@ button{cursor:pointer;background:none;border:0}
 #nav .it.on:before{content:"";position:absolute;left:-14px;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:#fff;box-shadow:0 -3px 0 var(--c),0 3px 0 var(--p)}
 #nav .x{display:none}
 
-/* middle: the feed of real TikToks */
-#stage{position:relative;z-index:1;container-type:inline-size;min-width:0}
-#feed{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;outline:0}
-#feed::-webkit-scrollbar{display:none}
-.clip{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center}
-.fw{--fh:min(calc(100vh - 48px),880px,calc((100cqw - 230px) * 16 / 9));position:relative;height:var(--fh);width:calc(var(--fh) * 9 / 16);margin-right:76px;flex:none}
-.frame{position:absolute;inset:0;border-radius:18px;overflow:hidden;container-type:size;background:#0b0b10;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 30px 80px rgba(0,0,0,.6);isolation:isolate;transition:box-shadow .5s var(--ease)}
-.clip.on .frame{box-shadow:0 0 0 1px rgba(255,255,255,.1),-6px -4px 0 0 rgba(37,244,238,.45),6px 4px 0 0 rgba(254,44,85,.45),0 30px 80px rgba(0,0,0,.6)}
+/* background: alive, never in the way */
+#bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#000}
+#bg .bl{position:absolute;border-radius:50%}
+#bg .b1{width:62vw;height:62vw;left:-16vw;top:-22vw;background:radial-gradient(circle,rgba(37,244,238,.26),transparent 64%);animation:bl1 19s ease-in-out infinite alternate}
+#bg .b2{width:58vw;height:58vw;right:-14vw;bottom:-24vw;background:radial-gradient(circle,rgba(254,44,85,.24),transparent 64%);animation:bl2 23s ease-in-out infinite alternate}
+#bg .b3{width:40vw;height:40vw;left:34vw;top:18vh;background:radial-gradient(circle,rgba(122,92,255,.16),transparent 64%);animation:bl3 27s ease-in-out infinite alternate}
+@keyframes bl1{to{transform:translate(20vw,26vh) scale(1.18)}}
+@keyframes bl2{to{transform:translate(-22vw,-20vh) scale(.88)}}
+@keyframes bl3{to{transform:translate(-18vw,24vh) scale(1.3)}}
+#bg .mq{position:absolute;left:0;top:50%;white-space:nowrap;font-weight:900;font-size:15vw;line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.055);transform:translateY(-50%) rotate(-7deg);animation:mq 70s linear infinite}
+#bg .mq.m2{top:16%;font-size:7vw;-webkit-text-stroke:1px rgba(37,244,238,.08);animation:mq2 50s linear infinite}
+#bg .mq.m3{top:86%;font-size:7vw;-webkit-text-stroke:1px rgba(254,44,85,.08);animation:mq 58s linear infinite reverse}
+@keyframes mq{from{transform:translate(0,-50%) rotate(-7deg)}to{transform:translate(-50%,-50%) rotate(-7deg)}}
+@keyframes mq2{from{transform:translate(-50%,-50%) rotate(-7deg)}to{transform:translate(0,-50%) rotate(-7deg)}}
+#bg .pt i{position:absolute;bottom:-12vh;left:var(--x);font-style:normal;font-weight:900;font-size:var(--s);color:var(--col);opacity:0;animation:rise var(--d) linear var(--t) infinite;text-shadow:0 0 18px currentColor}
+#bg .pt i.st{color:#000;background:#fff;padding:0 .3em;border-radius:.2em;box-shadow:-.1em -.06em 0 var(--c),.1em .06em 0 var(--p);text-shadow:none}
+@keyframes rise{0%{opacity:0;transform:translate(0,0) rotate(0)}12%{opacity:var(--o)}50%{transform:translate(calc(var(--dx) * -1),-60vh) rotate(calc(var(--r) * -1))}88%{opacity:var(--o)}100%{opacity:0;transform:translate(var(--dx),-122vh) rotate(var(--r))}}
+#bg .scan{position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.02) 0 1px,transparent 1px 4px)}
+#bg .gl{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--c),var(--p),transparent);opacity:0;animation:gl 7s steps(1) infinite}
+#bg .gl.g2{animation-delay:-3.4s;animation-duration:9s}
+@keyframes gl{0%{opacity:0;top:20%}4%{opacity:.7;top:20%}5%{opacity:0}47%{opacity:0;top:68%}49%{opacity:.6;top:68%;transform:translateX(4vw)}50%{opacity:0}100%{opacity:0}}
+
+/* middle: two feeds of real TikToks, side by side */
+#stage{position:relative;z-index:1;container-type:inline-size;min-width:0;display:flex;align-items:stretch;justify-content:center;gap:30px;padding:0 20px;height:100vh}
+.col{position:relative;flex:none;width:calc(var(--pw) + 84px);--pw:calc(min(calc(100vh - 56px),860px,calc(((100cqw - 70px) / 2 - 84px) * 16 / 9)) * 9 / 16)}
+.col:before{content:attr(data-name);position:absolute;top:10px;left:0;width:var(--pw);text-align:center;font-family:M;font-size:11px;letter-spacing:.2em;color:var(--mute);z-index:2;transition:color .3s}
+.col.focus:before{color:#fff}
+.feed{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;outline:0}
+.feed::-webkit-scrollbar{display:none}
+.clip{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:flex-start}
+.fw{position:relative;width:var(--pw);height:calc(var(--pw) * 16 / 9);flex:none}
+.frame{position:absolute;inset:0;border-radius:22px;overflow:hidden;container-type:size;background:#0b0b10;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 30px 80px rgba(0,0,0,.65);isolation:isolate;transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
+.col.focus .clip.on .frame{box-shadow:0 0 0 1.5px rgba(255,255,255,.25),-7px -5px 0 0 rgba(37,244,238,.55),7px 5px 0 0 rgba(254,44,85,.55),0 30px 80px rgba(0,0,0,.65)}
+.clip:not(.on) .frame{transform:scale(.96)}
 .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:1;background:#000}
 .load{position:absolute;inset:0;display:grid;place-items:center;z-index:0}
 .load i{width:44px;height:44px;border-radius:50%;border:3px solid rgba(255,255,255,.15);border-top-color:var(--p);border-right-color:var(--c);animation:spin .9s linear infinite}
 .shield{position:absolute;inset:0;z-index:3;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:pan-y}
-.frame:after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:2;pointer-events:none;background:linear-gradient(transparent,rgba(0,0,0,.6))}
-.meta{position:absolute;left:4.6cqw;right:6cqw;bottom:4.2cqh;z-index:5;font-size:max(13px,3cqw);line-height:1.42;text-shadow:0 1px 2px rgba(0,0,0,.6);text-align:left;pointer-events:none}
-.meta .who{display:flex;align-items:center;gap:8px;font-weight:800;font-size:max(14.5px,3.5cqw)}
+.frame:after{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;z-index:2;pointer-events:none;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.meta{position:absolute;left:4.6cqw;right:24cqw;bottom:4cqh;z-index:5;font-size:max(12.5px,3.1cqw);line-height:1.4;text-shadow:0 1px 2px rgba(0,0,0,.65);text-align:left;pointer-events:none}
+.meta .who{font-weight:800;font-size:max(14px,3.6cqw)}
 .meta .who a{pointer-events:auto}
 .meta .who a:hover{text-decoration:underline}
-.meta p{margin-top:3px;color:rgba(255,255,255,.95);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.meta .snd{display:flex;gap:8px;align-items:center;margin-top:5px;white-space:nowrap;overflow:hidden;font-weight:600}
-.meta .snd i{flex:1;min-width:0;overflow:hidden;font-style:normal}
-.meta .snd span{display:inline-block;padding-left:100%;animation:marq 10s linear infinite}
-@keyframes marq{to{transform:translateX(-100%)}}
+.meta p{margin-top:2px;color:rgba(255,255,255,.95);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.18);z-index:6;pointer-events:none}
-.bar i{display:block;height:100%;width:0;background:#fff;transition:width .25s linear}
-.pz{position:absolute;left:50%;top:50%;width:20cqw;height:20cqw;margin:-10cqw 0 0 -10cqw;border-radius:50%;background:rgba(0,0,0,.42);display:grid;place-items:center;opacity:0;transform:scale(1.35);transition:.25s var(--ease);pointer-events:none;z-index:7;color:#fff}
-.pz svg{width:10cqw;height:10cqw;margin-left:1cqw}
-.clip.paused .pz{opacity:1;transform:none}
+.bar i{display:block;height:100%;width:0;background:#fff;transition:width .3s linear}
 .err{position:absolute;inset:0;z-index:4;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:0 10cqw;background:#0b0b10;font-weight:700;color:var(--dim)}
 .clip.bad .err{display:flex}
-.vol{position:absolute;left:3.6cqw;top:2.6cqh;z-index:7;display:flex;align-items:center;gap:6px;height:36px;padding:0 12px 0 9px;border-radius:999px;background:rgba(0,0,0,.45);color:#fff;font-weight:700;font-size:13px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .2s,transform .15s}
-.vol:hover{background:rgba(0,0,0,.65)}
-.vol:active{transform:scale(.94)}
-.vol svg{width:20px;height:20px}
-.vol.on{padding:0 9px}
-.vol.on span{display:none}
-.rail{position:absolute;left:100%;bottom:0;margin-left:18px;display:flex;flex-direction:column;align-items:center;gap:13px;z-index:7}
-.ra{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#fff;-webkit-tap-highlight-color:transparent}
-.ra .ic{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;transition:transform .2s var(--spring),background .2s}
-.ra:hover .ic{background:rgba(255,255,255,.18)}
+.rail{position:absolute;left:100%;bottom:0;margin-left:14px;display:flex;flex-direction:column;align-items:center;gap:11px;z-index:7}
+.ra{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11.5px;font-weight:700;color:#fff;-webkit-tap-highlight-color:transparent}
+.ra .ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;transition:transform .2s var(--spring),background .2s}
+.ra:hover .ic{background:rgba(255,255,255,.2)}
 .ra:active .ic{transform:scale(.88)}
-.ra svg{width:24px;height:24px;color:#fff}
-.ra.av{margin-bottom:4px}
-.ra.av .ic{background:linear-gradient(135deg,var(--c),var(--p));font-weight:900;font-size:19px;border:2px solid #fff;text-transform:uppercase}
-.disc{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle,#2a2a33 0 30%,#0d0d12 31% 60%,#1d1d25 61%);display:grid;place-items:center;margin-top:4px;box-shadow:0 0 0 1px rgba(255,255,255,.1)}
-.disc img{width:22px;height:22px;object-fit:contain}
+.ra svg{width:23px;height:23px;color:#fff}
+.ra.on .ic{background:#fff}
+.ra.on svg{color:#000}
+.ra.av{margin-bottom:2px}
+.ra.av .ic{background:linear-gradient(135deg,var(--c),var(--p));font-weight:900;font-size:18px;border:2px solid #fff;text-transform:uppercase}
+.ra.nv .ic{width:38px;height:38px}
+.ra.nv svg{width:20px;height:20px}
+.disc{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle,#2a2a33 0 30%,#0d0d12 31% 60%,#1d1d25 61%);display:grid;place-items:center;margin-top:2px;box-shadow:0 0 0 1px rgba(255,255,255,.1)}
+.disc img{width:20px;height:20px;object-fit:contain}
 .clip.on:not(.paused) .disc{animation:spin 4s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.arrows{position:absolute;right:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:4}
-.arrows button{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;transition:background .2s,opacity .2s,transform .15s}
-.arrows button:hover{background:rgba(255,255,255,.2)}
-.arrows button:active{transform:scale(.92)}
-.arrows button:disabled{opacity:.25;cursor:default}
-.arrows svg{width:24px;height:24px}
-#top,#scrim{display:none}
+#top{display:none}
 
-/* right: details */
-#side{position:relative;z-index:5;display:flex;flex-direction:column;min-width:0;min-height:0;border-left:1px solid var(--line);background:rgba(8,8,11,.74);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+#side{position:fixed;top:0;right:0;bottom:0;width:430px;max-width:94vw;z-index:60;display:flex;flex-direction:column;background:#0d0d12;border-left:1px solid var(--line);transform:translateX(105%);transition:transform .42s var(--ease);box-shadow:-30px 0 90px rgba(0,0,0,.55)}
+body.sheet #side{transform:none}
+#scrim{position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .3s;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+body.sheet #scrim{opacity:1;pointer-events:auto}
 #side .hdl{display:none}
-#side .hd{display:flex;align-items:center;gap:12px;padding:0 26px;height:64px;border-bottom:1px solid var(--line);flex:none}
+#side .hd{display:flex;align-items:center;gap:12px;padding:0 20px 0 26px;height:64px;border-bottom:1px solid var(--line);flex:none}
 #side .hd .k{font-family:M;font-size:12px;letter-spacing:.14em;color:var(--mute);flex:none}
 #side .hd b{font-weight:800;font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #side .bk{display:flex;align-items:center;gap:6px;font-weight:800;font-size:13.5px;height:34px;padding:0 12px 0 8px;border-radius:999px;background:rgba(255,255,255,.08);flex:none;transition:background .2s}
 #side .bk:hover{background:rgba(255,255,255,.16)}
 #side .bk svg{width:18px;height:18px;transform:rotate(-90deg)}
-#side .x{display:none}
+#side .x{display:grid;margin-left:auto;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);place-items:center;flex:none;transition:background .2s}
+#side .x:hover{background:rgba(255,255,255,.16)}
+#side .x svg{width:20px;height:20px}
 #side .sc{flex:1;min-height:0;overflow-y:auto;padding:26px 26px 44px;scrollbar-width:thin;scrollbar-color:#2a2a33 transparent}
-#side.flash{animation:sflash .8s var(--ease)}
+
 @keyframes sflash{30%{box-shadow:inset 0 0 0 2px #fff,inset 6px 0 0 var(--c)}}
 .det.in{animation:detin .5s var(--ease)}
 @keyframes detin{from{opacity:0;transform:translateY(12px)}}
@@ -233,33 +248,33 @@ button{cursor:pointer;background:none;border:0}
 .embed{margin-top:18px;border-radius:14px;overflow:hidden;border:1px solid var(--line);height:420px;background:#0a0a0d}
 .embed iframe{width:100%;height:100%;border:0}
 
-@media (max-width:1239px) and (min-width:1000px){
-  body{grid-template-columns:76px minmax(0,1fr) 360px}
+@media (max-width:1239px){
+  body{grid-template-columns:76px minmax(0,1fr)}
   #nav{padding:18px 10px}
   #nav .logo{font-size:15px;padding:8px 4px 18px}
   #nav .it{justify-content:center;padding:0}
   #nav .it .lbl{display:none}
   #nav .it.on:before{left:-10px}
-  #side .sc{padding:24px 22px 40px}
-  .det h1{font-size:30px}
 }
-@media (max-width:999px){
+@media (max-width:759px){
   body{display:block}
-  #glow{display:none}
-  #stage{position:fixed;inset:0}
-  .fw{height:100%;width:min(100vw,calc(100dvh * 9 / 16));margin:0}
-  .frame{border-radius:0;box-shadow:none!important}
-  .meta{right:21cqw;bottom:3.4cqh}
-  .vol{top:calc(62px + env(safe-area-inset-top));left:10px;padding:0 9px}
-  .vol span{display:none}
-  .rail{left:auto;right:6px;bottom:max(14cqh,100px);margin:0;gap:14px}
+  #bg{display:none}
+  #stage{position:fixed;inset:0;padding:0;gap:0;height:auto}
+  .col{position:absolute;inset:0;width:auto;--pw:min(100vw,calc(100dvh * 9 / 16))}
+  .col.b{display:none}
+  .col:before{display:none}
+  .clip{justify-content:center}
+  .fw{height:100%;width:var(--pw)}
+  .frame{border-radius:0;box-shadow:none!important;transform:none!important}
+  .meta{right:22cqw;bottom:3.6cqh}
+  .rail{left:auto;right:6px;bottom:max(15cqh,110px);margin:0;gap:13px}
   .ra .ic{background:none;width:44px;height:40px}
   .ra:hover .ic{background:none}
-  .ra svg{width:31px;height:31px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
+  .ra.on .ic{background:none}.ra.on svg{color:var(--c)}
+  .ra svg{width:30px;height:30px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
   .ra b{text-shadow:0 1px 2px rgba(0,0,0,.6)}
-  .ra.av .ic{width:46px;height:46px;background:linear-gradient(135deg,var(--c),var(--p))}
-  .disc{width:42px;height:42px}
-  .arrows{display:none}
+  .ra.av .ic{width:44px;height:44px;background:linear-gradient(135deg,var(--c),var(--p))}
+  .ra.nv{display:none}
   #top{display:flex;position:fixed;top:0;left:0;right:0;z-index:20;height:58px;padding:0 10px;padding-top:env(safe-area-inset-top);align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);pointer-events:none}
   #top>*{pointer-events:auto}
   #top .pov{position:absolute;left:10px;top:calc(12px + env(safe-area-inset-top));font-size:17px}
@@ -274,27 +289,24 @@ button{cursor:pointer;background:none;border:0}
   #nav .logo{font-size:24px;padding:6px 6px 16px}
   #nav .x{display:grid;position:absolute;right:16px;top:calc(16px + env(safe-area-inset-top));width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);place-items:center}
   #nav .x svg{width:22px;height:22px}
-  #nav .it{min-height:50px;font-size:18px}
+  #nav .it{min-height:50px;font-size:18px;justify-content:flex-start;padding:0 14px}
+  #nav .it .lbl{display:inline}
   #nav .it.on:before{left:-22px}
-  #side{position:fixed;left:0;right:0;bottom:0;z-index:60;max-height:86dvh;border-left:0;border-radius:22px 22px 0 0;background:#0d0d12;transform:translateY(105%);transition:transform .4s var(--ease);box-shadow:0 -20px 60px rgba(0,0,0,.6)}
-  body.sheet #side{transform:none}
+  #side{top:auto;left:0;width:auto;max-width:none;max-height:86dvh;border-left:0;border-radius:22px 22px 0 0;transform:translateY(105%);box-shadow:0 -20px 60px rgba(0,0,0,.6)}
   #side .hdl{display:block;width:42px;height:5px;border-radius:3px;background:rgba(255,255,255,.25);margin:10px auto 0;flex:none}
   #side .hd{padding:0 18px;height:54px;touch-action:none;cursor:grab}
-  #side .x{display:grid;margin-left:auto;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);place-items:center;flex:none}
-  #side .x svg{width:20px;height:20px}
   #side .sc{padding:20px 20px calc(30px + env(safe-area-inset-bottom))}
-  #scrim{display:block;position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .3s}
-  body.sheet #scrim{opacity:1;pointer-events:auto}
   .det h1{font-size:29px}
   .det h2{font-size:25px}
   .embed{height:360px}
 }
 @media (max-width:420px){.two2{grid-template-columns:1fr}.stats{gap:8px}.stat .v{font-size:19px}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
-<div id="glow" aria-hidden="true"></div>
+<div id="bg" aria-hidden="true"><i class="bl b1"></i><i class="bl b2"></i><i class="bl b3"></i><div class="mq">FOR YOU · POV · FOR YOU · POV · FOR YOU · POV · FOR YOU · POV · </div><div class="mq m2">#fyp #foryou #pov #fyp #foryou #pov #fyp #foryou #pov #fyp #foryou #pov </div><div class="mq m3">the coin that buys its own for you page · the coin that buys its own for you page · </div><div class="pt"></div><i class="gl"></i><i class="gl g2"></i><div class="scan"></div></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="tt" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 3c.4 2.2 1.8 3.7 4 4v3.1c-1.5 0-2.9-.4-4-1.1v6.6c0 3.3-2.6 5.9-5.9 5.9S4.8 18.9 4.8 15.6s2.6-5.9 5.9-5.9c.3 0 .6 0 .9.1v3.2c-.3-.1-.6-.1-.9-.1-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7V3h3.2z"/></symbol>
 <symbol id="cmt" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.4L5 21l3.9-1.9c1 .3 2 .4 3.1.4 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/><circle cx="7.8" cy="11.5" r="1.2" fill="#000" opacity=".6"/><circle cx="12" cy="11.5" r="1.2" fill="#000" opacity=".6"/><circle cx="16.2" cy="11.5" r="1.2" fill="#000" opacity=".6"/></symbol>
@@ -332,8 +344,8 @@ button{cursor:pointer;background:none;border:0}
 </aside>
 
 <div id="stage">
-<main id="feed" tabindex="-1" aria-label="For You"></main>
-<div class="arrows"><button id="aup" aria-label="Previous video"><svg><use href="#up"/></svg></button><button id="adn" aria-label="Next video"><svg><use href="#dn"/></svg></button></div>
+  <div class="col a" id="colA" data-name="FOR YOU · 1"><main class="feed" tabindex="-1" aria-label="For You, feed 1"></main></div>
+  <div class="col b" id="colB" data-name="FOR YOU · 2"><main class="feed" tabindex="-1" aria-label="For You, feed 2"></main></div>
 </div>
 
 <header id="top">
@@ -483,104 +495,105 @@ const CFG={ca:'',x:'',tiktok:'',wallet:'',engine:false};
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
-const MQ=matchMedia('(max-width:999px)');
+const MQ=matchMedia('(max-width:759px)');
 const num=(v,d=0)=>Number(v||0).toLocaleString('en-US',{maximumFractionDigits:d,minimumFractionDigits:d});
 const short=a=>a.length>12?a.slice(0,4)+'…'+a.slice(-4):a;
 const usd=v=>{v=+v;if(!isFinite(v)||v<=0)return '—';if(v>=1e9)return '$'+(v/1e9).toFixed(2)+'B';if(v>=1e6)return '$'+(v/1e6).toFixed(2)+'M';if(v>=1e3)return '$'+(v/1e3).toFixed(1)+'K';return '$'+v.toFixed(2)};
 const fp=v=>{v=+v;if(!isFinite(v)||v<=0)return '—';if(v>=1)return '$'+v.toFixed(3);return '$'+v.toFixed(Math.min(12,3-Math.floor(Math.log10(v))))};
 const p2=n=>String(n).padStart(2,'0');
 const ORIGIN=/^https?:/.test(location.origin)?location.origin:'https://pov-fun.vercel.app';
-const feed=$('#feed'),side=$('#side');
+const side=$('#side');
 const vurl=v=>`https://www.tiktok.com/@${v.handle}/video/${v.id}`;
 const purl=v=>`https://www.tiktok.com/@${v.handle}`;
 const DEF=[["6768504823336815877","zachking","Zach King","They rejected my application to Hogwarts but I still found a way to be a wizard. #illusion #magic #harrypotter"],["6979606181463526661","khaby.lame","Khabane lame","C'mon bro!! #learnfromkhaby #learnwithtiktok"],["6718335390845095173","scout2015","Scout, Suki & Stella","Scramble up ur name & I'll try to guess it #foryoupage #petsoftiktok"],["6911406868699073798","franekbielak_art","Franek Bielak","This is one of my best drawings #tiktokart #drawing #fyp"],["6961405079870115077","khaby.lame","Khabane lame","Bro why you ruined a T-shirt? It was so easy.... #learnfromkhaby"],["6932635718615338246","thenickluciano","Nick Luciano","And no it's not a green screen. run it up! #nickluciano"],["7071079551756979483","mngnzls","MONA","It's time to wake up the neighbors"],["7337315673707662624","khaby.lame","Khabane lame","It was more complicated than I thought #learnfromkhaby #comedy"]].map(a=>({id:a[0],handle:a[1],name:a[2],caption:a[3]}));
-let LIST=[],slides=[],cur=-1,page='video',SOUND=false;
+let LIST=[],FEEDS=[],FOCUS=null,page='video',SOUND=false;
 
-/* the feed: real TikToks, played with TikTok's own embed player */
+/* background: blobs, drifting type, rising glyphs, glitch lines */
+(function bg(){const p=$('#bg .pt');if(!p||RM)return;const G=['♪','♫','▶','♥','✦','#fyp','POV','♪','✦','♥'],C=['#25F4EE','#FE2C55','#ffffff','#7a5cff'];let h='';
+  for(let k=0;k<26;k++){const g=G[k%G.length],st=g==='POV';h+=`<i class="${st?'st':''}" style="--x:${(k*37)%100}vw;--s:${st?18+(k%3)*6:14+((k*7)%26)}px;--col:${C[k%4]};--d:${14+((k*5)%13)}s;--t:${-((k*1.7)%18).toFixed(1)}s;--o:${(.18+((k*3)%5)*.08).toFixed(2)};--dx:${((k%2?1:-1)*(3+k%6))}vw;--r:${(k%2?1:-1)*(20+(k*13)%50)}deg">${g}</i>`}
+  p.innerHTML=h})();
+
+/* the feeds: real TikToks, played with TikTok's own embed player */
+const PARAMS='autoplay=1&loop=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&timestamp=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0';
+const post=(s,type,value=null)=>{if(!s||!s.frame||!s.frame.contentWindow)return;try{s.frame.contentWindow.postMessage({type,value,'x-tiktok-player':true},'*')}catch(e){}};
 const RAIL=v=>'<div class="rail">'+
  `<a class="ra av" href="${esc(purl(v))}" target="_blank" rel="noopener" aria-label="@${esc(v.handle)} on TikTok"><span class="ic">${esc((v.name||v.handle).trim().charAt(0))}</span></a>`+
  `<a class="ra" href="${esc(vurl(v))}" target="_blank" rel="noopener" aria-label="Open on TikTok"><span class="ic"><svg viewBox="0 0 24 24"><use href="#tt"/></svg></span><b>Open</b></a>`+
  '<button class="ra" data-act="more" aria-label="About this video"><span class="ic"><svg viewBox="0 0 24 24"><use href="#cmt"/></svg></span><b>More</b></button>'+
- '<button class="ra" data-act="link" aria-label="Copy the TikTok link"><span class="ic"><svg viewBox="0 0 24 24"><use href="#lnk"/></svg></span><b>Link</b></button>'+
+ `<button class="ra snd${SOUND?' on':''}" data-act="sound" aria-label="Sound"><span class="ic"><svg viewBox="0 0 24 24"><use href="${SOUND?'#von':'#voff'}"/></svg></span><b>${SOUND?'Sound':'Muted'}</b></button>`+
  '<button class="ra" data-act="share" aria-label="Share on X"><span class="ic"><svg viewBox="0 0 24 24"><use href="#shr"/></svg></span><b>Share</b></button>'+
+ '<button class="ra nv" data-act="prev" aria-label="Previous video"><span class="ic"><svg viewBox="0 0 24 24"><use href="#up"/></svg></span></button>'+
+ '<button class="ra nv" data-act="next" aria-label="Next video"><span class="ic"><svg viewBox="0 0 24 24"><use href="#dn"/></svg></span></button>'+
  '<span class="disc" aria-hidden="true"><img src="/assets/icon-64.png?v=1" alt=""></span></div>';
-function addBatch(){LIST.forEach(v=>{const i=slides.length,s=document.createElement('section');s.className='clip';s.dataset.i=i;
-  s.innerHTML=`<div class="fw"><div class="frame"><div class="load"><i></i></div><div class="shield" aria-label="Play or pause"></div>
-   <div class="meta"><div class="who"><a href="${esc(purl(v))}" target="_blank" rel="noopener">@${esc(v.handle)}</a></div>${v.caption?`<p>${esc(v.caption)}</p>`:''}</div>
-   <div class="bar"><i></i></div><div class="pz" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#play"/></svg></div>
-   <div class="err"><span>This TikTok can't play here.</span><a class="btn g sm" href="${esc(vurl(v))}" target="_blank" rel="noopener">Open on TikTok</a></div>
-   <button class="vol${SOUND?' on':''}" data-act="sound" aria-label="${SOUND?'Sound off':'Sound on'}"><svg viewBox="0 0 24 24"><use href="${SOUND?'#von':'#voff'}"/></svg><span>Tap for sound</span></button>
-   </div>${RAIL(v)}</div>`;
-  feed.appendChild(s);slides.push({el:s,v,frame:null,ready:false,state:-1});io.observe(s)})}
-
-const PARAMS='loop=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&timestamp=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0';
-function ensure(i){const s=slides[i];if(!s||s.frame)return;const f=document.createElement('iframe');
-  f.src=`https://www.tiktok.com/player/v1/${encodeURIComponent(s.v.id)}?autoplay=${i===cur?1:0}&${PARAMS}`;
-  f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.title='TikTok by @'+s.v.handle;f.loading=Math.abs(i-cur)<=1?'eager':'lazy';
-  $('.frame',s.el).insertBefore(f,$('.shield',s.el));s.frame=f;s.ready=false}
-function drop(i){const s=slides[i];if(!s||!s.frame)return;s.frame.remove();s.frame=null;s.ready=false;s.el.classList.remove('paused');$('.bar i',s.el).style.width='0'}
-function post(s,type,value){if(!s||!s.frame||!s.frame.contentWindow)return;const m={type,'x-tiktok-player':true};if(value!==undefined)m.value=value;try{s.frame.contentWindow.postMessage(m,'*')}catch(e){}}
-function start(s){post(s,SOUND?'unMute':'mute');post(s,'play')}
-
-function activate(i){if(i===cur||i<0)return;const prev=slides[cur];if(prev){post(prev,'pause');prev.el.classList.remove('on')}
-  cur=i;const s=slides[i];s.el.classList.add('on');s.el.classList.remove('paused');
-  slides.forEach((x,k)=>{if(Math.abs(k-i)>2)drop(k)});ensure(i);ensure(i+1);ensure(i-1);
-  if(s.ready)start(s);
-  if(i>=slides.length-4)addBatch();
-  $('#aup').disabled=cur===0;
-  if(page==='video')showPage('video',true)}
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>=.6)activate(slides.findIndex(x=>x.el===e.target))}),{root:feed,threshold:[.6]});
-function go(i,instant){i=Math.max(0,Math.min(slides.length-1,i));feed.scrollTo({top:slides[i].el.offsetTop,behavior:(instant||RM)?'auto':'smooth'})}
-
-addEventListener('message',e=>{if(!/tiktok\.com$/.test((()=>{try{return new URL(e.origin).hostname}catch(_){return ''}})()))return;
-  const s=slides.find(x=>x.frame&&x.frame.contentWindow===e.source);if(!s)return;
-  let d=e.data;if(typeof d==='string'){try{d=JSON.parse(d)}catch(_){return}}if(!d||typeof d!=='object')return;
-  const t=d.type,v=d.value,isCur=slides[cur]===s;
-  if(t==='onPlayerReady'){s.ready=true;s.el.classList.add('ok');if(isCur)start(s);else post(s,'pause')}
-  else if(t==='onStateChange'){s.state=v;if(isCur)s.el.classList.toggle('paused',v===2);if(!isCur&&v===1)post(s,'pause')}
-  else if(t==='onCurrentTime'&&v&&v.duration){$('.bar i',s.el).style.width=Math.min(100,v.currentTime/v.duration*100).toFixed(2)+'%'}
-  else if(t==='onPlayerError'){const c=v&&(v.errorCode||v);if(c===3002){post(s,'mute');post(s,'play');setSound(false,true)}else if(c===1001||c===2001)s.el.classList.add('bad')}
-  else if(t==='onMute'&&isCur&&typeof v==='boolean'&&v!==!SOUND){setSound(!v,true)}});
-
-/* tap the video to pause, like the app */
-feed.addEventListener('click',e=>{const sh=e.target.closest('.shield');if(sh){const s=slides.find(x=>x.el.contains(sh));if(!s)return;if(slides[cur]!==s){go(slides.indexOf(s));return}
-    const paused=s.el.classList.toggle('paused');post(s,paused?'pause':'play');if(!paused)post(s,SOUND?'unMute':'mute');return}
-  const b=e.target.closest('[data-act]');if(!b)return;const s=slides.find(x=>x.el.contains(b));const a=b.dataset.act;
+class Feed{
+  constructor(col,offset){this.col=col;this.root=$('.feed',col);this.off=offset;this.slides=[];this.cur=-1;
+    this.io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>=.6)this.activate(this.slides.findIndex(x=>x.el===e.target))}),{root:this.root,threshold:[.6]});
+    let wl=false,wt=0,acc=0;
+    this.root.addEventListener('wheel',e=>{if(MQ.matches||e.ctrlKey)return;e.preventDefault();clearTimeout(wt);wt=setTimeout(()=>{wl=false;acc=0},200);
+      if(wl)return;acc+=e.deltaY;if(Math.abs(acc)>=30){wl=true;this.go(this.cur+(acc>0?1:-1));acc=0}},{passive:false});
+    col.addEventListener('pointerenter',()=>focusFeed(this));col.addEventListener('pointerdown',()=>focusFeed(this));
+    this.add();this.add()}
+  add(){const n=LIST.length;for(let k=0;k<n;k++){const v=LIST[(k+this.off)%n],s=document.createElement('section');s.className='clip';
+    s.innerHTML=`<div class="fw"><div class="frame"><div class="load"><i></i></div><div class="shield" aria-label="Play or pause"></div>
+     <div class="meta"><div class="who"><a href="${esc(purl(v))}" target="_blank" rel="noopener">@${esc(v.handle)}</a></div>${v.caption?`<p>${esc(v.caption)}</p>`:''}</div>
+     <div class="bar"><i></i></div>
+     <div class="err"><span>This TikTok can't play here.</span><a class="btn g sm" href="${esc(vurl(v))}" target="_blank" rel="noopener">Open on TikTok</a></div>
+     </div>${RAIL(v)}</div>`;
+    this.root.appendChild(s);this.slides.push({el:s,v,frame:null,ready:false,feed:this});this.io.observe(s)}}
+  hidden(){return !this.root.offsetParent}
+  activate(i){if(i===this.cur||i<0||this.hidden())return;const prev=this.slides[this.cur];if(prev){prev.el.classList.remove('on','paused');drop(prev)}
+    this.cur=i;const s=this.slides[i];s.el.classList.add('on');load(s);
+    if(i>=this.slides.length-4)this.add();
+    if(FOCUS===this&&page==='video'&&document.body.classList.contains('sheet'))showPage('video',true)}
+  go(i,instant){i=Math.max(0,Math.min(this.slides.length-1,i));this.root.scrollTo({top:this.slides[i].el.offsetTop,behavior:(instant||RM)?'auto':'smooth'})}
+  stop(){const s=this.slides[this.cur];if(s){drop(s);s.el.classList.remove('on')}this.cur=-1}}
+function load(s){if(s.frame)return;const f=document.createElement('iframe');f.src=`https://www.tiktok.com/player/v1/${encodeURIComponent(s.v.id)}?${PARAMS}`;
+  f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.title='TikTok by @'+s.v.handle;$('.frame',s.el).insertBefore(f,$('.shield',s.el));s.frame=f;s.ready=false}
+function drop(s){if(!s.frame)return;post(s,'pause');s.frame.remove();s.frame=null;s.ready=false;$('.bar i',s.el).style.width='0'}
+const wantsSound=s=>SOUND&&FOCUS===s.feed;
+function apply(s){post(s,wantsSound(s)?'unMute':'mute');if(!s.el.classList.contains('paused'))post(s,'play')}
+function focusFeed(f){if(FOCUS===f)return;FOCUS=f;FEEDS.forEach(x=>{x.col.classList.toggle('focus',x===f);const s=x.slides[x.cur];if(s&&s.ready)post(s,wantsSound(s)?'unMute':'mute')});
+  if(page==='video'&&document.body.classList.contains('sheet'))showPage('video',true)}
+function setSound(on,quiet){SOUND=on;$$('.ra.snd').forEach(b=>{b.classList.toggle('on',on);$('use',b).setAttribute('href',on?'#von':'#voff');$('b',b).textContent=on?'Sound':'Muted'});
+  if(!quiet)FEEDS.forEach(x=>{const s=x.slides[x.cur];if(s&&s.ready)post(s,wantsSound(s)?'unMute':'mute')})}
+const slideOf=src=>{for(const f of FEEDS)for(const s of f.slides)if(s.frame&&s.frame.contentWindow===src)return s;return null};
+addEventListener('message',e=>{let host='';try{host=new URL(e.origin).hostname}catch(_){}if(!/(^|\.)tiktok\.com$/.test(host))return;
+  const s=slideOf(e.source);if(!s)return;let d=e.data;if(typeof d==='string'){try{d=JSON.parse(d)}catch(_){return}}if(!d||typeof d!=='object')return;
+  const t=d.type,v=d.value;
+  if(t==='onPlayerReady'){s.ready=true;apply(s)}
+  else if(t==='onStateChange'){if(v===1||v===3)s.el.classList.add('ok');if(v===1)s.el.classList.remove('paused')}
+  else if(t==='onCurrentTime'&&v&&v.duration){s.el.classList.add('ok');$('.bar i',s.el).style.width=Math.min(100,v.currentTime/v.duration*100).toFixed(2)+'%'}
+  else if(t==='onPlayerError'){const c=v&&(v.errorCode||v);if(c===3002){post(s,'mute');post(s,'play')}else if(c===1001||c===2001)s.el.classList.add('bad')}});
+document.addEventListener('click',e=>{const sh=e.target.closest('.shield');if(sh){const s=FEEDS.map(f=>f.slides.find(x=>x.el.contains(sh))).find(Boolean);if(!s)return;focusFeed(s.feed);
+    if(s.feed.slides[s.feed.cur]!==s){s.feed.go(s.feed.slides.indexOf(s));return}
+    const paused=s.el.classList.toggle('paused');if(paused)post(s,'pause');else apply(s);return}
+  const b=e.target.closest('[data-act]');if(!b)return;const s=FEEDS.map(f=>f.slides.find(x=>x.el.contains(b))).find(Boolean);if(!s)return;focusFeed(s.feed);const a=b.dataset.act;
   if(a==='sound')setSound(!SOUND);
   else if(a==='more'){showPage('video');openSheet()}
-  else if(a==='link'&&s)copyText(vurl(s.v)).then(ok=>{const l=$('b',b);l.textContent=ok?'Copied':'Failed';setTimeout(()=>l.textContent='Link',1500)});
-  else if(a==='share'&&s)window.open('https://x.com/intent/post?text='+encodeURIComponent(vurl(s.v)+'\n\nfound it on the POV feed\n'+ORIGIN),'_blank','noopener')});
-function setSound(on,quiet){SOUND=on;$$('.vol').forEach(b=>{b.classList.toggle('on',on);b.setAttribute('aria-label',on?'Sound off':'Sound on');$('use',b).setAttribute('href',on?'#von':'#voff')});
-  if(!quiet&&slides[cur])post(slides[cur],on?'unMute':'mute')}
-
-/* wheel: one video per flick, like the app */
-let wl=false,wt=0,acc=0;
-feed.addEventListener('wheel',e=>{if(MQ.matches||e.ctrlKey)return;e.preventDefault();clearTimeout(wt);wt=setTimeout(()=>{wl=false;acc=0},200);
-  if(wl)return;acc+=e.deltaY;if(Math.abs(acc)>=30){wl=true;go(cur+(acc>0?1:-1));acc=0}},{passive:false});
+  else if(a==='prev')s.feed.go(s.feed.cur-1);else if(a==='next')s.feed.go(s.feed.cur+1);
+  else if(a==='share')window.open('https://x.com/intent/post?text='+encodeURIComponent(vurl(s.v)+'\n\nfound it on the POV feed\n'+ORIGIN),'_blank','noopener')});
 addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;const t=e.target;if(t.closest&&t.closest('input,textarea,select,[contenteditable]'))return;
   if(e.key==='Escape'){closeSheet();closeMenu();return}
-  if(document.body.classList.contains('sheet')||document.body.classList.contains('menu'))return;
-  if(['ArrowDown','PageDown','j'].includes(e.key)){e.preventDefault();go(cur+1)}
-  else if(['ArrowUp','PageUp','k'].includes(e.key)){e.preventDefault();go(cur-1)}
-  else if(e.key===' '&&!(t.closest&&t.closest('button,a,summary'))){e.preventDefault();const s=slides[cur];if(s){const p=s.el.classList.toggle('paused');post(s,p?'pause':'play')}}
+  if(document.body.classList.contains('sheet')||document.body.classList.contains('menu'))return;const f=FOCUS||FEEDS[0];if(!f)return;
+  if(['ArrowDown','PageDown','j'].includes(e.key)){e.preventDefault();f.go(f.cur+1)}
+  else if(['ArrowUp','PageUp','k'].includes(e.key)){e.preventDefault();f.go(f.cur-1)}
+  else if(e.key==='ArrowLeft'&&FEEDS[0])focusFeed(FEEDS[0]);else if(e.key==='ArrowRight'&&FEEDS[1]&&!FEEDS[1].hidden())focusFeed(FEEDS[1]);
   else if(e.key==='m'||e.key==='M')setSound(!SOUND)});
-$('#aup').onclick=()=>go(cur-1);$('#adn').onclick=()=>go(cur+1);
-let rz=0;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(!MQ.matches){closeSheet();closeMenu()}if(cur>=0)go(cur,true)},150)});
-document.addEventListener('visibilitychange',()=>{const s=slides[cur];if(!s)return;if(document.hidden)post(s,'pause');else if(!s.el.classList.contains('paused'))post(s,'play')});
+let rz=0;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{FEEDS.forEach(f=>{if(f.hidden())f.stop();else if(f.cur<0){const i=Math.round(f.root.scrollTop/Math.max(1,f.root.clientHeight));f.activate(i)}else f.go(f.cur,true)});if(FOCUS&&FOCUS.hidden())focusFeed(FEEDS[0])},180)});
+document.addEventListener('visibilitychange',()=>FEEDS.forEach(f=>{const s=f.slides[f.cur];if(!s||!s.ready)return;if(document.hidden)post(s,'pause');else if(!s.el.classList.contains('paused'))post(s,'play')}));
 
 /* the side panel: this video, or a page */
 const NAMES={how:'How it works',wallet:'The ad wallet',receipts:'Receipts',write:'Write the next one',rules:'The rules',faq:'FAQ',chart:'Chart'};
 function showPage(p,quiet){page=p;let target;
-  if(p==='video'){target=$('.det[data-page="video"]');const s=slides[cur];
+  if(p==='video'){target=$('.det[data-page="video"]');const F=FOCUS||FEEDS[0],cur=F?F.cur:0,s=F?F.slides[cur]:null;
     if(s){const v=s.v;$('#v-kk').textContent='NOW PLAYING · '+p2(cur+1);$('#v-av').textContent=(v.name||v.handle).trim().charAt(0);$('#v-name').textContent=v.name||v.handle;$('#v-h').textContent='@'+v.handle;$('#v-open').href=vurl(v);$('#v-cap').textContent=v.caption||''}
-    $('#sidx').hidden=false;$('#sidx').textContent=p2(Math.max(cur,0)+1);$('#sttl').textContent=s?'@'+s.v.handle:'For You';$('#bk').hidden=true}
+    $('#sidx').hidden=false;$('#sidx').textContent=(F===FEEDS[1]?'FEED 2 · ':'FEED 1 · ')+p2(Math.max(cur,0)+1);$('#sttl').textContent=s?'@'+s.v.handle:'For You';$('#bk').hidden=true}
   else{target=$(`.det[data-page="${p}"]`);$('#sidx').hidden=true;$('#sttl').textContent=NAMES[p]||'';$('#bk').hidden=false;if(p==='chart')embed()}
   $$('.det').forEach(d=>{if(d===target){if(d.hidden||!quiet){d.hidden=false;d.classList.remove('in');void d.offsetWidth;d.classList.add('in')}}else d.hidden=true});
   if(!quiet)$('#side .sc').scrollTop=0;
   $$('#nav .it').forEach(a=>a.classList.toggle('on',a.dataset.page===p));
   const rOn=p==='receipts'&&document.body.classList.contains('sheet');$('#tabR').classList.toggle('on',rOn);$('#tabF').classList.toggle('on',!rOn)}
-function openSheet(){if(!MQ.matches){side.classList.remove('flash');void side.offsetWidth;side.classList.add('flash');return}
-  document.body.classList.add('sheet');side.style.transform='';showPage(page,true)}
+function openSheet(){document.body.classList.add('sheet');side.style.transform='';showPage(page,true)}
 function closeSheet(){document.body.classList.remove('sheet');side.style.transform='';$('#tabR').classList.remove('on');$('#tabF').classList.add('on')}
 function closeMenu(){document.body.classList.remove('menu')}
 $('#scrim').onclick=closeSheet;$('#sx').onclick=closeSheet;$('#bk').onclick=()=>showPage('video');
@@ -591,8 +604,8 @@ $('#mb').onclick=()=>document.body.classList.toggle('menu');$('#nx').onclick=clo
   const end=()=>{if(y0==null)return;y0=null;side.style.transition='';if(dy>80)closeSheet();else side.style.transform=''};
   h.addEventListener('pointerup',end);h.addEventListener('pointercancel',end)})();
 document.addEventListener('click',e=>{const pg=e.target.closest('[data-page]');if(!pg)return;e.preventDefault();const p=pg.dataset.page;closeMenu();
-  if(pg.hasAttribute('data-top')){showPage('video');closeSheet();go(0);return}
-  showPage(p);if(MQ.matches)openSheet()});
+  if(pg.hasAttribute('data-top')){showPage('video');closeSheet();FEEDS.forEach(f=>f.go(0));return}
+  showPage(p);openSheet()});
 
 async function copyText(t){try{await navigator.clipboard.writeText(t);return true}catch(e){try{const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();return ok}catch(_){return false}}}
 
@@ -658,9 +671,9 @@ if(CFG.ca){chart();setInterval(()=>{if(!document.hidden)chart()},20000)}
 
 /* go */
 (async function boot(){try{const r=await fetch('/feed.json?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(Array.isArray(j))LIST=j.filter(v=>v&&/^\d{8,25}$/.test(String(v.id))&&v.handle)}}catch(e){}
-  if(!LIST.length)LIST=DEF;addBatch();addBatch()})();
+  if(!LIST.length)LIST=DEF;
+  FEEDS=[new Feed($('#colA'),0),new Feed($('#colB'),Math.floor(LIST.length/2))];focusFeed(FEEDS[0])})();
 })();
-
 </script>
 </body>
 </html>
